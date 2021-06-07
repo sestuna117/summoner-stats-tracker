@@ -1,1 +1,1 @@
-export { SummonerInfo } from './SummonerInfo';
+export { default as SummonerInfo } from './SummonerInfo';

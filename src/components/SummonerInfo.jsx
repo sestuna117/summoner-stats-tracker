@@ -1,3 +1,5 @@
+import React from "react";
+
 /* takes in a Summoners name and my Riot API key and returns JSON of Summoners info. */
 const getSumByName = async (name, riotKey) => {
     /* generates link to retrieve data from */
@@ -10,3 +12,14 @@ const getSumByName = async (name, riotKey) => {
     }
 }
 
+const Summoner = (props) => {
+    return (
+        <div>
+            <form>
+                <button onClick={getSumByName}>Search</button>
+            </form>
+        </div>
+    )
+}
+
+export default Summoner;
