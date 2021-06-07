@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
+
+const riotKey = '';
 
 /* takes in a Summoners name and my Riot API key and returns JSON of Summoners info. */
-const getSumByName = async (name, riotKey) => {
+const getSumByName = async (name, region) => {
     /* generates link to retrieve data from */
-    const link = `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/ ${name}?api_key=${riotKey}`;
+    const link = `https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/ ${name}?api_key=${riotKey}`;
     try {
         const response = await fetch(link);
         return response.json();
@@ -13,10 +15,13 @@ const getSumByName = async (name, riotKey) => {
 }
 
 const Summoner = (props) => {
+    const [name, setName] = useState('');
+    const [region, setRegion] = useState('na1');
+
     return (
         <div>
             <form>
-                <button onClick={getSumByName}>Search</button>
+                <button onClick={getSumByName(name, region)}>Search</button>
             </form>
         </div>
     )
