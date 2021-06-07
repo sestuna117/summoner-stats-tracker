@@ -1,5 +1,5 @@
 import './App.css';
-import { SummonerInfo } from './components';
+import { SummonerInfo } from './components/SummonerInfo';
 
 function App() {
   return (
