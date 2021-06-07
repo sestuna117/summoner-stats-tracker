@@ -1,0 +1,1 @@
+export { SummonerInfo } from './SummonerInfo';
