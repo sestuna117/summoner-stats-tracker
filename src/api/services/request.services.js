@@ -12,10 +12,10 @@ export const getSumByName = async (name, region) => {
     }
 }
 
-/* takes puuid and returns JSON array of last 20 matches */
+/* takes puuid and returns JSON array of last 10 matches */
 export const getMatches = async (puuid) => {
     /* generates link to retrieve data from */
-    const link = `https://cors.bridged.cc/https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids`;
+    const link = `https://cors.bridged.cc/https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10`;
     try {
         const response = await axiosConfig.get(link);
         return response.data;
