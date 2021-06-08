@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import {getMatches, getSumByName} from '../api/services/request.services';
+import {getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
 
 export function SummonerInfo() {
     const [name, setName] = useState('');
     const [region, setRegion] = useState('na1');
     const [data, setData] = useState();
-    const [matches, setMatches] = useState();
+    const [matches, setMatches] = useState([]);
 
     const getProfile = async () => {
         try {
@@ -15,6 +15,21 @@ export function SummonerInfo() {
             const matches = await getMatches(result.puuid);
             console.log(matches);
             setMatches(matches);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    const getMatchData = async (matchId) => {
+        try {
+            const matchData = await getMatchInfo(matchId);
+            return(
+                <li key={matchId}>
+                    <div>
+                        {matchId}
+                    </div>
+                </li>
+            );
         } catch (e) {
             console.error(e);
         }
@@ -30,15 +45,13 @@ export function SummonerInfo() {
             <div>
                 {data?.summonerLevel ?? "data not loaded"}
             </div>
+            {/*
             <ul>
                 {matches.map(match => (
-                    <li key={match.matchId}>
-                        <div>
-                            {match.matchId}
-                        </div>
-                    </li>
+                    getMatchData(match)
                 ))}
             </ul>
+            */}
         </div>
     )
 }
