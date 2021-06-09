@@ -45,6 +45,9 @@ export function SummonerInfo() {
                 getProfile();
                 return false;
             }}>
+                <input value={name} type={"text"} placeholder={"Input Summoner Name..."}
+                       onChange={e => setName(e.target.value)}/>
+                <button type={"submit"}>Search</button>
                 <select value={region} onChange={e => setRegion(e.target.value)}>
                     <option value={'br1'}>BR</option>
                     <option value={'eun1'}>EUNE</option>
@@ -58,16 +61,14 @@ export function SummonerInfo() {
                     <option value={'ru'}>RU</option>
                     <option value={'tr1'}>TR</option>
                 </select>
-                <input value={name} type={"text"} placeholder={"Input Summoner Name..."}
-                       onChange={e => setName(e.target.value)}/>
-                <button type={"submit"}>Search</button>
             </form>
             <div>
+                <h2>{data?.name}</h2>
                 {data?.summonerLevel ?? "data not loaded"}
             </div>
             <ul>
                 {matches?.sort((a,b) => b.info.gameCreation - a.info.gameCreation).map(match => (
-                    <MatchView match={match} />
+                    <MatchView match={match} puuid={data.puuid}/>
                 ))}
             </ul>
         </div>
