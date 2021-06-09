@@ -1,0 +1,8 @@
+.profile-icon {
+    width: 150px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}

@@ -6,7 +6,6 @@ function MatchView(props) {
     const redSide = match.info.participants.slice(5, 10);
     const player = match.info.participants.find(participant => participant.puuid === puuid);
 
-
     const getGameType = () => {
         switch (match.info.queueId) {
             case 400:

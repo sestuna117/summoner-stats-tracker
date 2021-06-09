@@ -2,7 +2,6 @@ import {axiosConfig} from "../index";
 
 /* takes in a summoners name and returns JSON object of Summoners info. */
 export const getSumByName = async (name, region) => {
-    /* generates link to retrieve data from */
     const link = `/summoner/v4/summoners/by-name/${name}`;
     try {
         const response = await axiosConfig.get(link);
@@ -14,7 +13,6 @@ export const getSumByName = async (name, region) => {
 
 /* takes puuid and returns JSON array of last 10 matches */
 export const getMatches = async (puuid) => {
-    /* generates link to retrieve data from */
     const link = `https://cors.bridged.cc/https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10`;
     try {
         const response = await axiosConfig.get(link);
@@ -34,4 +32,10 @@ export const getMatchInfo = async (matchId) => {
     } catch (error) {
         console.error(error);
     }
+}
+
+/* takes iconId number and returns  */
+export const getProfileIcon = async (id) => {
+    const link = `http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/${id}.png`;
+    return link;
 }

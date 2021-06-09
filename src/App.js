@@ -1,9 +1,9 @@
-import { SummonerInfo } from './components/SummonerInfo';
+import { SummonerPage } from './components/SummonerPage';
 
 function App() {
   return (
     <div className="App">
-        <SummonerInfo />
+        <SummonerPage />
     </div>
   );
 }
