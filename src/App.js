@@ -1,10 +1,13 @@
 import { SummonerPage } from './components/SummonerPage';
+import {ChampionDataProvider} from "./hook/ChampionDataContext";
 
 function App() {
   return (
-    <div className="App">
-        <SummonerPage />
-    </div>
+      <ChampionDataProvider>
+          <div className="App">
+              <SummonerPage />
+          </div>
+      </ChampionDataProvider>
   );
 }
 

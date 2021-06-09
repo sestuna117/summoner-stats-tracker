@@ -34,8 +34,14 @@ export const getMatchInfo = async (matchId) => {
     }
 }
 
-/* takes iconId number and returns  */
-export const getProfileIcon = async (id) => {
-    const link = `http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/${id}.png`;
-    return link;
+/* returns JSON  of champ data */
+export const getChampData = async (matchId) => {
+    /* generates link to retrieve data from */
+    const link = 'http://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/champion.json';
+    try {
+        const response = await axiosConfig.get(link);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
 }

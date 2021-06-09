@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {getProfileIcon, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
+import {getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
 import MatchView from './MatchView';
 import './SummonerPage.css';
+import getAvatarUrl from "../util/getAvatarUrl";
 
 function NavBar(props) {
     const {name, region, getProfile, changeName, changeRegion}= props;
@@ -40,9 +41,7 @@ function SummonerInfo(props) {
     const {data} = props;
     return (
         <div>
-            {/*<img src={createProfileIcon()} alt={`${data?.profileIconId}.png`}/>*/}
-            <img className="profile-icon" src={`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/${data?.profileIconId}.png`}
-                 alt={`${data?.profileIconId}.png`}/>
+            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId)} alt={`${data?.profileIconId}.png`}/>
             <h2>{data?.name}</h2>
             {data?.summonerLevel ?? "data not loaded"}
         </div>
@@ -82,13 +81,7 @@ export function SummonerPage() {
         });
 
         await Promise.all(promises);
-        alert('aifinised');
     }
-
-    /*const createProfileIcon = () => {
-        const link = getProfileIcon(data?.profileIconId);
-        return JSON.stringify(link);
-    }*/
 
     return (
         <div>
@@ -96,14 +89,9 @@ export function SummonerPage() {
             <SummonerInfo data={data}/>
             <ul>
                 {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (
-                    <MatchView match={match} puuid={data.puuid}/>
+                    <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid}/>
                 ))}
             </ul>
         </div>
     )
 }
-
-/*
-* make new component MatchView
-* pass match data
-* return rendered match data */
