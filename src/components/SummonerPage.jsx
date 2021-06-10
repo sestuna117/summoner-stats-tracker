@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import {getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
+import React, {useEffect, useState} from 'react';
+import {getRankedInfo, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
 import MatchView from './MatchView';
 import './SummonerPage.css';
 import getAvatarUrl from "../util/getAvatarUrl";
+import getRankIcon from "../util/getRankIcon";
 
 function NavBar(props) {
     const {name, region, getProfile, changeName, changeRegion}= props;
@@ -37,13 +38,49 @@ function NavBar(props) {
     );
 }
 
-function SummonerInfo(props) {
+function RankedInfo(props) {
     const {data} = props;
+    const [rankData, setRankData] = useState();
+    const ranks = getRankIcon;
+    const [soloInfo, setSoloInfo] = useState({});
+
+    async function loadRankedInfo() {
+        try {
+            const result = await getRankedInfo(data.id);
+            setRankData(result);
+            console.log(result);
+            /* why does result work but rankData not */
+            setSoloInfo(result?.find(queue => queue?.queueType === "RANKED_SOLO_5x5"));
+            console.log(soloInfo);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        loadRankedInfo();
+    }, [data?.id]);
+
     return (
         <div>
-            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId)} alt={`${data?.profileIconId}.png`}/>
+            <img className="rank-icon" src={ranks.get(soloInfo?.tier)?.icon} alt={`${ranks.get(soloInfo?.tier)?.icon}`}/>
+            <p>Ranked Solo</p>
+            <p>{`Winrate: ${parseInt((soloInfo?.wins) / (soloInfo?.wins + soloInfo?.losses)*100)}%`}</p>
+            <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
+            <p>{`${soloInfo?.leaguePoints} LP`}</p>
+            <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
+        </div>
+    );
+}
+
+function SummonerInfo(props) {
+    const {data} = props;
+
+    return (
+        <div>
+            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId)} alt={`${data?.profileIconId}`}/>
             <h2>{data?.name}</h2>
-            {data?.summonerLevel ?? "data not loaded"}
+            <p>{data?.summonerLevel ?? "data not loaded"}</p>
         </div>
     );
 }
@@ -86,12 +123,17 @@ export function SummonerPage() {
     return (
         <div>
             <NavBar name={name} region={region} getProfile={getProfile} changeName={setName} changeRegion={setRegion}/>
-            <SummonerInfo data={data}/>
-            <ul>
-                {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (
-                    <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid}/>
-                ))}
-            </ul>
+            {data && matches && (
+                <div>
+                    <SummonerInfo data={data}/>
+                    <RankedInfo data={data}/>
+                    <ul>
+                        {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (
+                            <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid}/>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     )
 }

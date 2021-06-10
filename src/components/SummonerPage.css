@@ -2,6 +2,10 @@
     width: 150px;
 }
 
+.rank-icon {
+    width: 160px;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;

@@ -34,8 +34,20 @@ export const getMatchInfo = async (matchId) => {
     }
 }
 
+/* returns JSON  of summoners rank info */
+export const getRankedInfo = async (sumId) => {
+    /* generates link to retrieve data from */
+    const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${sumId}`;
+    try {
+        const response = await axiosConfig.get(link);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 /* returns JSON  of champ data */
-export const getChampData = async (matchId) => {
+export const getChampData = async () => {
     /* generates link to retrieve data from */
     const link = 'http://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/champion.json';
     try {

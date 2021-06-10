@@ -19,7 +19,7 @@ function Team(props) {
         champId = Object.values(champData.data).find(champ => parseInt(champ.key) === participant?.championId);
 
         return (
-            <img className="champ-sprite" src={getChampionUrl(champId.id)} alt={`${champId.id}.png`}/>
+            <img className="champ-sprite" src={getChampionUrl(champId.id)} alt={`${champId.id}`}/>
         )
     }
 
