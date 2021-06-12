@@ -1,3 +1,11 @@
 .champ-sprite {
     width: 40px;
 }
+
+.team-blue {
+    background-color: #7db2ff;
+}
+
+.team-red {
+    background-color: #ff938b;
+}

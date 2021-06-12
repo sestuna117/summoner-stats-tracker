@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getRankedInfo, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
+import {getDDragonVersion, getRankedInfo, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
 import MatchView from './MatchView';
 import './SummonerPage.css';
 import getAvatarUrl from "../util/getAvatarUrl";
@@ -116,6 +116,20 @@ export function SummonerPage() {
     const [region, setRegion] = useState('na1');
     const [data, setData] = useState();
     const [matches, setMatches] = useState([]);
+    const [dDragon, setDDragon] = useState();
+
+    const loadDDVersion = async () => {
+        try {
+            const result = await getDDragonVersion();
+            setDDragon(result);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    useEffect(() => {
+        loadDDVersion();
+    }, [])
 
     const getProfile = async () => {
         setMatches([]);
@@ -155,7 +169,7 @@ export function SummonerPage() {
                     <RankedInfo data={data}/>
                     <ul>
                         {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (
-                            <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid}/>
+                            <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid} dDragon={dDragon}/>
                         ))}
                     </ul>
                 </div>

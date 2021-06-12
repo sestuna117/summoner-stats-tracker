@@ -57,3 +57,15 @@ export const getChampData = async () => {
         console.error(error);
     }
 }
+
+/* returns latest version of Data Dragon */
+export const getDDragonVersion = async () => {
+    /* generates link to retrieve data from */
+    const link = 'http://ddragon.leagueoflegends.com/api/versions.json';
+    try {
+        const response = await axiosConfig.get(link);
+        return response.data?.[0];
+    } catch (error) {
+        console.error(error);
+    }
+}
