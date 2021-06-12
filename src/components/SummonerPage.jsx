@@ -6,35 +6,35 @@ import getAvatarUrl from "../util/getAvatarUrl";
 import getRankIcon from "../util/getRankIcon";
 
 function NavBar(props) {
-    const {name, region, getProfile, changeName, changeRegion}= props;
+    const {name, region, getProfile, changeName, changeRegion} = props;
     return (
-    <nav className="navbar">
-        <a className="navbar-logo" href={"#"}>Home</a>
-        <div className="navbar-right">
-            <form onSubmit={(event) => {
-                event.preventDefault();
-                getProfile();
-                return false;
-            }}>
-                <input value={name} type={"text"} placeholder={"Input Summoner Name..."}
-                       onChange={e => changeName(e.target.value)}/>
-                <button type={"submit"}>Search</button>
-                <select value={region} onChange={e => changeRegion(e.target.value)}>
-                    <option value={'br1'}>BR</option>
-                    <option value={'eun1'}>EUNE</option>
-                    <option value={'euw1'}>EUW</option>
-                    <option value={'jp1'}>JP</option>
-                    <option value={'kr1'}>KR</option>
-                    <option value={'la1'}>LAN</option>
-                    <option value={'la2'}>LAS</option>
-                    <option value={'na1'}>NA</option>
-                    <option value={'oc1'}>OCE</option>
-                    <option value={'ru'}>RU</option>
-                    <option value={'tr1'}>TR</option>
-                </select>
-            </form>
-        </div>
-    </nav>
+        <nav className="navbar">
+            <a className="navbar-logo" href={"#"}>Home</a>
+            <div className="navbar-right">
+                <form onSubmit={(event) => {
+                    event.preventDefault();
+                    getProfile();
+                    return false;
+                }}>
+                    <input value={name} type={"text"} placeholder={"Input Summoner Name..."}
+                           onChange={e => changeName(e.target.value)}/>
+                    <button type={"submit"}>Search</button>
+                    <select value={region} onChange={e => changeRegion(e.target.value)}>
+                        <option value={'br1'}>BR</option>
+                        <option value={'eun1'}>EUNE</option>
+                        <option value={'euw1'}>EUW</option>
+                        <option value={'jp1'}>JP</option>
+                        <option value={'kr1'}>KR</option>
+                        <option value={'la1'}>LAN</option>
+                        <option value={'la2'}>LAS</option>
+                        <option value={'na1'}>NA</option>
+                        <option value={'oc1'}>OCE</option>
+                        <option value={'ru'}>RU</option>
+                        <option value={'tr1'}>TR</option>
+                    </select>
+                </form>
+            </div>
+        </nav>
     );
 }
 
@@ -50,8 +50,11 @@ function RankedInfo(props) {
             setRankData(result);
             console.log(result);
             /* why does result work but rankData not */
-            setSoloInfo(result?.find(queue => queue?.queueType === "RANKED_SOLO_5x5"));
-            console.log(soloInfo);
+            if (result.length !== 0) {
+                setSoloInfo(result?.find(queue => queue?.queueType === "RANKED_SOLO_5x5"));
+            } else {
+                setSoloInfo(undefined);
+            }
         } catch (e) {
             console.log(e);
         }
@@ -61,16 +64,39 @@ function RankedInfo(props) {
         loadRankedInfo();
     }, [data?.id]);
 
-    return (
-        <div>
-            <img className="rank-icon" src={ranks.get(soloInfo?.tier)?.icon} alt={`${ranks.get(soloInfo?.tier)?.icon}`}/>
-            <p>Ranked Solo</p>
-            <p>{`Winrate: ${parseInt((soloInfo?.wins) / (soloInfo?.wins + soloInfo?.losses)*100)}%`}</p>
-            <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
-            <p>{`${soloInfo?.leaguePoints} LP`}</p>
-            <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
-        </div>
-    );
+    const getTier = () => {
+        switch (soloInfo?.rank) {
+            case 'I':
+                return ranks.get(soloInfo?.tier)?.tiers.I
+            case 'II':
+                return ranks.get(soloInfo?.tier)?.tiers.II
+            case 'III':
+                return ranks.get(soloInfo?.tier)?.tiers.III
+            default:
+                return ranks.get(soloInfo?.tier)?.tiers.IV
+        }
+    }
+
+    if (soloInfo === undefined) {
+        return (
+            <div>
+                <img className="rank-icon" src={ranks.get("UNRANKED")?.tiers.I}
+                     alt={"Unranked"}/>
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <img className="rank-icon" src={getTier()}
+                     alt={`${ranks.get(soloInfo?.tier)?.name}_${soloInfo?.rank}`}/>
+                <p>Ranked Solo</p>
+                <p>{`Winrate: ${parseInt((soloInfo?.wins) / (soloInfo?.wins + soloInfo?.losses) * 100)}%`}</p>
+                <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
+                <p>{`${soloInfo?.leaguePoints} LP`}</p>
+                <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
+            </div>
+        );
+    }
 }
 
 function SummonerInfo(props) {

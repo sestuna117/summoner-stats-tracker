@@ -8,26 +8,26 @@ const TEAM = {
     red: 200,
 };
 
-function Team(props) {
-    const {participants, id} = props;
-    const isBlue = id === TEAM.blue;
-    const champData = useContext(ChampionDataContext);
+function ChampSprite(props) {
     let champId;
 
-    function ChampSprite(props) {
-        const {participant} = props;
-        champId = Object.values(champData.data).find(champ => parseInt(champ.key) === participant?.championId);
+    const {participant, champData} = props;
+    champId = Object.values(champData.data).find(champ => parseInt(champ.key) === participant?.championId);
 
-        return (
-            <img className="champ-sprite" src={getChampionUrl(champId.id)} alt={`${champId.id}`}/>
-        )
-    }
+    return (
+        <img className="champ-sprite" src={getChampionUrl(champId.id)} alt={`${champId.id}`}/>
+    )
+}
+
+function Team(props) {
+    const {participants, id, champData} = props;
+    const isBlue = id === TEAM.blue;
 
     return isBlue ? (
         <ul className="team team-blue">
             {participants.map(participant => (
                 <li key={participant.puuid}>
-                    <ChampSprite participant={participant}/>
+                    <ChampSprite participant={participant} champData={champData}/>
                     {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
                 </li>
             ))}
@@ -36,7 +36,7 @@ function Team(props) {
         <ul className="team team-red">
             {participants.map(participant => (
                 <li key={participant.puuid}>
-                    <ChampSprite participant={participant}/>
+                    <ChampSprite participant={participant} champData={champData}/>
                     {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
                 </li>
             ))}
@@ -47,6 +47,7 @@ function Team(props) {
 function MatchView(props) {
     const {match, puuid} = props;
     const participants = new Map();
+    const champData = useContext(ChampionDataContext);
 
     let player;
     match.info.participants.forEach(participant => {
@@ -82,6 +83,7 @@ function MatchView(props) {
     return (
         <li>
             <div>{getGameType()}</div>
+            <ChampSprite participant={player} champData={champData}/>
             <p>{`${player.summonerName}: ${player.kills} / ${player.deaths} / ${player.assists}`}</p>
             <p>{player.win ? (
                 "Victory"
@@ -91,7 +93,7 @@ function MatchView(props) {
             }</p>
             <div>
                 {Array.from(participants.entries()).map(([id, participants]) => (
-                    <Team key={id} participants={participants} id={id}/>
+                    <Team key={id} participants={participants} id={id} champData={champData}/>
                 ))}
             </div>
         </li>
