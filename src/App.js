@@ -1,14 +1,14 @@
-import { SummonerPage } from './components/SummonerPage';
-import {ChampionDataProvider} from "./hook/ChampionDataContext";
+import ContextLoader from './hook/index'
+import {SummonerPage} from "./components/SummonerPage";
 
 function App() {
-  return (
-      <ChampionDataProvider>
-          <div className="App">
-              <SummonerPage />
-          </div>
-      </ChampionDataProvider>
-  );
+    return (
+        <div className="App">
+            <ContextLoader>
+                <SummonerPage />
+            </ContextLoader>
+        </div>
+    );
 }
 
 export default App;

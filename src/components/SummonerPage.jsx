@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {getDDragonVersion, getRankedInfo, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
+import React, {useContext, useEffect, useState} from 'react';
+import {getRankedInfo, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
 import MatchView from './MatchView';
 import './SummonerPage.css';
 import getAvatarUrl from "../util/getAvatarUrl";
 import getRankIcon from "../util/getRankIcon";
+import {DDragonVersionContext} from "../hook";
 
 function NavBar(props) {
     const {name, region, getProfile, changeName, changeRegion} = props;
@@ -43,6 +44,7 @@ function RankedInfo(props) {
     const [rankData, setRankData] = useState();
     const ranks = getRankIcon;
     const [soloInfo, setSoloInfo] = useState({});
+    const [isLoaded, setIsLoaded] = useState(false);
 
     async function loadRankedInfo() {
         try {
@@ -61,7 +63,11 @@ function RankedInfo(props) {
     }
 
     useEffect(() => {
+        setIsLoaded(false);
+
         loadRankedInfo();
+
+        setIsLoaded(true);
     }, [data?.id]);
 
     const getTier = () => {
@@ -80,20 +86,24 @@ function RankedInfo(props) {
     if (soloInfo === undefined) {
         return (
             <div>
-                <img className="rank-icon" src={ranks.get("UNRANKED")?.tiers.I}
-                     alt={"Unranked"}/>
+                {isLoaded ? <img className="rank-icon" src={ranks.get("UNRANKED")?.tiers.I}
+                                 alt={"Unranked"}/> : "Loading..."}
             </div>
         );
     } else {
         return (
             <div>
-                <img className="rank-icon" src={getTier()}
-                     alt={`${ranks.get(soloInfo?.tier)?.name}_${soloInfo?.rank}`}/>
-                <p>Ranked Solo</p>
-                <p>{`Winrate: ${parseInt((soloInfo?.wins) / (soloInfo?.wins + soloInfo?.losses) * 100)}%`}</p>
-                <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
-                <p>{`${soloInfo?.leaguePoints} LP`}</p>
-                <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
+                {isLoaded ?
+                    <div>
+                        <img className="rank-icon" src={getTier()}
+                             alt={`${ranks.get(soloInfo?.tier)?.name}_${soloInfo?.rank}`}/>
+                        <p>Ranked Solo</p>
+                        <p>{`Winrate: ${parseInt((soloInfo?.wins) / (soloInfo?.wins + soloInfo?.losses) * 100)}%`}</p>
+                        <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
+                        <p>{`${soloInfo?.leaguePoints} LP`}</p>
+                        <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
+                    </div>
+                 : "Loading..."}
             </div>
         );
     }
@@ -101,35 +111,23 @@ function RankedInfo(props) {
 
 function SummonerInfo(props) {
     const {data} = props;
+    const dDragon = useContext(DDragonVersionContext);
 
     return (
         <div>
-            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId)} alt={`${data?.profileIconId}`}/>
+            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId, dDragon)} alt={`${data?.profileIconId}`}/>
             <h2>{data?.name}</h2>
             <p>{data?.summonerLevel ?? "data not loaded"}</p>
         </div>
     );
 }
 
-export function SummonerPage() {
+export function SummonerPage(props) {
+    const {dDragon} = props;
     const [name, setName] = useState('');
     const [region, setRegion] = useState('na1');
     const [data, setData] = useState();
     const [matches, setMatches] = useState([]);
-    const [dDragon, setDDragon] = useState();
-
-    const loadDDVersion = async () => {
-        try {
-            const result = await getDDragonVersion();
-            setDDragon(result);
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    useEffect(() => {
-        loadDDVersion();
-    }, [])
 
     const getProfile = async () => {
         setMatches([]);
@@ -165,7 +163,7 @@ export function SummonerPage() {
             <NavBar name={name} region={region} getProfile={getProfile} changeName={setName} changeRegion={setRegion}/>
             {data && matches && (
                 <div>
-                    <SummonerInfo data={data}/>
+                    <SummonerInfo data={data} dDragon={dDragon}/>
                     <RankedInfo data={data}/>
                     <ul>
                         {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (

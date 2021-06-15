@@ -47,9 +47,33 @@ export const getRankedInfo = async (sumId) => {
 }
 
 /* returns JSON  of champ data */
-export const getChampData = async () => {
+export const getChampData = async (version) => {
     /* generates link to retrieve data from */
-    const link = 'http://ddragon.leagueoflegends.com/cdn/11.12.1/data/en_US/champion.json';
+    const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
+    try {
+        const response = await axiosConfig.get(link);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+/* returns JSON  of runes data */
+export const getRuneData = async (version) => {
+    /* generates link to retrieve data from */
+    const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
+    try {
+        const response = await axiosConfig.get(link);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+/* returns JSON  of runes data */
+export const getSpellData = async (version) => {
+    /* generates link to retrieve data from */
+    const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/summoner.json`;
     try {
         const response = await axiosConfig.get(link);
         return response.data;

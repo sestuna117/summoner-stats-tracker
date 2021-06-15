@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
-import {ChampionDataContext} from "../hook/ChampionDataContext";
+import React, {useContext, useState} from "react";
 import getChampionUrl from "../util/getChampionUrl";
 import getSummonerSpellUrl from '../util/getSummonerSpellUrl'
 import "./MatchView.css";
+import {ChampionDataContext, DDragonVersionContext, RuneDataContext, SumsDataContext} from "../hook";
 
 const TEAM = {
     blue: 100,
@@ -10,29 +10,46 @@ const TEAM = {
 };
 
 function ChampSprite(props) {
-    let champId;
+    const dDragon = useContext(DDragonVersionContext);
+    const champData = useContext(ChampionDataContext);
+    const {participant} = props;
 
-    const {participant, champData, dDragon} = props;
-    champId = Object.values(champData.data).find(champ => parseInt(champ.key) === participant?.championId);
+    let champId = Object.values(champData.data).find(champ => parseInt(champ.key) === participant?.championId);
 
     return (
         <img className="champ-sprite" src={getChampionUrl(champId.id, dDragon)} alt={`${champId.id}`}/>
     );
 }
 
-/*function PerksSpells(props) {
+function PerksSpells(props) {
+    const dDragon = useContext(DDragonVersionContext);
+    const sumsData = useContext(SumsDataContext);
+    const runeData = useContext(RuneDataContext);
+    const {participant} = props;
 
-}*/
+    let sum1 = Object.values(sumsData.data).find(sums => parseInt(sums.key) === participant?.summoner1Id);
+    let sum2 = Object.values(sumsData.data).find(sums => parseInt(sums.key) === participant?.summoner2Id);
+    let rune1 = sumsData.data.find(runes => parseInt(runes.id) === participant?.perks?.styles[0].selections[0]?.perk);
+    let rune2 = sumsData.data.find(runes => parseInt(runes.id) === participant?.perks?.styles[1].style);
+
+
+    return (
+        <div>
+            <img className="sum-spell" src={getSummonerSpellUrl(sum1, dDragon)} alt={sum1}/>
+            <img className="sum-spell" src={getSummonerSpellUrl(sum2, dDragon)} alt={sum2}/>
+        </div>
+    );
+}
 
 function Team(props) {
-    const {participants, id, champData, dDragon} = props;
+    const {participants, id} = props;
     const isBlue = id === TEAM.blue;
 
     return isBlue ? (
         <ul className="team team-blue">
             {participants.map(participant => (
                 <li key={participant.puuid}>
-                    <ChampSprite participant={participant} champData={champData} dDragon={dDragon}/>
+                    <ChampSprite participant={participant}/>
                     {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
                 </li>
             ))}
@@ -41,7 +58,7 @@ function Team(props) {
         <ul className="team team-red">
             {participants.map(participant => (
                 <li key={participant.puuid}>
-                    <ChampSprite participant={participant} champData={champData} dDragon={dDragon}/>
+                    <ChampSprite participant={participant}/>
                     {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
                 </li>
             ))}
@@ -50,7 +67,7 @@ function Team(props) {
 }
 
 function MatchView(props) {
-    const {match, puuid, dDragon} = props;
+    const {match, puuid} = props;
     const participants = new Map();
     const champData = useContext(ChampionDataContext);
 
@@ -88,7 +105,7 @@ function MatchView(props) {
     return (
         <li>
             <div>{getGameType()}</div>
-            <ChampSprite participant={player} champData={champData} dDragon={dDragon}/>
+            <ChampSprite participant={player}/>
             {/*<PerksSpells />*/}
             <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
             <p>{player.win ? (
@@ -99,7 +116,7 @@ function MatchView(props) {
             }</p>
             <div>
                 {Array.from(participants.entries()).map(([id, participants]) => (
-                    <Team key={id} participants={participants} id={id} champData={champData} dDragon={dDragon}/>
+                    <Team key={id} participants={participants} id={id} champData={champData}/>
                 ))}
             </div>
         </li>

@@ -1,5 +1,5 @@
-const AVATAR_URL = 'http://ddragon.leagueoflegends.com/cdn/11.12.1/img/profileicon/{id}.png';
+export default function getAvatarUrl(id, version) {
+    const AVATAR_URL = `http://ddragon.leagueoflegends.com/cdn/${version}/img/profileicon/{id}.png`;
 
-export default function getAvatarUrl(id) {
     return AVATAR_URL.replace(/{id}/gi, id);
 }
