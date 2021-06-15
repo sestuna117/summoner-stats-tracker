@@ -27,11 +27,11 @@ function PerksSpells(props) {
     const sumsData = useContext(SumsDataContext);
     const runeData = useContext(RuneDataContext);
     const {participant} = props;
-    const allRunePages = runeData.flatMap(page => page.slots.flatMap(slot => slot.runes));
+    const allRunePage = runeData.flatMap(page => page.slots.flatMap(slot => slot.runes));
 
     let sum1 = Object.values(sumsData.data).find(sums => parseInt(sums.key) === participant?.summoner1Id);
     let sum2 = Object.values(sumsData.data).find(sums => parseInt(sums.key) === participant?.summoner2Id);
-    let rune1 = allRunePages.find(runes => runes.id === participant?.perks?.styles[0].selections[0]?.perk);
+    let rune1 = allRunePage.find(runes => runes.id === participant?.perks?.styles[0].selections[0]?.perk);
     let rune2 = runeData.find(runes => runes.id === participant?.perks?.styles[1].style);
 
     return (
