@@ -3,6 +3,7 @@ import getChampionUrl from "../util/getChampionUrl";
 import getSummonerSpellUrl from '../util/getSummonerSpellUrl'
 import "./MatchView.css";
 import {ChampionDataContext, DDragonVersionContext, RuneDataContext, SumsDataContext} from "../hook";
+import getRuneUrl from "../util/getRuneUrl";
 
 const TEAM = {
     blue: 100,
@@ -26,17 +27,19 @@ function PerksSpells(props) {
     const sumsData = useContext(SumsDataContext);
     const runeData = useContext(RuneDataContext);
     const {participant} = props;
+    const allRunePages = runeData.flatMap(page => page.slots.flatMap(slot => slot.runes));
 
     let sum1 = Object.values(sumsData.data).find(sums => parseInt(sums.key) === participant?.summoner1Id);
     let sum2 = Object.values(sumsData.data).find(sums => parseInt(sums.key) === participant?.summoner2Id);
-    let rune1 = sumsData.data.find(runes => parseInt(runes.id) === participant?.perks?.styles[0].selections[0]?.perk);
-    let rune2 = sumsData.data.find(runes => parseInt(runes.id) === participant?.perks?.styles[1].style);
-
+    let rune1 = allRunePages.find(runes => runes.id === participant?.perks?.styles[0].selections[0]?.perk);
+    let rune2 = runeData.find(runes => runes.id === participant?.perks?.styles[1].style);
 
     return (
         <div>
-            <img className="sum-spell" src={getSummonerSpellUrl(sum1, dDragon)} alt={sum1}/>
-            <img className="sum-spell" src={getSummonerSpellUrl(sum2, dDragon)} alt={sum2}/>
+            <img className="sum-spell" src={getSummonerSpellUrl(sum1?.id, dDragon)} alt={sum1}/>
+            <img className="sum-spell" src={getSummonerSpellUrl(sum2?.id, dDragon)} alt={sum2}/>
+            <img className="sum-rune" src={getRuneUrl(rune1?.icon)} alt={sum2}/>
+            <img className="sum-rune" src={getRuneUrl(rune2?.icon)} alt={sum2}/>
         </div>
     );
 }
@@ -106,7 +109,7 @@ function MatchView(props) {
         <li>
             <div>{getGameType()}</div>
             <ChampSprite participant={player}/>
-            {/*<PerksSpells />*/}
+            <PerksSpells participant={player}/>
             <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
             <p>{player.win ? (
                 "Victory"
