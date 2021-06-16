@@ -3,11 +3,15 @@
 }
 
 .champ-sprite {
-    width: 40px;
+    width: 20px;
 }
 
 .sum-spell, .sum-rune{
     width: 35px;
+}
+
+.team {
+    font-size: 14px;
 }
 
 .team-blue {

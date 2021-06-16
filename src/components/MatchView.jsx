@@ -18,8 +18,7 @@ function Team(props) {
         <ul className="team team-blue">
             {participants.map(participant => (
                 <li key={participant.puuid}>
-                    <ChampSprite participant={participant}/>
-                    {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
+                    <Summoner participant={participant}/>
                 </li>
             ))}
         </ul>
@@ -27,11 +26,47 @@ function Team(props) {
         <ul className="team team-red">
             {participants.map(participant => (
                 <li key={participant.puuid}>
-                    <ChampSprite participant={participant}/>
-                    {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
+                    <Summoner participant={participant}/>
                 </li>
             ))}
         </ul>
+    );
+}
+
+function FullMatchDetail(props) {
+    const {id, participants} = props;
+    const isBlue = id === TEAM.blue;
+
+    return (
+        <table>
+            <tr className="data-header">
+                <th className="header-cell">{isBlue ? "Blue" : "Red"}</th>
+                <th className="header-cell">KDA</th>
+                <th className="header-cell">Vision</th>
+                <th className="header-cell">CS</th>
+                <th className="header-cell">Item</th>
+            </tr>
+            {participants.map(participant => (
+                <tr className="data-row" key={participant.puuid}>
+                    <td><Summoner participant={participant}/></td>
+                    <td>{`${participant.kills} / ${participant.deaths} / ${participant.assists}`}</td>
+                    <td>{participant.visionScore}</td>
+                    <td>{participant.totalMinionsKilled + participant.neutralMinionsKilled}</td>
+                    <td>{participant.totalMinionsKilled + participant.neutralMinionsKilled}</td>
+                </tr>
+            ))}
+        </table>
+    );
+}
+
+function Summoner(props) {
+    const {participant} = props;
+
+    return (
+        <div>
+            <ChampSprite participant={participant}/>
+            {participant.summonerName}
+        </div>
     );
 }
 
@@ -68,16 +103,6 @@ function PerksSpells(props) {
             <img className="sum-rune" src={getRuneUrl(rune1?.icon)} alt={sum2}/>
             <img className="sum-rune" src={getRuneUrl(rune2?.icon)} alt={sum2}/>
         </div>
-    );
-}
-
-function PlayersMatchup(props) {
-    const {participants} = props;
-
-    return (
-        <table>
-
-        </table>
     );
 }
 
@@ -118,7 +143,7 @@ function MatchView(props) {
         }
     }
 
-    function displayFullData () {
+    function displayFullData() {
         setShowFull(prev => !prev);
     }
 
@@ -134,13 +159,17 @@ function MatchView(props) {
                 "Defeat"
             )
             }</p>
-            <PlayersMatchup participants={participants} />
-            <button className="dropdown-match-info" type={"button"} onClick={displayFullData}>Display</button>
-            {showFull ? <div>
+            <div>
                 {Array.from(participants.entries()).map(([id, participants]) => (
                     <Team key={id} participants={participants} id={id} champData={champData}/>
                 ))}
-            </div> : null }
+            </div>
+            <button className="dropdown-match-info" type={"button"} onClick={displayFullData}>Display</button>
+            {showFull ? <div>
+                {Array.from(participants.entries()).map(([id, participants]) => (
+                    <FullMatchDetail className="full-match-detail" key={id} participants={participants} id={id}/>
+                ))}
+            </div> : null}
         </li>
     );
 }
