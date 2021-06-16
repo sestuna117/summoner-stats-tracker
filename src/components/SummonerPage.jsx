@@ -103,7 +103,7 @@ function RankedInfo(props) {
                         <p>{`${soloInfo?.leaguePoints} LP`}</p>
                         <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
                     </div>
-                 : "Loading..."}
+                 : null}
             </div>
         );
     }
@@ -147,6 +147,7 @@ export function SummonerPage(props) {
         const promises = matchIds.map(async id => {
             try {
                 const match = await getMatchInfo(id);
+                console.log(match);
                 setMatches(prev => (
                     [...prev, match]
                 ));

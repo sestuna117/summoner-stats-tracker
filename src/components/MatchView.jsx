@@ -10,14 +10,41 @@ const TEAM = {
     red: 200,
 };
 
+function Team(props) {
+    const {participants, id} = props;
+    const isBlue = id === TEAM.blue;
+
+    return isBlue ? (
+        <ul className="team team-blue">
+            {participants.map(participant => (
+                <li key={participant.puuid}>
+                    <ChampSprite participant={participant}/>
+                    {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
+                </li>
+            ))}
+        </ul>
+    ) : (
+        <ul className="team team-red">
+            {participants.map(participant => (
+                <li key={participant.puuid}>
+                    <ChampSprite participant={participant}/>
+                    {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
+                </li>
+            ))}
+        </ul>
+    );
+}
+
 function ChampSprite(props) {
     const dDragon = useContext(DDragonVersionContext);
     const champData = useContext(ChampionDataContext);
-    const {participant} = props;
+    const {participant, isPlayer} = props;
 
     let champId = Object.values(champData.data).find(champ => parseInt(champ.key) === participant?.championId);
 
-    return (
+    return isPlayer ? (
+        <img className="player-sprite" src={getChampionUrl(champId.id, dDragon)} alt={`${champId.id}`}/>
+    ) : (
         <img className="champ-sprite" src={getChampionUrl(champId.id, dDragon)} alt={`${champId.id}`}/>
     );
 }
@@ -44,28 +71,13 @@ function PerksSpells(props) {
     );
 }
 
-function Team(props) {
-    const {participants, id} = props;
-    const isBlue = id === TEAM.blue;
+function PlayersMatchup(props) {
+    const {participants} = props;
 
-    return isBlue ? (
-        <ul className="team team-blue">
-            {participants.map(participant => (
-                <li key={participant.puuid}>
-                    <ChampSprite participant={participant}/>
-                    {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
-                </li>
-            ))}
-        </ul>
-    ) : (
-        <ul className="team team-red">
-            {participants.map(participant => (
-                <li key={participant.puuid}>
-                    <ChampSprite participant={participant}/>
-                    {`${participant.summonerName}: ${participant.kills} / ${participant.deaths} / ${participant.assists}`}
-                </li>
-            ))}
-        </ul>
+    return (
+        <table>
+
+        </table>
     );
 }
 
@@ -73,6 +85,7 @@ function MatchView(props) {
     const {match, puuid} = props;
     const participants = new Map();
     const champData = useContext(ChampionDataContext);
+    const [showFull, setShowFull] = useState(false);
 
     let player;
     match.info.participants.forEach(participant => {
@@ -88,7 +101,7 @@ function MatchView(props) {
     });
     console.log(participants);
 
-    const getGameType = () => {
+    function getGameType() {
         switch (match.info.queueId) {
             case 400:
                 return 'Normal Draft';
@@ -105,10 +118,14 @@ function MatchView(props) {
         }
     }
 
+    function displayFullData () {
+        setShowFull(prev => !prev);
+    }
+
     return (
         <li>
             <div>{getGameType()}</div>
-            <ChampSprite participant={player}/>
+            <ChampSprite participant={player} isPlayer={true}/>
             <PerksSpells participant={player}/>
             <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
             <p>{player.win ? (
@@ -117,11 +134,13 @@ function MatchView(props) {
                 "Defeat"
             )
             }</p>
-            <div>
+            <PlayersMatchup participants={participants} />
+            <button className="dropdown-match-info" type={"button"} onClick={displayFullData}>Display</button>
+            {showFull ? <div>
                 {Array.from(participants.entries()).map(([id, participants]) => (
                     <Team key={id} participants={participants} id={id} champData={champData}/>
                 ))}
-            </div>
+            </div> : null }
         </li>
     );
 }

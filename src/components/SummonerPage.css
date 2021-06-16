@@ -10,3 +10,7 @@
     display: flex;
     justify-content: space-between;
 }
+
+button:hover {
+    cursor: pointer;
+}
