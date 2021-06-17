@@ -82,6 +82,18 @@ export const getSpellData = async (version) => {
     }
 }
 
+/* returns JSON  of items data */
+export const getItemData = async (version) => {
+    /* generates link to retrieve data from */
+    const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/item.json`;
+    try {
+        const response = await axiosConfig.get(link);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 /* returns latest version of Data Dragon */
 export const getDDragonVersion = async () => {
     /* generates link to retrieve data from */

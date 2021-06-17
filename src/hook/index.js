@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {getSpellData, getRuneData, getChampData, getDDragonVersion} from "../api/services/request.services";
+import {getItemData, getSpellData, getRuneData, getChampData, getDDragonVersion} from "../api/services/request.services";
 
 export const DDragonVersionContext = React.createContext({});
 export const ChampionDataContext = React.createContext({});
 export const RuneDataContext = React.createContext({});
 export const SumsDataContext = React.createContext({});
+export const ItemDataContext = React.createContext({});
 
 export default function ContextLoader({ children }) {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -12,6 +13,7 @@ export default function ContextLoader({ children }) {
     const [champData, setChampData] = useState();
     const [runeData, setRuneData] = useState();
     const [spellData, setSpellData] = useState();
+    const [itemData, setItemData] = useState();
 
     const loadDragonData = async () => {
         try {
@@ -54,6 +56,16 @@ export default function ContextLoader({ children }) {
         }
     };
 
+    const loadItemData = async (dDragon) => {
+        try {
+            const result = await getItemData(dDragon);
+            console.log(result);
+            setItemData(result);
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
     const loadData = async () => {
         setIsLoaded(false);
 
@@ -61,7 +73,8 @@ export default function ContextLoader({ children }) {
         await Promise.all([
             await loadChampData(dragonData),
             await loadRuneData(dragonData),
-            await loadSpellData(dragonData)
+            await loadSpellData(dragonData),
+            await loadItemData(dragonData)
         ]);
 
         setIsLoaded(true);
@@ -76,7 +89,9 @@ export default function ContextLoader({ children }) {
             <ChampionDataContext.Provider value={champData}>
                 <RuneDataContext.Provider value={runeData}>
                     <SumsDataContext.Provider value={spellData}>
-                        {isLoaded ? children : "Loading..."}
+                        <ItemDataContext.Provider value={itemData}>
+                            {isLoaded ? children : "Loading..."}
+                        </ItemDataContext.Provider>
                     </SumsDataContext.Provider>
                 </RuneDataContext.Provider>
             </ChampionDataContext.Provider>
