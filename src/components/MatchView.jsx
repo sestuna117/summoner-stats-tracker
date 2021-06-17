@@ -2,8 +2,9 @@ import React, {useContext, useState} from "react";
 import getChampionUrl from "../util/getChampionUrl";
 import getSummonerSpellUrl from '../util/getSummonerSpellUrl'
 import "./MatchView.css";
-import {ChampionDataContext, DDragonVersionContext, RuneDataContext, SumsDataContext} from "../hook";
+import {ChampionDataContext, DDragonVersionContext, ItemDataContext, RuneDataContext, SumsDataContext} from "../hook";
 import getRuneUrl from "../util/getRuneUrl";
+import getItemUrl from "../util/getItemUrl";
 
 const TEAM = {
     blue: 100,
@@ -40,7 +41,7 @@ function FullMatchDetail(props) {
     return (
         <table>
             <tr className="data-header">
-                <th className="header-cell">{isBlue ? "Blue" : "Red"}</th>
+                <th className="header-cell">{`${isBlue ? "Blue" : "Red"} Team`}</th>
                 <th className="header-cell">KDA</th>
                 <th className="header-cell">Vision</th>
                 <th className="header-cell">CS</th>
@@ -52,10 +53,46 @@ function FullMatchDetail(props) {
                     <td>{`${participant.kills} / ${participant.deaths} / ${participant.assists}`}</td>
                     <td>{participant.visionScore}</td>
                     <td>{participant.totalMinionsKilled + participant.neutralMinionsKilled}</td>
-                    <td>{participant.totalMinionsKilled + participant.neutralMinionsKilled}</td>
+                    <td><ItemsBlock participant={participant}/></td>
                 </tr>
             ))}
         </table>
+    );
+}
+
+function Item(props) {
+    const {itemId} = props;
+    const isNoItem = itemId === 0;
+    const dDragon = useContext(DDragonVersionContext);
+    const itemData = useContext(ItemDataContext);
+
+    let itemInfo = Object.values(itemData.data).find(item => parseInt(item) === itemId);
+    console.log(itemInfo);
+
+    return isNoItem ? (
+        <div className="item">
+            <div className="no-item"></div>
+        </div>
+    ) : (
+        <div className="item">
+            <img className="item-sprite" src={getItemUrl(itemId, dDragon)} alt={`${itemInfo?.name}`}/>
+        </div>
+    );
+}
+
+function ItemsBlock(props) {
+    const {participant} = props;
+    const itemKeys = ['item0', 'item1', 'item2', 'item3', 'item4', 'item5', 'item6']
+
+    let items = Object.fromEntries(Object.entries(participant).filter(([key, value]) => itemKeys.includes(key)));
+    console.log(items);
+
+    return (
+        <div className="item-block">
+            {Object.values(items).map(item => (
+                <Item itemId={item}/>
+            ))}
+        </div>
     );
 }
 
@@ -148,7 +185,7 @@ function MatchView(props) {
     }
 
     return (
-        <li>
+        <li className="match">
             <div>{getGameType()}</div>
             <ChampSprite participant={player} isPlayer={true}/>
             <PerksSpells participant={player}/>
