@@ -103,7 +103,7 @@ function RankedInfo(props) {
                         <p>{`${soloInfo?.leaguePoints} LP`}</p>
                         <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
                     </div>
-                 : null}
+                    : null}
             </div>
         );
     }
@@ -115,7 +115,8 @@ function SummonerInfo(props) {
 
     return (
         <div>
-            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId, dDragon)} alt={`${data?.profileIconId}`}/>
+            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId, dDragon)}
+                 alt={`${data?.profileIconId}`}/>
             <h2>{data?.name}</h2>
             <p>{data?.summonerLevel ?? "data not loaded"}</p>
         </div>
@@ -161,16 +162,24 @@ export function SummonerPage(props) {
 
     return (
         <div>
-            <NavBar name={name} region={region} getProfile={getProfile} changeName={setName} changeRegion={setRegion}/>
+            <div className="top">
+                <NavBar name={name} region={region} getProfile={getProfile} changeName={setName}
+                        changeRegion={setRegion}/>
+            </div>
             {data && matches && (
-                <div>
-                    <SummonerInfo data={data} dDragon={dDragon}/>
-                    <RankedInfo data={data}/>
-                    <ul>
-                        {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (
-                            <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid} dDragon={dDragon}/>
-                        ))}
-                    </ul>
+                <div className="main-body">
+                    <div className="content">
+                        <SummonerInfo data={data} dDragon={dDragon}/>
+                        <RankedInfo data={data}/>
+                        <div className="match-list">
+                            <ul>
+                                {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (
+                                    <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid}
+                                               dDragon={dDragon}/>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

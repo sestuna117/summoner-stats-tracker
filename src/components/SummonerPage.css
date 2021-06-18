@@ -5,10 +5,27 @@
 .rank-icon {
     width: 160px;
 }
+.top {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
 
 .navbar {
     display: flex;
+    margin: 0 auto;
+    max-width: 1200px;
     justify-content: space-between;
+}
+
+.main-body {
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.content {
+    margin-top: 50px;
 }
 
 button:hover {
