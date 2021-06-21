@@ -18,7 +18,7 @@ function Team(props) {
     return isBlue ? (
         <ul className="team team-blue">
             {participants.map(participant => (
-                <li key={participant.puuid}>
+                <li className="team-member" key={participant.puuid}>
                     <Summoner participant={participant}/>
                 </li>
             ))}
@@ -26,7 +26,7 @@ function Team(props) {
     ) : (
         <ul className="team team-red">
             {participants.map(participant => (
-                <li key={participant.puuid}>
+                <li className="team-member" key={participant.puuid}>
                     <Summoner participant={participant}/>
                 </li>
             ))}
@@ -39,7 +39,7 @@ function FullMatchDetail(props) {
     const isBlue = id === TEAM.blue;
 
     return (
-        <table>
+        <table className="full-data-table">
             <tr className="data-header">
                 <th className="header-cell">{`${isBlue ? "Blue" : "Red"} Team`}</th>
                 <th className="header-cell">KDA</th>
@@ -100,9 +100,9 @@ function Summoner(props) {
     const {participant} = props;
 
     return (
-        <div>
+        <div className="summoner">
             <ChampSprite participant={participant}/>
-            {participant.summonerName}
+            <div className="sum-name">{participant.summonerName}</div>
         </div>
     );
 }
@@ -186,22 +186,24 @@ function MatchView(props) {
 
     return (
         <li className="match">
-            <div>{getGameType()}</div>
-            <ChampSprite participant={player} isPlayer={true}/>
-            <PerksSpells participant={player}/>
-            <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
-            <p>{player.win ? (
-                "Victory"
-            ) : (
-                "Defeat"
-            )
-            }</p>
-            <div>
-                {Array.from(participants.entries()).map(([id, participants]) => (
-                    <Team key={id} participants={participants} id={id} champData={champData}/>
-                ))}
+            <div className="main-match-data">
+                <div>{getGameType()}</div>
+                <ChampSprite participant={player} isPlayer={true}/>
+                <PerksSpells participant={player}/>
+                <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
+                <p>{player.win ? (
+                    "Victory"
+                ) : (
+                    "Defeat"
+                )
+                }</p>
+                <div className="main-match-teams">
+                    {Array.from(participants.entries()).map(([id, participants]) => (
+                        <Team key={id} participants={participants} id={id} champData={champData}/>
+                    ))}
+                </div>
+                <button className="dropdown-match-info" type={"button"} onClick={displayFullData}>Display</button>
             </div>
-            <button className="dropdown-match-info" type={"button"} onClick={displayFullData}>Display</button>
             {showFull ? <div>
                 {Array.from(participants.entries()).map(([id, participants]) => (
                     <FullMatchDetail className="full-match-detail" key={id} participants={participants} id={id}/>

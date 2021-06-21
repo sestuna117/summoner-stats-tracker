@@ -9,19 +9,23 @@
     position: fixed;
     top: 0;
     width: 100%;
+    height: 50px;
+    background-color: #4d87ec;
 }
 
 .navbar {
     display: flex;
     margin: 0 auto;
-    max-width: 1200px;
+    height: 100%;
     justify-content: space-between;
+    align-items: center;
 }
 
 .main-body {
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
+    padding-top: 10px;
 }
 
 .content {
