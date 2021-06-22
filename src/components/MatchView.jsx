@@ -15,16 +15,8 @@ function Team(props) {
     const {participants, id} = props;
     const isBlue = id === TEAM.blue;
 
-    return isBlue ? (
-        <ul className="team team-blue">
-            {participants.map(participant => (
-                <li className="team-member" key={participant.puuid}>
-                    <Summoner participant={participant}/>
-                </li>
-            ))}
-        </ul>
-    ) : (
-        <ul className="team team-red">
+    return (
+        <ul className={`team ${isBlue ? 'team-blue' : 'team-red'}`}>
             {participants.map(participant => (
                 <li className="team-member" key={participant.puuid}>
                     <Summoner participant={participant}/>
@@ -39,7 +31,7 @@ function FullMatchDetail(props) {
     const isBlue = id === TEAM.blue;
 
     return (
-        <table className="full-data-table">
+        <table className={`full-data-table ${isBlue ? 'table-blue' : 'table-red'}`}>
             <tr className="data-header">
                 <th className="header-cell">{`${isBlue ? "Blue" : "Red"} Team`}</th>
                 <th className="header-cell">KDA</th>
@@ -187,7 +179,7 @@ function MatchView(props) {
     return (
         <li className="match">
             <div className="main-match-data">
-                <div>{getGameType()}</div>
+                <div className="match-details">{getGameType()}</div>
                 <ChampSprite participant={player} isPlayer={true}/>
                 <PerksSpells participant={player}/>
                 <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
@@ -202,7 +194,7 @@ function MatchView(props) {
                         <Team key={id} participants={participants} id={id} champData={champData}/>
                     ))}
                 </div>
-                <button className="dropdown-match-info" type={"button"} onClick={displayFullData}>Display</button>
+                <button className="dropdown-match-button" type={"button"} onClick={displayFullData}>Display</button>
             </div>
             {showFull ? <div>
                 {Array.from(participants.entries()).map(([id, participants]) => (

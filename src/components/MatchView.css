@@ -39,8 +39,12 @@
     background-color: #ff938b;
 }
 
-.team-member {
+.table-blue {
+    background-color: #aacbfc;
+}
 
+.table-red {
+    background-color: #ffb3ad;
 }
 
 .match {
@@ -60,6 +64,11 @@
     display: flex;
 }
 
+.match-details {
+    padding-left: 10px;
+    min-width: 125px;
+}
+
 .full-data-table {
     width: 100%;
 }
@@ -68,9 +77,15 @@
     text-align: center;
 }
 
-.dropdown-match-info {
+.header-cell {
+    border-bottom: dimgrey solid 1px;
+    border-collapse: collapse;
+    padding: 0;
+}
+
+.dropdown-match-button {
     display: block;
-    height: 100px;
+    height: 110px;
 }
 
 .summoner {
@@ -82,4 +97,5 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
 }

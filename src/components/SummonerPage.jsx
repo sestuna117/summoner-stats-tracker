@@ -161,7 +161,7 @@ export function SummonerPage(props) {
     }
 
     return (
-        <div>
+        <div className="page">
             <div className="top">
                 <NavBar name={name} region={region} getProfile={getProfile} changeName={setName}
                         changeRegion={setRegion}/>
