@@ -85,27 +85,27 @@ function RankedInfo(props) {
 
     if (soloInfo === undefined) {
         return (
-            <div>
+            <div className="ranked-info">
                 {isLoaded ? <img className="rank-icon" src={ranks.get("UNRANKED")?.tiers.I}
                                  alt={"Unranked"}/> : "Loading..."}
             </div>
         );
     } else {
-        return (
-            <div>
-                {isLoaded ?
-                    <div>
-                        <img className="rank-icon" src={getTier()}
-                             alt={`${ranks.get(soloInfo?.tier)?.name}_${soloInfo?.rank}`}/>
-                        <p>Ranked Solo</p>
-                        <p>{`Winrate: ${parseInt((soloInfo?.wins) / (soloInfo?.wins + soloInfo?.losses) * 100)}%`}</p>
-                        <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
-                        <p>{`${soloInfo?.leaguePoints} LP`}</p>
-                        <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
-                    </div>
-                    : null}
+        return isLoaded ? (
+            <div className="ranked-info">
+                <div className="rank-icon-container">
+                    <img className="rank-icon" src={getTier()}
+                         alt={`${ranks.get(soloInfo?.tier)?.name}_${soloInfo?.rank}`}/>
+                </div>
+                <div className="ranked-text">
+                    <p>Ranked Solo</p>
+                    <p>{`Winrate: ${parseInt((soloInfo?.wins) / (soloInfo?.wins + soloInfo?.losses) * 100)}%`}</p>
+                    <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
+                    <p>{`${soloInfo?.leaguePoints} LP`}</p>
+                    <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
+                </div>
             </div>
-        );
+        ) : null;
     }
 }
 
@@ -114,7 +114,7 @@ function SummonerInfo(props) {
     const dDragon = useContext(DDragonVersionContext);
 
     return (
-        <div>
+        <div className="summoner-info">
             <img className="profile-icon" src={getAvatarUrl(data?.profileIconId, dDragon)}
                  alt={`${data?.profileIconId}`}/>
             <h2>{data?.name}</h2>
@@ -161,7 +161,7 @@ export function SummonerPage(props) {
     }
 
     return (
-        <div className="page">
+        <div>
             <div className="top">
                 <NavBar name={name} region={region} getProfile={getProfile} changeName={setName}
                         changeRegion={setRegion}/>
@@ -171,8 +171,8 @@ export function SummonerPage(props) {
                     <div className="content">
                         <SummonerInfo data={data} dDragon={dDragon}/>
                         <RankedInfo data={data}/>
-                        <div className="match-list">
-                            <ul>
+                        <div>
+                            <ul className="match-list">
                                 {matches?.sort((a, b) => b.info.gameCreation - a.info.gameCreation).map(match => (
                                     <MatchView key={match.metadata.matchId} match={match} puuid={data.puuid}
                                                dDragon={dDragon}/>

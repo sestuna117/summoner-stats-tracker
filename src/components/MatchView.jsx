@@ -27,6 +27,23 @@ function Team(props) {
 }
 
 function FullMatchDetail(props) {
+    const {participants} = props;
+
+    return (
+        <div className="full-match-detail">
+            <div className="tab-bar">
+                <div className="tab">Overview</div>
+                <div className="tab">Analytics</div>
+                <div className="tab">Build</div>
+            </div>
+            {Array.from(participants.entries()).map(([id, participants]) => (
+                <FullTeamDetail key={id} participants={participants} id={id}/>
+            ))}
+        </div>
+    );
+}
+
+function FullTeamDetail(props) {
     const {id, participants} = props;
     const isBlue = id === TEAM.blue;
 
@@ -179,16 +196,26 @@ function MatchView(props) {
     return (
         <li className="match">
             <div className="main-match-data">
-                <div className="match-details">{getGameType()}</div>
+                <div className="match-details">
+                    {getGameType()}
+                    <p>Time placeholder</p>
+                    <p>{player.win ? (
+                        "Victory"
+                    ) : (
+                        "Defeat"
+                    )
+                    }</p>
+                </div>
                 <ChampSprite participant={player} isPlayer={true}/>
                 <PerksSpells participant={player}/>
-                <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
-                <p>{player.win ? (
-                    "Victory"
-                ) : (
-                    "Defeat"
-                )
-                }</p>
+                <div className="kda-info">
+                    <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
+                </div>
+                <div className="macro-info">
+                    <p>Level</p>
+                    <p>CS score</p>
+                    <p>KP%</p>
+                </div>
                 <div className="main-match-teams">
                     {Array.from(participants.entries()).map(([id, participants]) => (
                         <Team key={id} participants={participants} id={id} champData={champData}/>
@@ -197,9 +224,9 @@ function MatchView(props) {
                 <button className="dropdown-match-button" type={"button"} onClick={displayFullData}>Display</button>
             </div>
             {showFull ? <div>
-                {Array.from(participants.entries()).map(([id, participants]) => (
-                    <FullMatchDetail className="full-match-detail" key={id} participants={participants} id={id}/>
-                ))}
+                {
+                    <FullMatchDetail participants={participants}/>
+                }
             </div> : null}
         </li>
     );

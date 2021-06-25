@@ -1,4 +1,4 @@
-.page {
+body {
     background-color: #eaeaea;
 }
 
@@ -6,9 +6,23 @@
     width: 150px;
 }
 
-.rank-icon {
-    width: 160px;
+.ranked-info {
+    display: flex;
+    background-color: #f2f2f2;
+    border: 1px solid;
+    border-color: #adadad;
 }
+
+.rank-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rank-icon {
+    width: 100%;
+}
+
 .top {
     position: fixed;
     top: 0;
@@ -36,6 +50,11 @@
     margin-top: 50px;
 }
 
+.match-list {
+    padding: 0;
+}
+
 button:hover {
     cursor: pointer;
 }
+
