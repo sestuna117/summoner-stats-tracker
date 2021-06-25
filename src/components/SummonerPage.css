@@ -6,6 +6,14 @@ body {
     width: 150px;
 }
 
+.summoner-info {
+    display: flex;
+}
+
+.summoner-text {
+    padding-left: 10px;
+}
+
 .ranked-info {
     display: flex;
     background-color: #f2f2f2;

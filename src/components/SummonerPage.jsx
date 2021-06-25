@@ -145,8 +145,10 @@ function SummonerInfo(props) {
         <div className="summoner-info">
             <img className="profile-icon" src={getAvatarIcon(data?.profileIconId, dDragon)}
                  alt={`${data?.profileIconId}`}/>
-            <h2>{data?.name}</h2>
-            <p>{data?.summonerLevel ?? "data not loaded"}</p>
+            <div className="summoner-text">
+                <h2>{data?.name}</h2>
+                <p>Level. {data?.summonerLevel ?? "data not loaded"}</p>
+            </div>
         </div>
     );
 }
