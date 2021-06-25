@@ -1,10 +1,10 @@
 import React, {useContext, useState} from "react";
-import getChampionUrl from "../util/getChampionUrl";
+import getChampionIcon from "../util/getChampionIcon";
 import getSummonerSpellUrl from '../util/getSummonerSpellUrl'
 import "./MatchView.css";
 import {ChampionDataContext, DDragonVersionContext, ItemDataContext, RuneDataContext, SumsDataContext} from "../hook";
-import getRuneUrl from "../util/getRuneUrl";
-import getItemUrl from "../util/getItemUrl";
+import getRuneIcon from "../util/getRuneIcon";
+import getItemIcon from "../util/getItemIcon";
 
 const TEAM = {
     blue: 100,
@@ -58,7 +58,15 @@ function FullTeamDetail(props) {
             </tr>
             {participants.map(participant => (
                 <tr className="data-row" key={participant.puuid}>
-                    <td><Summoner participant={participant}/></td>
+                    <td>
+                        <div className="chosen-options-name">
+                            <div className="chosen-sum-options">
+                                <ChampSprite participant={participant} isPlayer={false} isTeamDetail={true}/>
+                                <PerksSpells participant={participant} isTeamDetail={true}/>
+                            </div>
+                            <p className="sum-name">{participant.summonerName}</p>
+                        </div>
+                    </td>
                     <td>{`${participant.kills} / ${participant.deaths} / ${participant.assists}`}</td>
                     <td>{participant.visionScore}</td>
                     <td>{participant.totalMinionsKilled + participant.neutralMinionsKilled}</td>
@@ -76,7 +84,6 @@ function Item(props) {
     const itemData = useContext(ItemDataContext);
 
     let itemInfo = Object.values(itemData.data).find(item => parseInt(item) === itemId);
-    console.log(itemInfo);
 
     return isNoItem ? (
         <div className="item">
@@ -84,7 +91,7 @@ function Item(props) {
         </div>
     ) : (
         <div className="item">
-            <img className="item-sprite" src={getItemUrl(itemId, dDragon)} alt={`${itemInfo?.name}`}/>
+            <img className="item-sprite" src={getItemIcon(itemId, dDragon)} alt={`${itemInfo?.name}`}/>
         </div>
     );
 }
@@ -93,13 +100,13 @@ function ItemsBlock(props) {
     const {participant} = props;
     const itemKeys = ['item0', 'item1', 'item2', 'item3', 'item4', 'item5', 'item6']
 
-    let items = Object.fromEntries(Object.entries(participant).filter(([key, value]) => itemKeys.includes(key)));
+    let items = Object.fromEntries(Object.entries(participant).filter(([key]) => itemKeys.includes(key)));
     console.log(items);
 
     return (
         <div className="item-block">
-            {Object.values(items).map(item => (
-                <Item itemId={item}/>
+            {Object.entries(items).map((item) => (
+                <Item key={item[0]} itemId={item[1]}/>
             ))}
         </div>
     );
@@ -119,22 +126,23 @@ function Summoner(props) {
 function ChampSprite(props) {
     const dDragon = useContext(DDragonVersionContext);
     const champData = useContext(ChampionDataContext);
-    const {participant, isPlayer} = props;
+    const {participant, isPlayer, isTeamDetail} = props;
 
     let champId = Object.values(champData.data).find(champ => parseInt(champ.key) === participant?.championId);
 
-    return isPlayer ? (
-        <img className="player-sprite" src={getChampionUrl(champId.id, dDragon)} alt={`${champId.id}`}/>
-    ) : (
-        <img className="champ-sprite" src={getChampionUrl(champId.id, dDragon)} alt={`${champId.id}`}/>
+    return (
+        <img className={`${isPlayer ? "player-sprite" : isTeamDetail ? "team-sprite" : "champ-sprite"}`}
+             src={getChampionIcon(champId.id, dDragon)}
+             alt={`${champId.id}`}/>
     );
+
 }
 
 function PerksSpells(props) {
     const dDragon = useContext(DDragonVersionContext);
     const sumsData = useContext(SumsDataContext);
     const runeData = useContext(RuneDataContext);
-    const {participant} = props;
+    const {participant, isTeamDetail} = props;
     const allRunePage = runeData.flatMap(page => page.slots.flatMap(slot => slot.runes));
 
     let sum1 = Object.values(sumsData.data).find(sums => parseInt(sums.key) === participant?.summoner1Id);
@@ -143,11 +151,15 @@ function PerksSpells(props) {
     let rune2 = runeData.find(runes => runes.id === participant?.perks?.styles[1].style);
 
     return (
-        <div>
-            <img className="sum-spell" src={getSummonerSpellUrl(sum1?.id, dDragon)} alt={sum1}/>
-            <img className="sum-spell" src={getSummonerSpellUrl(sum2?.id, dDragon)} alt={sum2}/>
-            <img className="sum-rune" src={getRuneUrl(rune1?.icon)} alt={sum2}/>
-            <img className="sum-rune" src={getRuneUrl(rune2?.icon)} alt={sum2}/>
+        <div className="perks-spells">
+            <div className="spells-column">
+                <img className={isTeamDetail ? "team-spell" : "sum-spell"} src={getSummonerSpellUrl(sum1?.id, dDragon)} alt={sum1}/>
+                <img className={isTeamDetail ? "team-spell" : "sum-spell"} src={getSummonerSpellUrl(sum2?.id, dDragon)} alt={sum2}/>
+            </div>
+            <div className="runes-column">
+                <img className={isTeamDetail ? "team-rune" : "sum-spell"} src={getRuneIcon(rune1?.icon)} alt={sum2}/>
+                <img className={isTeamDetail ? "team-rune" : "sum-spell"} src={getRuneIcon(rune2?.icon)} alt={sum2}/>
+            </div>
         </div>
     );
 }
@@ -206,8 +218,10 @@ function MatchView(props) {
                     )
                     }</p>
                 </div>
-                <ChampSprite participant={player} isPlayer={true}/>
-                <PerksSpells participant={player}/>
+                <div className="chosen-sum-options">
+                    <ChampSprite participant={player} isPlayer={true}/>
+                    <PerksSpells participant={player}/>
+                </div>
                 <div className="kda-info">
                     <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
                 </div>
@@ -223,11 +237,9 @@ function MatchView(props) {
                 </div>
                 <button className="dropdown-match-button" type={"button"} onClick={displayFullData}>Display</button>
             </div>
-            {showFull ? <div>
-                {
-                    <FullMatchDetail participants={participants}/>
-                }
-            </div> : null}
+            {showFull ?
+                <FullMatchDetail participants={participants}/>
+                : null}
         </li>
     );
 }

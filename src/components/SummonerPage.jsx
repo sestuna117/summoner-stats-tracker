@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {getRankedInfo, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
+import {getChampMastery, getRankedInfo, getMatchInfo, getMatches, getSumByName} from '../api/services/request.services';
 import MatchView from './MatchView';
 import './SummonerPage.css';
-import getAvatarUrl from "../util/getAvatarUrl";
+import getAvatarIcon from "../util/getAvatarIcon";
+import getChampionSplash from "../util/getChampionSplash"
 import getRankIcon from "../util/getRankIcon";
 import {DDragonVersionContext} from "../hook";
 
@@ -51,7 +52,6 @@ function RankedInfo(props) {
             const result = await getRankedInfo(data.id);
             setRankData(result);
             console.log(result);
-            /* why does result work but rankData not */
             if (result.length !== 0) {
                 setSoloInfo(result?.find(queue => queue?.queueType === "RANKED_SOLO_5x5"));
             } else {
@@ -86,8 +86,14 @@ function RankedInfo(props) {
     if (soloInfo === undefined) {
         return (
             <div className="ranked-info">
-                {isLoaded ? <img className="rank-icon" src={ranks.get("UNRANKED")?.tiers.I}
-                                 alt={"Unranked"}/> : "Loading..."}
+                <div className="rank-icon-container">
+                    {isLoaded ? <img className="rank-icon" src={ranks.get("UNRANKED")?.tiers.I}
+                                     alt={"Unranked"}/> : "Loading..."}
+                </div>
+                <div className="ranked-text">
+                    <p>Ranked Solo</p>
+                    <p>Unranked</p>
+                </div>
             </div>
         );
     } else {
@@ -113,9 +119,31 @@ function SummonerInfo(props) {
     const {data} = props;
     const dDragon = useContext(DDragonVersionContext);
 
+    /* for later mastery addition */
+    /*const [champMastery, setChampMastery] = useState();
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    async function loadChampMasteries() {
+        try {
+            const result = await getChampMastery(data.id);
+            setChampMastery(result);
+            console.log(result);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        setIsLoaded(false);
+
+        loadChampMasteries();
+
+        setIsLoaded(true);
+    }, [data?.id]);*/
+
     return (
         <div className="summoner-info">
-            <img className="profile-icon" src={getAvatarUrl(data?.profileIconId, dDragon)}
+            <img className="profile-icon" src={getAvatarIcon(data?.profileIconId, dDragon)}
                  alt={`${data?.profileIconId}`}/>
             <h2>{data?.name}</h2>
             <p>{data?.summonerLevel ?? "data not loaded"}</p>
@@ -148,7 +176,6 @@ export function SummonerPage(props) {
         const promises = matchIds.map(async id => {
             try {
                 const match = await getMatchInfo(id);
-                console.log(match);
                 setMatches(prev => (
                     [...prev, match]
                 ));

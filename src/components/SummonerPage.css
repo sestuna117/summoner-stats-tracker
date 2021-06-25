@@ -9,8 +9,7 @@ body {
 .ranked-info {
     display: flex;
     background-color: #f2f2f2;
-    border: 1px solid;
-    border-color: #adadad;
+    border: 1px solid #adadad;
 }
 
 .rank-icon-container {

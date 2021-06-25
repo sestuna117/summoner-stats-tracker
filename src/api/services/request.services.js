@@ -46,6 +46,18 @@ export const getRankedInfo = async (sumId) => {
     }
 }
 
+/* returns JSON  of summoners mastery data */
+export const getChampMastery = async (sumId) => {
+    /* generates link to retrieve data from */
+    const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${sumId}`;
+    try {
+        const response = await axiosConfig.get(link);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 /* returns JSON  of champ data */
 export const getChampData = async (version) => {
     /* generates link to retrieve data from */
