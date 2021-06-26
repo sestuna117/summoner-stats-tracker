@@ -9,6 +9,7 @@
 }
 
 .champ-sprite {
+    height: 20px;
     width: 20px;
     flex: 0;
 }
@@ -36,7 +37,18 @@
     width: 35px;
 }
 
-.item-block {
+.players-items {
+    width: 90px;
+}
+
+.player-item-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.team-item-block {
     right: 0;
 }
 
@@ -57,6 +69,9 @@
     font-size: 14px;
     list-style: none;
     padding: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .team-blue {
@@ -94,6 +109,10 @@
     display: flex;
 }
 
+.main-match-right {
+    display: flex;
+}
+
 .match-details {
     text-align: center;
     padding-left: 10px;
@@ -103,6 +122,7 @@
 .macro-info {
     text-align: center;
 }
+
 .full-data-table {
     width: 100%;
     border-collapse: collapse;

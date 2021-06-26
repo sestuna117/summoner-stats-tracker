@@ -1,6 +1,5 @@
 export default function getChampionIcon(id, version) {
-    const CHAMPION_URL = `http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/{id}.png`;
+  const CHAMPION_URL = `http://ddragon.leagueoflegends.com/cdn/${version}/img/champion/{id}.png`;
 
-    return CHAMPION_URL.replace(/{id}/gi, id);
+  return CHAMPION_URL.replace(/{id}/gi, id);
 }
-

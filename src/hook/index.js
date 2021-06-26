@@ -1,5 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {getItemData, getSpellData, getRuneData, getChampData, getDDragonVersion} from "../api/services/request.services";
+import React, { useEffect, useState } from "react";
+import {
+  getItemData,
+  getSpellData,
+  getRuneData,
+  getChampData,
+  getDDragonVersion,
+} from "../api/services/request.services";
 
 export const DDragonVersionContext = React.createContext({});
 export const ChampionDataContext = React.createContext({});
@@ -8,93 +14,93 @@ export const SumsDataContext = React.createContext({});
 export const ItemDataContext = React.createContext({});
 
 export default function ContextLoader({ children }) {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [dDragon, setDDragon] = useState();
-    const [champData, setChampData] = useState();
-    const [runeData, setRuneData] = useState();
-    const [spellData, setSpellData] = useState();
-    const [itemData, setItemData] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [dDragon, setDDragon] = useState();
+  const [champData, setChampData] = useState();
+  const [runeData, setRuneData] = useState();
+  const [spellData, setSpellData] = useState();
+  const [itemData, setItemData] = useState();
 
-    const loadDragonData = async () => {
-        try {
-            const result = await getDDragonVersion();
-            console.log(result);
-            setDDragon(result);
-            return result;
-        } catch (e) {
-            console.error(e);
-        }
-    };
+  const loadDragonData = async () => {
+    try {
+      const result = await getDDragonVersion();
+      console.log(result);
+      setDDragon(result);
+      return result;
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-    const loadChampData = async (dDragon) => {
-        try {
-            const result = await getChampData(dDragon);
-            console.log(result);
-            setChampData(result);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+  const loadChampData = async (dDragon) => {
+    try {
+      const result = await getChampData(dDragon);
+      console.log(result);
+      setChampData(result);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-    const loadRuneData = async (dDragon) => {
-        try {
-            const result = await getRuneData(dDragon);
-            console.log(result);
-            setRuneData(result);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+  const loadRuneData = async (dDragon) => {
+    try {
+      const result = await getRuneData(dDragon);
+      console.log(result);
+      setRuneData(result);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-    const loadSpellData = async (dDragon) => {
-        try {
-            const result = await getSpellData(dDragon);
-            console.log(result);
-            setSpellData(result);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+  const loadSpellData = async (dDragon) => {
+    try {
+      const result = await getSpellData(dDragon);
+      console.log(result);
+      setSpellData(result);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-    const loadItemData = async (dDragon) => {
-        try {
-            const result = await getItemData(dDragon);
-            console.log(result);
-            setItemData(result);
-        } catch (e) {
-            console.error(e);
-        }
-    };
+  const loadItemData = async (dDragon) => {
+    try {
+      const result = await getItemData(dDragon);
+      console.log(result);
+      setItemData(result);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-    const loadData = async () => {
-        setIsLoaded(false);
+  const loadData = async () => {
+    setIsLoaded(false);
 
-        const dragonData = await loadDragonData();
-        await Promise.all([
-            await loadChampData(dragonData),
-            await loadRuneData(dragonData),
-            await loadSpellData(dragonData),
-            await loadItemData(dragonData)
-        ]);
+    const dragonData = await loadDragonData();
+    await Promise.all([
+      await loadChampData(dragonData),
+      await loadRuneData(dragonData),
+      await loadSpellData(dragonData),
+      await loadItemData(dragonData),
+    ]);
 
-        setIsLoaded(true);
-    };
+    setIsLoaded(true);
+  };
 
-    useEffect(() => {
-        loadData();
-    }, []);
+  useEffect(() => {
+    loadData();
+  }, []);
 
-    return (
-        <DDragonVersionContext.Provider value={dDragon}>
-            <ChampionDataContext.Provider value={champData}>
-                <RuneDataContext.Provider value={runeData}>
-                    <SumsDataContext.Provider value={spellData}>
-                        <ItemDataContext.Provider value={itemData}>
-                            {isLoaded ? children : "Loading..."}
-                        </ItemDataContext.Provider>
-                    </SumsDataContext.Provider>
-                </RuneDataContext.Provider>
-            </ChampionDataContext.Provider>
-        </DDragonVersionContext.Provider>
-    );
+  return (
+    <DDragonVersionContext.Provider value={dDragon}>
+      <ChampionDataContext.Provider value={champData}>
+        <RuneDataContext.Provider value={runeData}>
+          <SumsDataContext.Provider value={spellData}>
+            <ItemDataContext.Provider value={itemData}>
+              {isLoaded ? children : "Loading..."}
+            </ItemDataContext.Provider>
+          </SumsDataContext.Provider>
+        </RuneDataContext.Provider>
+      </ChampionDataContext.Provider>
+    </DDragonVersionContext.Provider>
+  );
 }
