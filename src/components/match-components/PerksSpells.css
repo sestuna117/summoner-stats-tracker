@@ -1,0 +1,16 @@
+.perks-spells {
+    display: flex;
+}
+
+.spells-column, .runes-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-spell, .team-rune {
+    width: 20px;
+}
+
+.sum-spell, .sum-rune {
+    width: 35px;
+}

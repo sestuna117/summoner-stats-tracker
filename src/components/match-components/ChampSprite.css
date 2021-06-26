@@ -1,0 +1,17 @@
+.player-sprite {
+    width: 70px;
+    flex: 0;
+    padding-right: 5px;
+}
+
+.champ-sprite {
+    height: 20px;
+    width: 20px;
+    flex: 0;
+}
+
+.team-sprite {
+    width: 40px;
+    flex: 0;
+    padding-right: 3px;
+}

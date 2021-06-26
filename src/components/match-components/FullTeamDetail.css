@@ -1,0 +1,29 @@
+.full-data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-blue {
+    background-color: #aacbfc;
+}
+
+.table-red {
+    background-color: #ffb3ad;
+}
+
+.data-row, .data-header {
+    text-align: center;
+}
+
+.header-cell {
+    border-bottom: #adadad solid 1px;
+    padding: 0;
+}
+
+.chosen-options-name {
+    display: flex;
+}
+
+.chosen-sum-options {
+    display: flex;
+}

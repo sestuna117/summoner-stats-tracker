@@ -1,0 +1,10 @@
+.player-item-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.team-item-block {
+    right: 0;
+}

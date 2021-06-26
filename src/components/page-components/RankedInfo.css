@@ -1,0 +1,15 @@
+.ranked-info {
+    display: flex;
+    background-color: #f2f2f2;
+    border: 1px solid #adadad;
+}
+
+.rank-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rank-icon {
+    width: 100%;
+}

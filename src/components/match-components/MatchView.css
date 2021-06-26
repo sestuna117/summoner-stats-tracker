@@ -1,0 +1,49 @@
+.players-items {
+    width: 90px;
+}
+
+.match {
+    list-style: none;
+    margin-top: 4px;
+    border: 1px solid #adadad;
+    box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.main-match-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #adadad;
+}
+
+.main-match-teams {
+    display: flex;
+}
+
+.main-match-right {
+    display: flex;
+}
+
+.match-details {
+    text-align: center;
+    padding-left: 10px;
+    min-width: 125px;
+}
+
+.macro-info {
+    text-align: center;
+}
+
+.data-header {
+    background-color: #ffffff;
+    height: 30px;
+    border-top: #adadad solid 1px;
+}
+
+.dropdown-match-button {
+    display: block;
+    height: 127px;
+    border-width: 1px;
+    background-color: #f2f2f2;
+}

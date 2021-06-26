@@ -1,0 +1,11 @@
+.summoner-info {
+    display: flex;
+}
+
+.profile-icon {
+    width: 150px;
+}
+
+.summoner-text {
+    padding-left: 10px;
+}

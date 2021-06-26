@@ -1,0 +1,16 @@
+.team {
+    font-size: 14px;
+    list-style: none;
+    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.team-blue {
+    background-color: #7db2ff;
+}
+
+.team-red {
+    background-color: #ff938b;
+}
