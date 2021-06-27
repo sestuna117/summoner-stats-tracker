@@ -98,7 +98,11 @@ function MatchView(props) {
         </div>
       </div>
       {showFull ? (
-        <FullMatchDetail participants={participants} TEAM={TEAM} />
+        <FullMatchDetail
+          participants={participants}
+          TEAM={TEAM}
+          player={player}
+        />
       ) : null}
     </li>
   );

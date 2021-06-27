@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FullMatchDetail.css";
 import FullTeamDetail from "./FullTeamDetail";
+import PlayerBuild from "./PlayerBuild";
 
 export default function FullMatchDetail(props) {
-  const { participants, TEAM } = props;
+  const { participants, TEAM, player } = props;
 
   return (
     <div className="full-match-detail">
       <div className="tab-bar">
         <div className="tab">Overview</div>
         <div className="tab">Analytics</div>
-        <div className="tab">Build</div>
+        <div className="tab">Builds</div>
       </div>
       {Array.from(participants.entries()).map(([id, participants]) => (
         <FullTeamDetail
@@ -20,6 +21,9 @@ export default function FullMatchDetail(props) {
           TEAM={TEAM}
         />
       ))}
+      <div>
+        <PlayerBuild player={player} />
+      </div>
     </div>
   );
 }
