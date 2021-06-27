@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  getRuneShards,
   getItemData,
   getSpellData,
   getRuneData,
@@ -12,6 +13,7 @@ export const ChampionDataContext = React.createContext({});
 export const RuneDataContext = React.createContext({});
 export const SumsDataContext = React.createContext({});
 export const ItemDataContext = React.createContext({});
+export const RuneShardsDataContext = React.createContext({});
 
 export default function ContextLoader({ children }) {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,6 +22,7 @@ export default function ContextLoader({ children }) {
   const [runeData, setRuneData] = useState();
   const [spellData, setSpellData] = useState();
   const [itemData, setItemData] = useState();
+  const [shardData, setShardData] = useState();
 
   const loadDragonData = async () => {
     try {
@@ -72,9 +75,20 @@ export default function ContextLoader({ children }) {
     }
   };
 
+  const loadShardData = async () => {
+    try {
+      const result = await getRuneShards();
+      console.log(result);
+      setShardData(result);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const loadData = async () => {
     setIsLoaded(false);
 
+    await loadRuneData();
     const dragonData = await loadDragonData();
     await Promise.all([
       await loadChampData(dragonData),
@@ -96,7 +110,9 @@ export default function ContextLoader({ children }) {
         <RuneDataContext.Provider value={runeData}>
           <SumsDataContext.Provider value={spellData}>
             <ItemDataContext.Provider value={itemData}>
-              {isLoaded ? children : "Loading..."}
+              <RuneShardsDataContext.Provider value={shardData}>
+                {isLoaded ? children : "Loading..."}
+              </RuneShardsDataContext.Provider>
             </ItemDataContext.Provider>
           </SumsDataContext.Provider>
         </RuneDataContext.Provider>

@@ -1,0 +1,16 @@
+.rune-page-rune {
+    width: 40px;
+}
+
+.player-runes {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.primary-runes, .secondary-runes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

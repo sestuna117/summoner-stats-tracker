@@ -34,7 +34,7 @@ export const getMatchInfo = async (matchId) => {
   }
 };
 
-/* returns JSON  of summoners rank info */
+/* returns JSON of summoners rank info */
 export const getRankedInfo = async (sumId) => {
   /* generates link to retrieve data from */
   const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${sumId}`;
@@ -46,7 +46,7 @@ export const getRankedInfo = async (sumId) => {
   }
 };
 
-/* returns JSON  of summoners mastery data */
+/* returns JSON of summoners mastery data */
 export const getChampMastery = async (sumId) => {
   /* generates link to retrieve data from */
   const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${sumId}`;
@@ -58,7 +58,20 @@ export const getChampMastery = async (sumId) => {
   }
 };
 
-/* returns JSON  of champ data */
+/* returns JSON of rune shards data */
+export const getRuneShards = async () => {
+  /* generates link to retrieve data from */
+  const link =
+    "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perks.json";
+  try {
+    const response = await axiosConfig.get(link);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/* returns JSON of champ data */
 export const getChampData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
@@ -70,7 +83,7 @@ export const getChampData = async (version) => {
   }
 };
 
-/* returns JSON  of runes data */
+/* returns JSON of runes data */
 export const getRuneData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
@@ -82,7 +95,7 @@ export const getRuneData = async (version) => {
   }
 };
 
-/* returns JSON  of runes data */
+/* returns JSON of runes data */
 export const getSpellData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/summoner.json`;
@@ -94,7 +107,7 @@ export const getSpellData = async (version) => {
   }
 };
 
-/* returns JSON  of items data */
+/* returns JSON of items data */
 export const getItemData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/item.json`;

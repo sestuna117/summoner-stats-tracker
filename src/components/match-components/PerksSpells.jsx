@@ -48,12 +48,12 @@ export default function PerksSpells(props) {
         <img
           className={isTeamDetail ? "team-rune" : "sum-spell"}
           src={getRuneIcon(rune1?.icon)}
-          alt={sum2}
+          alt={rune1?.key}
         />
         <img
           className={isTeamDetail ? "team-rune" : "sum-spell"}
           src={getRuneIcon(rune2?.icon)}
-          alt={sum2}
+          alt={rune2?.key}
         />
       </div>
     </div>
