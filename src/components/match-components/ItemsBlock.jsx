@@ -11,7 +11,6 @@ export default function ItemsBlock(props) {
   let items = Object.fromEntries(
     Object.entries(participant).filter(([key]) => key.match(ITEM_KEY_REGEX))
   );
-  console.log(items);
 
   return (
     <div

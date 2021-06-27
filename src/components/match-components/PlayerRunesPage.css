@@ -1,8 +1,6 @@
-.rune-page-rune {
-    width: 40px;
-}
-
 .player-runes {
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%;
     display: flex;
     justify-content: space-evenly;

@@ -69,9 +69,9 @@ function MatchView(props) {
           <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
         </div>
         <div className="macro-info">
-          <p>Level</p>
-          <p>CS score</p>
-          <p>KP%</p>
+          <p>Level {player?.champLevel}</p>
+          <p>{player.totalMinionsKilled + player.neutralMinionsKilled} CS</p>
+          <p>{player.kills + player.assists} KP%</p>
         </div>
         <div className="players-items">
           <ItemsBlock participant={player} isPlayer={true} />

@@ -88,7 +88,7 @@ export default function ContextLoader({ children }) {
   const loadData = async () => {
     setIsLoaded(false);
 
-    await loadRuneData();
+    await loadShardData();
     const dragonData = await loadDragonData();
     await Promise.all([
       await loadChampData(dragonData),

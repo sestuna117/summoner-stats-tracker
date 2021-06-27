@@ -2,11 +2,19 @@ import React, { useContext } from "react";
 import { RuneDataContext, RuneShardsDataContext } from "../../hook";
 import getRuneIcon from "../../util/getRuneIcon";
 import "./PlayerRunesPage.css";
+import RuneRow from "./RuneRow";
+
+const SHARD_ID_REGEX = /^500[0-9]$/;
 
 export default function PlayerRunesPage(props) {
   const { player } = props;
   const runeData = useContext(RuneDataContext);
   const shardData = useContext(RuneShardsDataContext);
+
+  let shardsType = shardData.filter((rune) =>
+    rune?.id.toString().match(SHARD_ID_REGEX)
+  );
+  console.log(shardsType);
 
   const primaryRunes = runeData.find(
     (page) => page.id === player?.perks?.styles[0].style
@@ -14,20 +22,6 @@ export default function PlayerRunesPage(props) {
   const secondaryRunes = runeData.find(
     (page) => page.id === player?.perks?.styles[1].style
   );
-
-  function displayRuneRow(slot, isSecondary) {
-    return (
-      <div className="runes-page-row">
-        {slot?.runes.map((rune) => (
-          <img
-            className="rune-page-rune"
-            src={getRuneIcon(rune?.icon)}
-            alt={rune.key}
-          />
-        ))}
-      </div>
-    );
-  }
 
   return (
     <div className="player-runes">
@@ -37,7 +31,9 @@ export default function PlayerRunesPage(props) {
           src={getRuneIcon(primaryRunes?.icon)}
           alt={primaryRunes?.key}
         />
-        {primaryRunes?.slots.map((slot) => displayRuneRow(slot, false))}
+        {primaryRunes?.slots.map((slot) => (
+          <RuneRow slot={slot} />
+        ))}
       </div>
       <div className="secondary-runes">
         <img
@@ -45,9 +41,9 @@ export default function PlayerRunesPage(props) {
           src={getRuneIcon(secondaryRunes?.icon)}
           alt={secondaryRunes?.key}
         />
-        {secondaryRunes?.slots
-          .slice(1)
-          .map((slot) => displayRuneRow(slot, true))}
+        {secondaryRunes?.slots.slice(1).map((slot) => (
+          <RuneRow slot={slot} />
+        ))}
       </div>
       <div className="rune-shards"></div>
     </div>
