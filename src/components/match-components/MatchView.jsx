@@ -71,7 +71,10 @@ function MatchView(props) {
         <div className="macro-info">
           <p>Level {player?.champLevel}</p>
           <p>{player.totalMinionsKilled + player.neutralMinionsKilled} CS</p>
-          <p>{player.kills + player.assists} KP%</p>
+          <p>
+            {player.kills + player.assists}{" "}
+            {match.info.teams[0].objectives.champion.kills} KP%
+          </p>
         </div>
         <div className="players-items">
           <ItemsBlock participant={player} isPlayer={true} />
@@ -102,6 +105,7 @@ function MatchView(props) {
           participants={participants}
           TEAM={TEAM}
           player={player}
+          match={match}
         />
       ) : null}
     </li>

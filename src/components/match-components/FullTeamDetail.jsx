@@ -35,7 +35,9 @@ export default function FullTeamDetail(props) {
                 />
                 <PerksSpells participant={participant} isTeamDetail={true} />
               </div>
-              <p className="sum-name">{participant.summonerName}</p>
+              <div className="sum-name-container">
+                <p className="sum-name">{participant.summonerName}</p>
+              </div>
             </div>
           </td>
           <td>{`${participant.kills} / ${participant.deaths} / ${participant.assists}`}</td>

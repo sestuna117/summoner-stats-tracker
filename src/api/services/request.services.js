@@ -34,7 +34,7 @@ export const getMatchInfo = async (matchId) => {
   }
 };
 
-/* returns JSON of summoners rank info */
+/* returns summoners rank info */
 export const getRankedInfo = async (sumId) => {
   /* generates link to retrieve data from */
   const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${sumId}`;
@@ -46,7 +46,7 @@ export const getRankedInfo = async (sumId) => {
   }
 };
 
-/* returns JSON of summoners mastery data */
+/* returns summoners mastery data */
 export const getChampMastery = async (sumId) => {
   /* generates link to retrieve data from */
   const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${sumId}`;
@@ -58,7 +58,7 @@ export const getChampMastery = async (sumId) => {
   }
 };
 
-/* returns JSON of rune shards data */
+/* returns rune shards data */
 export const getRuneShards = async () => {
   /* generates link to retrieve data from */
   const link =
@@ -71,8 +71,8 @@ export const getRuneShards = async () => {
   }
 };
 
-/* returns JSON of champ data */
-export const getChampData = async (version) => {
+/* returns basic data on all champions */
+export const getAllChampData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
   try {
@@ -83,7 +83,19 @@ export const getChampData = async (version) => {
   }
 };
 
-/* returns JSON of runes data */
+/* returns in detail data on a single passed champion */
+export const getSingleChampData = async (version, champId) => {
+  /* generates link to retrieve data from */
+  const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${champId}.json`;
+  try {
+    const response = await axiosConfig.get(link);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/* returns runes data */
 export const getRuneData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
@@ -95,7 +107,7 @@ export const getRuneData = async (version) => {
   }
 };
 
-/* returns JSON of runes data */
+/* returns summoner spells data */
 export const getSpellData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/summoner.json`;
@@ -107,7 +119,7 @@ export const getSpellData = async (version) => {
   }
 };
 
-/* returns JSON of items data */
+/* returns items data */
 export const getItemData = async (version) => {
   /* generates link to retrieve data from */
   const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/item.json`;

@@ -12,13 +12,15 @@ export default function Summoner(props) {
   return (
     <div className="summoner">
       <ChampSprite participant={participant} />
-      <Link
-        className="sum-name"
-        to={{ search: `?name=${participant.summonerName}&region=${region}` }}
-        target="_blank"
-      >
-        {participant.summonerName}
-      </Link>
+      <div className="sum-name-container">
+        <Link
+          className="sum-name"
+          to={{ search: `?name=${participant.summonerName}&region=${region}` }}
+          target="_blank"
+        >
+          {participant.summonerName}
+        </Link>
+      </div>
     </div>
   );
 }

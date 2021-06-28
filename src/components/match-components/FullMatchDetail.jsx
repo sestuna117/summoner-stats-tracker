@@ -4,7 +4,7 @@ import FullTeamDetail from "./FullTeamDetail";
 import PlayerBuild from "./PlayerBuild";
 
 export default function FullMatchDetail(props) {
-  const { participants, TEAM, player } = props;
+  const { participants, TEAM, player, match } = props;
 
   return (
     <div className="full-match-detail">
@@ -22,7 +22,7 @@ export default function FullMatchDetail(props) {
         />
       ))}
       <div>
-        <PlayerBuild player={player} />
+        <PlayerBuild match={match} player={player} />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default function RuneRow(props) {
   return (
     <div className="runes-page-row">
       {slot?.runes.map((rune) => (
-        <Rune rune={rune} />
+        <Rune key={rune.key} rune={rune} />
       ))}
     </div>
   );

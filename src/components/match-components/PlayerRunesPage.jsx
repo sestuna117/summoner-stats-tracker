@@ -32,7 +32,7 @@ export default function PlayerRunesPage(props) {
           alt={primaryRunes?.key}
         />
         {primaryRunes?.slots.map((slot) => (
-          <RuneRow slot={slot} />
+          <RuneRow key={slot.runes[0].id} slot={slot} />
         ))}
       </div>
       <div className="secondary-runes">
@@ -42,7 +42,7 @@ export default function PlayerRunesPage(props) {
           alt={secondaryRunes?.key}
         />
         {secondaryRunes?.slots.slice(1).map((slot) => (
-          <RuneRow slot={slot} />
+          <RuneRow key={slot.runes[0].id} slot={slot} />
         ))}
       </div>
       <div className="rune-shards"></div>

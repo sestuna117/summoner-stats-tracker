@@ -4,7 +4,7 @@ import {
   getItemData,
   getSpellData,
   getRuneData,
-  getChampData,
+  getAllChampData,
   getDDragonVersion,
 } from "../api/services/request.services";
 
@@ -37,7 +37,7 @@ export default function ContextLoader({ children }) {
 
   const loadChampData = async (dDragon) => {
     try {
-      const result = await getChampData(dDragon);
+      const result = await getAllChampData(dDragon);
       console.log(result);
       setChampData(result);
     } catch (e) {

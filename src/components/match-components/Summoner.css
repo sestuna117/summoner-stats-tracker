@@ -2,8 +2,14 @@
     display: flex;
 }
 
-.sum-name {
+.sum-name-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sum-name {
+    display: block;
     align-items: center;
     width: 90px;
     white-space: nowrap;
