@@ -1,20 +1,13 @@
 import React, { useContext } from "react";
-import { RuneDataContext, RuneShardsDataContext } from "../../hook";
+import { RuneDataContext } from "../../hook";
 import getRuneIcon from "../../util/getRuneIcon";
 import "./PlayerRunesPage.css";
 import RuneRow from "./RuneRow";
-
-const SHARD_ID_REGEX = /^500[0-9]$/;
+import RuneShards from "./RuneShards";
 
 export default function PlayerRunesPage(props) {
   const { player } = props;
   const runeData = useContext(RuneDataContext);
-  const shardData = useContext(RuneShardsDataContext);
-
-  let shardsType = shardData.filter((rune) =>
-    rune?.id.toString().match(SHARD_ID_REGEX)
-  );
-  console.log(shardsType);
 
   const primaryRunes = runeData.find(
     (page) => page.id === player?.perks?.styles[0].style
@@ -32,7 +25,7 @@ export default function PlayerRunesPage(props) {
           alt={primaryRunes?.key}
         />
         {primaryRunes?.slots.map((slot) => (
-          <RuneRow key={slot.runes[0].id} slot={slot} />
+          <RuneRow key={slot.runes[0].id} player={player} slot={slot} />
         ))}
       </div>
       <div className="secondary-runes">
@@ -42,10 +35,12 @@ export default function PlayerRunesPage(props) {
           alt={secondaryRunes?.key}
         />
         {secondaryRunes?.slots.slice(1).map((slot) => (
-          <RuneRow key={slot.runes[0].id} slot={slot} />
+          <RuneRow key={slot.runes[0].id} player={player} slot={slot} />
         ))}
       </div>
-      <div className="rune-shards"></div>
+      <div className="rune-shards-container">
+        <RuneShards player={player} />
+      </div>
     </div>
   );
 }

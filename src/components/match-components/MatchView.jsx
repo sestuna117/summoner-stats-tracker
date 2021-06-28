@@ -72,8 +72,13 @@ function MatchView(props) {
           <p>Level {player?.champLevel}</p>
           <p>{player.totalMinionsKilled + player.neutralMinionsKilled} CS</p>
           <p>
-            {player.kills + player.assists}{" "}
-            {match.info.teams[0].objectives.champion.kills} KP%
+            {(
+              ((player.kills + player.assists) /
+                match.info.teams.find((team) => team.teamId === player.teamId)
+                  .objectives.champion.kills) *
+              100
+            ).toFixed(1)}{" "}
+            KP%
           </p>
         </div>
         <div className="players-items">

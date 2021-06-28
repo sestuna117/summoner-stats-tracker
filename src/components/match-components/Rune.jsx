@@ -3,7 +3,7 @@ import getRuneIcon from "../../util/getRuneIcon";
 import "./Rune.css";
 
 export default function Rune(props) {
-  const { rune } = props;
+  const { rune, player } = props;
 
   return (
     <img
