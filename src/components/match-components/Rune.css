@@ -1,7 +1,9 @@
 .rune {
+    filter: grayscale(50%) opacity(30%);
+    transition: filter 0.2s ease-in-out;
     width: 40px;
 }
 
-.rune-inactive {
-    filter: grayscale(50%) opacity(30%);
+.rune-active {
+    filter: grayscale(0%) opacity(100%);
 }

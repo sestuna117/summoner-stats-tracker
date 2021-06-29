@@ -34,6 +34,18 @@ export const getMatchInfo = async (matchId) => {
   }
 };
 
+/* takes matchId and returns match timeline info */
+export const getMatchTimeline = async (matchId) => {
+  /* generates link to retrieve data from */
+  const link = `https://cors.bridged.cc/https://americas.api.riotgames.com/lol/match/v5/matches/${matchId}/timeline`;
+  try {
+    const response = await axiosConfig.get(link);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 /* returns summoners rank info */
 export const getRankedInfo = async (sumId) => {
   /* generates link to retrieve data from */

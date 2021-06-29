@@ -13,7 +13,7 @@ export default function RuneShards(props) {
 
   const shardData = useContext(RuneShardsDataContext);
 
-  let shardTypes = shardData.filter((rune) =>
+  const shardTypes = shardData.filter((rune) =>
     rune?.id.toString().match(SHARD_ID_REGEX)
   );
 

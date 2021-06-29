@@ -1,0 +1,13 @@
+.skill-order-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.skill-order {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

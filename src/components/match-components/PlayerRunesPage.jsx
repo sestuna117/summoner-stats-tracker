@@ -16,41 +16,49 @@ export default function PlayerRunesPage(props) {
     (page) => page.id === player?.perks?.styles[1].style
   );
 
+  const activeRunes =
+    player.perks.styles.flatMap((obj) =>
+      obj.selections.map((rune) => rune.perk)
+    ) ?? [];
+
   return (
     <div className="player-runes">
-      <div className="primary-runes">
-        <img
-          className="rune rune-active"
-          src={getRuneIcon(primaryRunes?.icon)}
-          alt={primaryRunes?.key}
-        />
-        {primaryRunes?.slots.map((slot) => (
-          <RuneRow
-            key={slot.runes[0].id}
-            playerRunes={player.perks.styles[0].selections}
-            slot={slot}
+      <p className="data-header">Runes</p>
+      <div className="runes-body">
+        <div className="primary-runes">
+          <img
+            className="rune rune-active"
+            src={getRuneIcon(primaryRunes?.icon)}
+            alt={primaryRunes?.key}
           />
-        ))}
-        <p className="perk-type-name">{primaryRunes.name}</p>
-      </div>
-      <div className="secondary-runes">
-        <img
-          className="rune rune-active"
-          src={getRuneIcon(secondaryRunes?.icon)}
-          alt={secondaryRunes?.key}
-        />
-        {secondaryRunes?.slots.slice(1).map((slot) => (
-          <RuneRow
-            key={slot.runes[0].id}
-            playerRunes={player.perks.styles[1].selections}
-            slot={slot}
+          {primaryRunes?.slots.map((slot) => (
+            <RuneRow
+              key={slot.runes[0].id}
+              activeRunes={activeRunes}
+              slot={slot}
+            />
+          ))}
+          <p className="perk-type-name">{primaryRunes.name}</p>
+        </div>
+        <div className="secondary-runes">
+          <img
+            className="rune rune-active"
+            src={getRuneIcon(secondaryRunes?.icon)}
+            alt={secondaryRunes?.key}
           />
-        ))}
-        <p className="perk-type-name">{secondaryRunes.name}</p>
-      </div>
-      <div className="rune-shards-container">
-        <RuneShards playerShards={player.perks.statPerks} />
-        <p className="perk-type-name">Shards</p>
+          {secondaryRunes?.slots.slice(1).map((slot) => (
+            <RuneRow
+              key={slot.runes[0].id}
+              activeRunes={activeRunes}
+              slot={slot}
+            />
+          ))}
+          <p className="perk-type-name">{secondaryRunes.name}</p>
+        </div>
+        <div className="rune-shards-container">
+          <RuneShards playerShards={player.perks.statPerks} />
+          <p className="perk-type-name">Shards</p>
+        </div>
       </div>
     </div>
   );

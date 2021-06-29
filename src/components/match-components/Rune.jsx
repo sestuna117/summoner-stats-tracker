@@ -4,14 +4,12 @@ import "./Rune.css";
 import cx from "classnames";
 
 export default function Rune(props) {
-  const { rune, playerRunes } = props;
+  const { rune, isActive } = props;
 
   return (
     <img
       className={cx("rune", {
-        "rune-inactive": !playerRunes.some(
-          (activeRunes) => activeRunes.perk === rune.id
-        ),
+        "rune-active": isActive,
       })}
       src={getRuneIcon(rune?.icon)}
       alt={rune.key}
