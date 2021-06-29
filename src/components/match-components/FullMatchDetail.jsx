@@ -21,9 +21,7 @@ export default function FullMatchDetail(props) {
           TEAM={TEAM}
         />
       ))}
-      <div>
-        <PlayerBuild match={match} player={player} />
-      </div>
+      <PlayerBuild match={match} player={player} />
     </div>
   );
 }

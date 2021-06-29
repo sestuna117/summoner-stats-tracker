@@ -9,25 +9,36 @@ const DEFENSE = [5001, 5002, 5003];
 const SHARD_ID_REGEX = /^500[0-9]$/;
 
 export default function RuneShards(props) {
-  const { player } = props;
+  const { playerShards } = props;
 
   const shardData = useContext(RuneShardsDataContext);
 
   let shardTypes = shardData.filter((rune) =>
     rune?.id.toString().match(SHARD_ID_REGEX)
   );
-  console.log(shardTypes);
 
   return (
     <div className="rune-shards">
       <div className="shard-offensive">
-        <ShardRow player={player} row={OFFENSE} shardTypes={shardTypes} />
+        <ShardRow
+          playerShard={playerShards.offense}
+          row={OFFENSE}
+          shardTypes={shardTypes}
+        />
       </div>
       <div className="shard-flex">
-        <ShardRow player={player} row={FLEX} shardTypes={shardTypes} />
+        <ShardRow
+          playerShard={playerShards.flex}
+          row={FLEX}
+          shardTypes={shardTypes}
+        />
       </div>
       <div className="shard-defensive">
-        <ShardRow player={player} row={DEFENSE} shardTypes={shardTypes} />
+        <ShardRow
+          playerShard={playerShards.defense}
+          row={DEFENSE}
+          shardTypes={shardTypes}
+        />
       </div>
     </div>
   );

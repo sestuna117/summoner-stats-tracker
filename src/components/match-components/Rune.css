@@ -1,3 +1,7 @@
-.rune-page-rune {
+.rune {
     width: 40px;
+}
+
+.rune-inactive {
+    filter: grayscale(50%) opacity(30%);
 }

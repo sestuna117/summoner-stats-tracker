@@ -3,15 +3,15 @@ import "./ShardRow.css";
 import Shard from "./Shard";
 
 export default function ShardRow(props) {
-  const { player, row, shardTypes } = props;
+  const { playerShard, row, shardTypes } = props;
 
   return (
-    <div>
+    <div className="shard-container">
       {row.map((shard) => (
         <Shard
           key={shard}
           shard={shard}
-          player={player}
+          playerShard={playerShard}
           shardTypes={shardTypes}
         />
       ))}
