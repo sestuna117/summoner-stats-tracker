@@ -1,0 +1,4 @@
+.player-builds {
+    display: flex;
+    flex-direction: column;
+}

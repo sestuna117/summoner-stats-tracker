@@ -39,6 +39,7 @@
     background-color: #ffffff;
     height: 30px;
     border-top: #adadad solid 1px;
+    border-bottom: #adadad solid 1px;
 }
 
 .dropdown-match-button {
