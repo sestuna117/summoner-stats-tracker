@@ -4,6 +4,12 @@
 }
 
 .skill-order {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-icons {
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;

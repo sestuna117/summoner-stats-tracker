@@ -16,7 +16,6 @@ export default function PlayerBuild(props) {
     const { participantId } = result.info.participants.find(
       (participant) => participant.puuid === player.puuid
     );
-    console.log(participantId);
     setPlayersId(participantId);
   }
 
