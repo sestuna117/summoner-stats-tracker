@@ -1,7 +1,7 @@
 import React from "react";
 import "./FullMatchDetail.css";
 import FullTeamDetail from "./FullTeamDetail";
-import PlayerBuild from "./PlayerBuild";
+import PlayerBuild from "./player-builds/PlayerBuild";
 
 export default function FullMatchDetail(props) {
   const { participants, TEAM, player, match } = props;

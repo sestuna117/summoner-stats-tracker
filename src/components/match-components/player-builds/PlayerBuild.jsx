@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PlayerRunesPage from "./PlayerRunesPage";
 import SkillOrder from "./SkillOrder";
 import "./PlayerBuild.css";
-import { getMatchTimeline } from "../../api/services/request.services";
+import { getMatchTimeline } from "../../../api/services/request.services";
 
 export default function PlayerBuild(props) {
   const { player, match } = props;

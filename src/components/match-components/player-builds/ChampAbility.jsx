@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import getChampAbilityIcon from "../../util/getChampAbilityIcon";
-import { DDragonVersionContext } from "../../hook";
+import getChampAbilityIcon from "../../../util/getChampAbilityIcon";
+import { DDragonVersionContext } from "../../../hook";
 import "./ChampAbility.css";
 
 export default function ChampAbility(props) {

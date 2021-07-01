@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import ShardRow from "./ShardRow";
-import { RuneShardsDataContext } from "../../hook";
+import { RuneShardsDataContext } from "../../../hook";
 
 const OFFENSE = [5008, 5005, 5007];
 const FLEX = [5008, 5002, 5003];

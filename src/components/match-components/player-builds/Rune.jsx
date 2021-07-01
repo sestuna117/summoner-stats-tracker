@@ -1,5 +1,5 @@
 import React from "react";
-import getRuneIcon from "../../util/getRuneIcon";
+import getRuneIcon from "../../../util/getRuneIcon";
 import "./Rune.css";
 import cx from "classnames";
 

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { RuneDataContext } from "../../hook";
-import getRuneIcon from "../../util/getRuneIcon";
+import { RuneDataContext } from "../../../hook";
+import getRuneIcon from "../../../util/getRuneIcon";
 import "./PlayerRunesPage.css";
 import RuneRow from "./RuneRow";
 import RuneShards from "./RuneShards";

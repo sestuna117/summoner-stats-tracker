@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ChampContext } from "../../hook/ChampContextHandler";
-import { ChampionDataContext } from "../../hook";
+import { ChampContext } from "../../../hook/ChampContextHandler";
+import { ChampionDataContext } from "../../../hook";
 import ChampAbility from "./ChampAbility";
 import "./SkillOrder.css";
 import AbilityRow from "./AbilityRow";
@@ -36,6 +36,7 @@ export default function SkillOrder(props) {
       .map((event) => event.skillSlot);
     setPlayerEvent(playerEvents);
     console.log(playerEvents);
+    console.log(playerEvents.length);
   }
 
   useEffect(() => {
@@ -64,17 +65,15 @@ export default function SkillOrder(props) {
     <div className="skill-order-container">
       <p className="data-header">Skill Order</p>
       <div className="skill-order">
-        <div className="skill-icons">
-          {champ.spells.map((spell, index) => (
-            <AbilityRow
-              key={index}
-              spell={spell}
-              slot={index}
-              skillOrder={skillOrder[index]}
-              maxLevel={playerEvent.length}
-            />
-          ))}
-        </div>
+        {champ.spells.map((spell, index) => (
+          <AbilityRow
+            key={index}
+            spell={spell}
+            slot={index}
+            skillOrder={skillOrder[index]}
+            maxLevel={playerEvent.length}
+          />
+        ))}
       </div>
     </div>
   );

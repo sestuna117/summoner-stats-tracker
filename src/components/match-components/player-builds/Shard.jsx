@@ -1,5 +1,5 @@
 import React from "react";
-import getShardIcon from "../../util/getShardIcon";
+import getShardIcon from "../../../util/getShardIcon";
 import "./Shard.css";
 import cx from "classnames";
 

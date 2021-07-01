@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { DDragonVersionContext, ItemDataContext } from "../../hook";
 import getItemIcon from "../../util/getItemIcon";
 import "./Item.css";
+import noItem from "../../icons/noitem.png";
 
 export default function Item(props) {
   const { itemId } = props;
@@ -15,7 +16,7 @@ export default function Item(props) {
 
   return isNoItem ? (
     <div className="item">
-      <div className="no-item"></div>
+      <img className="item-sprite" src={noItem} alt={"No Item"} />
     </div>
   ) : (
     <div className="item">
