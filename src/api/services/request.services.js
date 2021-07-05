@@ -146,10 +146,10 @@ export const getItemData = async (version) => {
 /* returns latest version of Data Dragon */
 export const getDDragonVersion = async () => {
   /* generates link to retrieve data from */
-  const link = "http://ddragon.leagueoflegends.com/api/versions.json";
+  const link = `${process.env.REACT_APP_API_URL}/riot/version`;
   try {
     const response = await axiosConfig.get(link);
-    return response.data?.[0];
+    return response.version;
   } catch (error) {
     console.error(error);
   }
