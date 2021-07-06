@@ -21,7 +21,7 @@ export default function ChampContextHandler({ children }) {
       return champs;
     });
     try {
-      const champ = await getSingleChampData(dDragon, champId);
+      const champ = await getSingleChampData(champId);
       const obj = Object.values(champ.data)[0];
       setChamps((prev) => {
         const champs = new Map(prev);

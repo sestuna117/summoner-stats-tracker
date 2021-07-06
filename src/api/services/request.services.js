@@ -84,9 +84,9 @@ export const getRuneShards = async () => {
 };
 
 /* returns basic data on all champions */
-export const getAllChampData = async (version) => {
+export const getAllChampData = async () => {
   /* generates link to retrieve data from */
-  const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
+  const link = `${process.env.REACT_APP_API_URL}/riot/champion`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -96,9 +96,9 @@ export const getAllChampData = async (version) => {
 };
 
 /* returns in detail data on a single passed champion */
-export const getSingleChampData = async (version, champId) => {
+export const getSingleChampData = async (champId) => {
   /* generates link to retrieve data from */
-  const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${champId}.json`;
+  const link = `${process.env.REACT_APP_API_URL}/riot/champion/${champId}`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
