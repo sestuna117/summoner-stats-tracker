@@ -73,8 +73,7 @@ export const getChampMastery = async (sumId) => {
 /* returns rune shards data */
 export const getRuneShards = async () => {
   /* generates link to retrieve data from */
-  const link =
-    "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perks.json";
+  const link = `${process.env.REACT_APP_API_URL}/cDragon/runeShards`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -86,7 +85,7 @@ export const getRuneShards = async () => {
 /* returns basic data on all champions */
 export const getAllChampData = async () => {
   /* generates link to retrieve data from */
-  const link = `${process.env.REACT_APP_API_URL}/riot/champion`;
+  const link = `${process.env.REACT_APP_API_URL}/dDragon/champion`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -98,7 +97,7 @@ export const getAllChampData = async () => {
 /* returns in detail data on a single passed champion */
 export const getSingleChampData = async (champId) => {
   /* generates link to retrieve data from */
-  const link = `${process.env.REACT_APP_API_URL}/riot/champion/${champId}`;
+  const link = `${process.env.REACT_APP_API_URL}/dDragon/champion/${champId}`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -110,7 +109,7 @@ export const getSingleChampData = async (champId) => {
 /* returns runes data */
 export const getRuneData = async (version) => {
   /* generates link to retrieve data from */
-  const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
+  const link = `${process.env.REACT_APP_API_URL}/dDragon/rune`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -122,7 +121,7 @@ export const getRuneData = async (version) => {
 /* returns summoner spells data */
 export const getSpellData = async (version) => {
   /* generates link to retrieve data from */
-  const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/summoner.json`;
+  const link = `${process.env.REACT_APP_API_URL}/dDragon/spell`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -134,7 +133,7 @@ export const getSpellData = async (version) => {
 /* returns items data */
 export const getItemData = async (version) => {
   /* generates link to retrieve data from */
-  const link = `http://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/item.json`;
+  const link = `${process.env.REACT_APP_API_URL}/dDragon/item`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -146,7 +145,7 @@ export const getItemData = async (version) => {
 /* returns latest version of Data Dragon */
 export const getDDragonVersion = async () => {
   /* generates link to retrieve data from */
-  const link = `${process.env.REACT_APP_API_URL}/riot/version`;
+  const link = `${process.env.REACT_APP_API_URL}/dDragon/version`;
   try {
     const response = await axiosConfig.get(link);
     return response.version;
