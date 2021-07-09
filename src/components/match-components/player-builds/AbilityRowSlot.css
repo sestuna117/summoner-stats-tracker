@@ -1,0 +1,14 @@
+.ability-level-slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-top: #adadad 1px solid;
+}
+
+.ability-slot-active {
+    background-color: #a258c4;
+    color: #f2f2f2;
+    font-size: 12px;
+}
