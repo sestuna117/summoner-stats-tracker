@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { getSingleChampData } from "../api/services/request.services";
-import { DDragonVersionContext } from "./index";
 
 export const ChampContext = React.createContext({
   champMap: new Map(),
@@ -8,7 +7,6 @@ export const ChampContext = React.createContext({
 });
 
 export default function ChampContextHandler({ children }) {
-  const dDragon = useContext(DDragonVersionContext);
   const [champs, setChamps] = useState(new Map());
 
   const loadChamp = async (champId) => {

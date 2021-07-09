@@ -12,7 +12,7 @@ export default function RankedInfo(props) {
 
   async function loadRankedInfo() {
     try {
-      const result = await getRankedInfo(data.id);
+      const result = await getRankedInfo(data.name);
       setRankData(result);
       console.log(result);
       if (result.length !== 0) {

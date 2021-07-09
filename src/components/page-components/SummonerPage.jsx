@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   getMatchInfo,
   getMatches,
@@ -12,9 +12,11 @@ import NavBar from "./NavBar";
 import SummonerInfo from "./SummonerInfo";
 import RankedInfo from "./RankedInfo";
 import "./SummonerPage.css";
+import { DDragonVersionContext } from "../../hook";
 
 export function SummonerPage(props) {
-  const { dDragon } = props;
+  const dDragon = useContext(DDragonVersionContext);
+  console.log(dDragon);
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -55,7 +57,7 @@ export function SummonerPage(props) {
       const result = await getSumByName(name, region);
       console.log(result);
       setData(result);
-      const matches = await getMatches(result.puuid);
+      const matches = await getMatches(name);
       console.log(matches);
       matchIds = matches;
     } catch (e) {

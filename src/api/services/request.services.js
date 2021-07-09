@@ -2,7 +2,7 @@ import { axiosConfig } from "../index";
 
 /* takes in a summoners name and returns JSON object of Summoners info. */
 export const getSumByName = async (name, region) => {
-  const link = `/summoner/v4/summoners/by-name/${name}`;
+  const link = `${process.env.REACT_APP_API_URL}/riot/summoner/${name}`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -12,8 +12,8 @@ export const getSumByName = async (name, region) => {
 };
 
 /* takes puuid and returns JSON array of last 10 matches */
-export const getMatches = async (puuid) => {
-  const link = `https://cors.bridged.cc/https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=10`;
+export const getMatches = async (sumName) => {
+  const link = `${process.env.REACT_APP_API_URL}/riot/summoner/${sumName}/matches`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -25,7 +25,7 @@ export const getMatches = async (puuid) => {
 /* takes matchId and returns JSON  of match info */
 export const getMatchInfo = async (matchId) => {
   /* generates link to retrieve data from */
-  const link = `https://cors.bridged.cc/https://americas.api.riotgames.com/lol/match/v5/matches/${matchId}`;
+  const link = `${process.env.REACT_APP_API_URL}/riot/matches/${matchId}`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -37,7 +37,7 @@ export const getMatchInfo = async (matchId) => {
 /* takes matchId and returns match timeline info */
 export const getMatchTimeline = async (matchId) => {
   /* generates link to retrieve data from */
-  const link = `https://cors.bridged.cc/https://americas.api.riotgames.com/lol/match/v5/matches/${matchId}/timeline`;
+  const link = `${process.env.REACT_APP_API_URL}/riot/matches/${matchId}/timeline`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -47,9 +47,9 @@ export const getMatchTimeline = async (matchId) => {
 };
 
 /* returns summoners rank info */
-export const getRankedInfo = async (sumId) => {
+export const getRankedInfo = async (sumName) => {
   /* generates link to retrieve data from */
-  const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${sumId}`;
+  const link = `${process.env.REACT_APP_API_URL}/riot/summoner/${sumName}/ranked`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -59,9 +59,9 @@ export const getRankedInfo = async (sumId) => {
 };
 
 /* returns summoners mastery data */
-export const getChampMastery = async (sumId) => {
+export const getChampMastery = async (sumName) => {
   /* generates link to retrieve data from */
-  const link = `https://cors.bridged.cc/https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${sumId}`;
+  const link = `${process.env.REACT_APP_API_URL}/riot/summoner/${sumName}/mastery`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -95,9 +95,9 @@ export const getAllChampData = async () => {
 };
 
 /* returns in detail data on a single passed champion */
-export const getSingleChampData = async (champId) => {
+export const getSingleChampData = async (champName) => {
   /* generates link to retrieve data from */
-  const link = `${process.env.REACT_APP_API_URL}/dDragon/champion/${champId}`;
+  const link = `${process.env.REACT_APP_API_URL}/dDragon/champion/${champName}`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;
@@ -107,7 +107,7 @@ export const getSingleChampData = async (champId) => {
 };
 
 /* returns runes data */
-export const getRuneData = async (version) => {
+export const getRuneData = async () => {
   /* generates link to retrieve data from */
   const link = `${process.env.REACT_APP_API_URL}/dDragon/rune`;
   try {
@@ -119,7 +119,7 @@ export const getRuneData = async (version) => {
 };
 
 /* returns summoner spells data */
-export const getSpellData = async (version) => {
+export const getSpellData = async () => {
   /* generates link to retrieve data from */
   const link = `${process.env.REACT_APP_API_URL}/dDragon/spell`;
   try {
@@ -131,7 +131,7 @@ export const getSpellData = async (version) => {
 };
 
 /* returns items data */
-export const getItemData = async (version) => {
+export const getItemData = async () => {
   /* generates link to retrieve data from */
   const link = `${process.env.REACT_APP_API_URL}/dDragon/item`;
   try {
@@ -148,7 +148,7 @@ export const getDDragonVersion = async () => {
   const link = `${process.env.REACT_APP_API_URL}/dDragon/version`;
   try {
     const response = await axiosConfig.get(link);
-    return response.version;
+    return response.data.version;
   } catch (error) {
     console.error(error);
   }
