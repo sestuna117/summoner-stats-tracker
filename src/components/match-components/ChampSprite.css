@@ -2,6 +2,7 @@
     width: 70px;
     flex: 0;
     padding-right: 5px;
+    border-radius: 50%;
 }
 
 .champ-sprite {
@@ -14,4 +15,6 @@
     width: 40px;
     flex: 0;
     padding-right: 3px;
+    margin-left: 8px;
+    border-radius: 50%;
 }
