@@ -36,6 +36,9 @@ export default function RankedInfo(props) {
   }, [data?.id]);
 
   const getTier = () => {
+    if (!soloInfo) {
+      return;
+    }
     switch (soloInfo?.rank) {
       case "I":
         return ranks.get(soloInfo?.tier)?.tiers.I;

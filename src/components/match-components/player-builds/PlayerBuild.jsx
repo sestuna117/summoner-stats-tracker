@@ -3,6 +3,7 @@ import PlayerRunesPage from "./PlayerRunesPage";
 import SkillOrder from "./SkillOrder";
 import "./PlayerBuild.css";
 import { getMatchTimeline } from "../../../api/services/request.services";
+import ItemTimeline from "./ItemTimeline";
 
 export default function PlayerBuild(props) {
   const { player, match } = props;
@@ -25,7 +26,7 @@ export default function PlayerBuild(props) {
 
   return (
     <div className="player-builds">
-      <div className="item-purchase-timeline"></div>
+      <ItemTimeline participantId={playersId} timeline={timeline} />
       <SkillOrder
         player={player}
         participantId={playersId}

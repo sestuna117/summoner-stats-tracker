@@ -7,12 +7,6 @@ export default function AbilityRow(props) {
   const { spell, slot, skillOrder, maxLevel } = props;
   const [isLoaded, setIsLoaded] = useState(false);
   const [levelOrder, setLevelOrder] = useState([]);
-  console.group("Skill Level Up Order params");
-  console.log("Level skilled was increased at: " + skillOrder);
-  console.log("Max level reached: " + maxLevel);
-  console.log(Array.from(Array(maxLevel).keys()));
-  console.log(levelOrder);
-  console.groupEnd();
 
   function displayRow() {
     setIsLoaded(false);

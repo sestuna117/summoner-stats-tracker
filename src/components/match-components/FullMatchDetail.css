@@ -18,5 +18,6 @@
 }
 
 .tab:hover {
+    font-weight: bold;
     border-bottom: #ffffff solid 1px;
 }

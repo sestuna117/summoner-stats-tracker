@@ -86,7 +86,7 @@ registerRank({
 });
 
 registerRank({
-  id: "PlATINUM",
+  id: "PLATINUM",
   name: "Platinum",
   tiers: {
     I: platI,

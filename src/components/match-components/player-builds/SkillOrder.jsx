@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ChampContext } from "../../../hook/ChampContextHandler";
 import { ChampionDataContext } from "../../../hook";
-import ChampAbility from "./ChampAbility";
 import "./SkillOrder.css";
 import AbilityRow from "./AbilityRow";
 
@@ -35,8 +34,6 @@ export default function SkillOrder(props) {
       )
       .map((event) => event.skillSlot);
     setPlayerEvent(playerEvents);
-    console.log(playerEvents);
-    console.log(playerEvents.length);
   }
 
   useEffect(() => {
@@ -45,9 +42,6 @@ export default function SkillOrder(props) {
 
   const champ = champMap.get(id);
 
-  console.log(champ);
-
-  //TODO
   useEffect(() => {
     if (champ == null || playerEvent.length === 0) {
       return;
