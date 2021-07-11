@@ -8,7 +8,7 @@ export default function FullMatchDetail(props) {
 
   return (
     <div className="full-match-detail">
-      <div className="tabs">
+      <form className="tabs">
         <input type="radio" id="overview" name="tab" checked="checked" />
         <label for="overview">Overview</label>
         <div className="tab-content">
@@ -33,7 +33,7 @@ export default function FullMatchDetail(props) {
         <div className="tab-content">
           <PlayerBuild match={match} player={player} />
         </div>
-      </div>
+      </form>
     </div>
   );
 }

@@ -67,6 +67,13 @@ function MatchView(props) {
         </div>
         <div className="kda-info">
           <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
+          <p className="kda-subtext">
+            {isFinite((player.kills + player.assists) / player.deaths)
+              ? ((player.kills + player.assists) / player.deaths).toFixed(2) +
+                ":1"
+              : "Perfect"}{" "}
+            KDA
+          </p>
         </div>
         <div className="macro-info">
           <p>Level {player?.champLevel}</p>

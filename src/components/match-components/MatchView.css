@@ -48,3 +48,16 @@
     border-width: 1px;
     background-color: #f2f2f2;
 }
+
+.kda-info {
+    text-align: center;
+}
+
+.kda-info > p {
+    margin: 5px;
+}
+
+.kda-subtext {
+    font-weight: bold;
+    font-size: 14px;
+}
