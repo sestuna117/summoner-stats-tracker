@@ -8,20 +8,32 @@ export default function FullMatchDetail(props) {
 
   return (
     <div className="full-match-detail">
-      <div className="tab-bar">
-        <div className="tab">Overview</div>
-        <div className="tab">Analytics</div>
-        <div className="tab">Builds</div>
+      <div className="tabs">
+        <input type="radio" id="overview" name="tab" checked="checked" />
+        <label for="overview">Overview</label>
+        <div className="tab-content">
+          {Array.from(participants.entries()).map(([id, participants]) => (
+            <FullTeamDetail
+              key={id}
+              participants={participants}
+              id={id}
+              TEAM={TEAM}
+            />
+          ))}
+        </div>
+
+        <input type="radio" id="analytics" name="tab" />
+        <label for="analytics">Analytics</label>
+        <div className="tab-content">
+          <div>analytics</div>
+        </div>
+
+        <input type="radio" id="builds" name="tab" />
+        <label for="builds">Builds</label>
+        <div className="tab-content">
+          <PlayerBuild match={match} player={player} />
+        </div>
       </div>
-      {Array.from(participants.entries()).map(([id, participants]) => (
-        <FullTeamDetail
-          key={id}
-          participants={participants}
-          id={id}
-          TEAM={TEAM}
-        />
-      ))}
-      <PlayerBuild match={match} player={player} />
     </div>
   );
 }

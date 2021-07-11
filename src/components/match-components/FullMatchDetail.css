@@ -1,23 +1,67 @@
-.tab-bar {
+/*.tab-bar {*/
+/*    display: flex;*/
+/*    justify-content: space-evenly;*/
+/*    align-items: flex-end;*/
+/*    background-color: #f2f2f2;*/
+/*    height: 40px;*/
+/*    position: relative;*/
+/*}*/
+
+/*.tab {*/
+/*    position: relative;*/
+/*    bottom: -1px;*/
+/*    text-align: center;*/
+/*    background-color: #ffffff;*/
+/*    min-width: 220px;*/
+/*    height: 30px;*/
+/*    border: #adadad solid 1px;*/
+/*}*/
+
+/*.tab:hover {*/
+/*    font-weight: bold;*/
+/*    border-bottom: #ffffff solid 1px;*/
+/*}*/
+
+.tabs {
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-end;
-    background-color: #f2f2f2;
-    height: 40px;
+    flex-wrap: wrap;
     position: relative;
 }
 
-.tab {
-    position: relative;
-    bottom: -1px;
+.tabs input[type="radio"] {
+    display: none;
+}
+
+.tabs label {
     text-align: center;
-    background-color: #ffffff;
-    min-width: 220px;
+    position: relative;
     height: 30px;
+    bottom: -1px;
+    background-color: #f2f2f2;
+    min-width: 220px;
+    padding-top: 5px;
+    margin-top: 8px;
     border: #adadad solid 1px;
 }
 
-.tab:hover {
+.tabs .tab-content {
+    width: 100%;
+    order: 1;
+    display: none;
+}
+
+.tabs input[type="radio"]:checked + label + .tab-content {
+    display: block;
+}
+
+.tabs label:hover {
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.tabs input[type="radio"]:checked + label {
     font-weight: bold;
+    background-color: #ffffff;
     border-bottom: #ffffff solid 1px;
 }

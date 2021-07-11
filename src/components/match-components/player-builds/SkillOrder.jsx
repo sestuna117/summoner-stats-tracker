@@ -48,7 +48,6 @@ export default function SkillOrder(props) {
     }
     const skillLevelOrder = champ.spells.map(() => []);
     playerEvent.forEach((slot, index) => skillLevelOrder[slot - 1].push(index));
-    console.log(skillLevelOrder);
     setSkillOrder(skillLevelOrder);
   }, [champ, playerEvent]);
 
