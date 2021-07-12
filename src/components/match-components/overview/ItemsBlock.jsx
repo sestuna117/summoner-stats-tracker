@@ -1,7 +1,7 @@
 import React from "react";
 import cx from "classnames";
 import "./ItemsBlock.css";
-import Item from "./Item";
+import Item from "../Item";
 
 const ITEM_KEY_REGEX = /^item[0-6]$/;
 

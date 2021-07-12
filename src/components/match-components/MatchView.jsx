@@ -3,7 +3,7 @@ import "./MatchView.css";
 import { ChampionDataContext } from "../../hook";
 import ChampSprite from "./ChampSprite";
 import PerksSpells from "./PerksSpells";
-import ItemsBlock from "./ItemsBlock";
+import ItemsBlock from "./overview/ItemsBlock";
 import FullMatchDetail from "./FullMatchDetail";
 import Team from "./Team";
 

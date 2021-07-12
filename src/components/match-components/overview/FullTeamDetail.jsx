@@ -1,8 +1,8 @@
 import React from "react";
 import cx from "classnames";
 import "./FullTeamDetail.css";
-import ChampSprite from "./ChampSprite";
-import PerksSpells from "./PerksSpells";
+import ChampSprite from "../ChampSprite";
+import PerksSpells from "../PerksSpells";
 import ItemsBlock from "./ItemsBlock";
 
 export default function FullTeamDetail(props) {

@@ -1,7 +1,8 @@
 import React from "react";
 import "./FullMatchDetail.css";
-import FullTeamDetail from "./FullTeamDetail";
+import FullTeamDetail from "./overview/FullTeamDetail";
 import PlayerBuild from "./player-builds/PlayerBuild";
+import MatchAnalytics from "./analytics/MatchAnalytics";
 
 export default function FullMatchDetail(props) {
   const { participants, TEAM, player, match } = props;
@@ -25,7 +26,7 @@ export default function FullMatchDetail(props) {
         <input type="radio" id="analytics" name="tab" />
         <label for="analytics">Analytics</label>
         <div className="tab-content">
-          <div>analytics</div>
+          <MatchAnalytics participants={participants} TEAM={TEAM} />
         </div>
 
         <input type="radio" id="builds" name="tab" />
