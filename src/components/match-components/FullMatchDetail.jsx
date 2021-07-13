@@ -24,20 +24,6 @@ export default function FullMatchDetail(props) {
           onChange={onRadioChange}
         />
         <label for="overview">Overview</label>
-        <div
-          className={cx("tab-content", {
-            "active-tab": activeTab === "overview",
-          })}
-        >
-          {Array.from(participants.entries()).map(([id, participants]) => (
-            <FullTeamDetail
-              key={id}
-              participants={participants}
-              id={id}
-              TEAM={TEAM}
-            />
-          ))}
-        </div>
 
         <input
           type="radio"
@@ -47,13 +33,6 @@ export default function FullMatchDetail(props) {
           onChange={onRadioChange}
         />
         <label for="analytics">Analytics</label>
-        <div
-          className={cx("tab-content", {
-            "active-tab": activeTab === "analytics",
-          })}
-        >
-          <MatchAnalytics participants={participants} TEAM={TEAM} />
-        </div>
 
         <input
           type="radio"
@@ -63,14 +42,35 @@ export default function FullMatchDetail(props) {
           onChange={onRadioChange}
         />
         <label for="builds">Builds</label>
-        <div
-          className={cx("tab-content", {
-            "active-tab": activeTab === "builds",
-          })}
-        >
-          <PlayerBuild match={match} player={player} />
-        </div>
       </form>
+      <div
+        className={cx("tab-content", {
+          "active-tab": activeTab === "overview",
+        })}
+      >
+        {Array.from(participants.entries()).map(([id, participants]) => (
+          <FullTeamDetail
+            key={id}
+            participants={participants}
+            id={id}
+            TEAM={TEAM}
+          />
+        ))}
+      </div>
+      <div
+        className={cx("tab-content", {
+          "active-tab": activeTab === "analytics",
+        })}
+      >
+        <MatchAnalytics participants={participants} TEAM={TEAM} />
+      </div>
+      <div
+        className={cx("tab-content", {
+          "active-tab": activeTab === "builds",
+        })}
+      >
+        <PlayerBuild match={match} player={player} />
+      </div>
     </div>
   );
 }

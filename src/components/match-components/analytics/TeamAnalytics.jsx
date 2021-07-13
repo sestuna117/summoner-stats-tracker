@@ -1,43 +1,40 @@
-import React from "react";
-import { Doughnut } from "react-chartjs-2";
+import React, { useEffect, useState } from "react";
+import { PieChart, Pie, Tooltip, Label } from "recharts";
 import "./TeamAnalytics.css";
 
 export default function TeamAnalytics(props) {
   const { participants, TEAM } = props;
+  const [rolePairs, setRolePairs] = useState(new Map());
   console.log(participants);
 
-  // const data = {
-  //   labels: ["Red", "Blue"],
-  //   datasets: [
-  //     {
-  //       label: "# of Votes",
-  //       data: [12, 19],
-  //       backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
-  //     },
-  //   ],
-  // };
+  const data = [
+    { name: "Red", value: 30 },
+    { name: "Blue", value: 20 },
+  ];
 
-  const data = {
-    labels: ["Blue", "Red"],
-    datasets: [
-      {
-        label: "# of kills",
-        data: [10, 20],
-        backgroundColor: ["#7db2ff", "#ff938b"],
-        borderColor: ["#5f9fff", "#ff7066"],
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    cutout: 50,
-  };
+  useEffect(() => {
+    const allParticpants = Array.from(participants.values()).flat();
+    console.log(allParticpants);
+    const pairs = new Map();
+    allParticpants.forEach((participant) => {
+      if (!pairs.get(participant.individualPosition)) {
+        pairs.set(participant.individualPosition, []);
+      }
+      let group = pairs.get(participant.individualPosition);
+      group.push(participant);
+      pairs.set(participant.individualPosition, group);
+    });
+    console.log(pairs);
+    setRolePairs(pairs);
+  }, []);
 
   return (
     <div className="chart-container">
-      <Doughnut data={data} options={options} />
+      <PieChart width={400} height={400}>
+        <Pie dataKey="value" data={data} innerRadius={60} outerRadius={80}>
+          <Label value="Sum" position="center" />
+        </Pie>
+      </PieChart>
     </div>
   );
 }

@@ -22,13 +22,6 @@ export default function MatchAnalytics(props) {
           onChange={onRadioChange}
         />
         <label htmlFor="team-analytics">Team Analytics</label>
-        <div
-          className={cx("tab-content", {
-            "active-tab": activeTab === "team-analytics",
-          })}
-        >
-          <TeamAnalytics participants={participants} TEAM={{ TEAM }} />
-        </div>
 
         <input
           type="radio"
@@ -38,13 +31,6 @@ export default function MatchAnalytics(props) {
           onChange={onRadioChange}
         />
         <label htmlFor="gold-advantage">Gold Advantage</label>
-        <div
-          className={cx("tab-content", {
-            "active-tab": activeTab === "gold-advantage",
-          })}
-        >
-          <TeamAnalytics participants={participants} TEAM={{ TEAM }} />
-        </div>
 
         <input
           type="radio"
@@ -54,14 +40,24 @@ export default function MatchAnalytics(props) {
           onChange={onRadioChange}
         />
         <label htmlFor="kill-map">Kill Map</label>
-        <div
-          className={cx("tab-content", {
-            "active-tab": activeTab === "kill-map",
-          })}
-        >
-          <TeamAnalytics participants={participants} TEAM={{ TEAM }} />
-        </div>
       </form>
+      <div
+        className={cx("tab-content", {
+          "active-sub-tab": activeTab === "team-analytics",
+        })}
+      >
+        <TeamAnalytics participants={participants} TEAM={{ TEAM }} />
+      </div>
+      <div
+        className={cx("tab-content", {
+          "active-sub-tab": activeTab === "gold-advantage",
+        })}
+      ></div>
+      <div
+        className={cx("tab-content", {
+          "active-sub-tab": activeTab === "kill-map",
+        })}
+      ></div>
     </div>
   );
 }
