@@ -68,6 +68,7 @@ export function SummonerPage(props) {
     const promises = matchIds.map(async (id) => {
       try {
         const match = await getMatchInfo(id);
+        console.log(match);
         setMatches((prev) => [...prev, match]);
       } catch (e) {
         console.error(e);

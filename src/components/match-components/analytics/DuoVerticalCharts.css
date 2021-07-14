@@ -1,0 +1,11 @@
+.chart-container {
+    width: 80%;
+    display: flex;
+    margin: 5px;
+}
+
+.icon-column {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}

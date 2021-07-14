@@ -23,7 +23,7 @@ export default function FullMatchDetail(props) {
           checked={activeTab === "overview"}
           onChange={onRadioChange}
         />
-        <label for="overview">Overview</label>
+        <label htmlFor="overview">Overview</label>
 
         <input
           type="radio"
@@ -32,7 +32,7 @@ export default function FullMatchDetail(props) {
           checked={activeTab === "analytics"}
           onChange={onRadioChange}
         />
-        <label for="analytics">Analytics</label>
+        <label htmlFor="analytics">Analytics</label>
 
         <input
           type="radio"
@@ -41,7 +41,7 @@ export default function FullMatchDetail(props) {
           checked={activeTab === "builds"}
           onChange={onRadioChange}
         />
-        <label for="builds">Builds</label>
+        <label htmlFor="builds">Builds</label>
       </form>
       <div
         className={cx("tab-content", {
@@ -62,7 +62,7 @@ export default function FullMatchDetail(props) {
           "active-tab": activeTab === "analytics",
         })}
       >
-        <MatchAnalytics participants={participants} TEAM={TEAM} />
+        <MatchAnalytics participants={participants} match={match.info} />
       </div>
       <div
         className={cx("tab-content", {

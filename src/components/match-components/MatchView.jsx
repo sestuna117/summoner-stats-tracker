@@ -30,7 +30,7 @@ function MatchView(props) {
     }
     team.push(participant);
   });
-  console.log(participants);
+  // console.log(participants);
 
   function getGameType() {
     switch (match.info.queueId) {

@@ -1,40 +1,96 @@
 import React, { useEffect, useState } from "react";
-import { PieChart, Pie, Tooltip, Label } from "recharts";
+import { BarChart, Bar, XAxis, YAxis } from "recharts";
 import "./TeamAnalytics.css";
+import ChampSprite from "../ChampSprite";
+import DuoVerticalCharts from "./DuoVerticalCharts";
 
 export default function TeamAnalytics(props) {
-  const { participants, TEAM } = props;
+  const { participants, match } = props;
   const [rolePairs, setRolePairs] = useState(new Map());
   console.log(participants);
+  console.log(rolePairs);
+  console.log(
+    Array.from(rolePairs.values()).map((pair) => [
+      pair[0].totalDamageDealtToChampions,
+      pair[1].totalDamageDealtToChampions,
+    ])
+  );
 
-  const data = [
-    { name: "Red", value: 30 },
-    { name: "Blue", value: 20 },
-  ];
+  function loadPairs() {
+    const pairs = new Map();
+    const teams = Array.from(participants.values());
+    teams[0].forEach((member, index) => {
+      pairs.set(index, [member, teams[1][index]]);
+    });
+    setRolePairs(pairs);
+  }
 
   useEffect(() => {
-    const allParticpants = Array.from(participants.values()).flat();
-    console.log(allParticpants);
-    const pairs = new Map();
-    allParticpants.forEach((participant) => {
-      if (!pairs.get(participant.individualPosition)) {
-        pairs.set(participant.individualPosition, []);
-      }
-      let group = pairs.get(participant.individualPosition);
-      group.push(participant);
-      pairs.set(participant.individualPosition, group);
-    });
-    console.log(pairs);
-    setRolePairs(pairs);
+    loadPairs();
   }, []);
 
   return (
-    <div className="chart-container">
-      <PieChart width={400} height={400}>
-        <Pie dataKey="value" data={data} innerRadius={60} outerRadius={80}>
-          <Label value="Sum" position="center" />
-        </Pie>
-      </PieChart>
+    <div className="team-analytics">
+      <div className="team-stat">
+        <DuoVerticalCharts
+          participants={participants}
+          rolePairs={Array.from(rolePairs.values()).map((pair) => [
+            pair[0].kills,
+            pair[1].kills,
+          ])}
+        />
+        <span className="stat-title">Champion Kills</span>
+      </div>
+      <div className="team-stat">
+        <DuoVerticalCharts
+          participants={participants}
+          rolePairs={Array.from(rolePairs.values()).map((pair) => [
+            pair[0].totalDamageDealtToChampions,
+            pair[1].totalDamageDealtToChampions,
+          ])}
+        />
+        <span className="stat-title">Damage Dealt</span>
+      </div>
+      <div className="team-stat">
+        <DuoVerticalCharts
+          participants={participants}
+          rolePairs={Array.from(rolePairs.values()).map((pair) => [
+            pair[0].totalDamageTaken,
+            pair[1].totalDamageTaken,
+          ])}
+        />
+        <span className="stat-title">Damage Taken</span>
+      </div>
+      <div className="team-stat">
+        <DuoVerticalCharts
+          participants={participants}
+          rolePairs={Array.from(rolePairs.values()).map((pair) => [
+            pair[0].goldEarned,
+            pair[1].goldEarned,
+          ])}
+        />
+        <span className="stat-title">Gold Income</span>
+      </div>
+      <div className="team-stat">
+        <DuoVerticalCharts
+          participants={participants}
+          rolePairs={Array.from(rolePairs.values()).map((pair) => [
+            pair[0].totalMinionsKilled + pair[0].neutralMinionsKilled,
+            pair[1].totalMinionsKilled + pair[1].neutralMinionsKilled,
+          ])}
+        />
+        <span className="stat-title">CS Score</span>
+      </div>
+      <div className="team-stat">
+        <DuoVerticalCharts
+          participants={participants}
+          rolePairs={Array.from(rolePairs.values()).map((pair) => [
+            pair[0].wardsPlaced,
+            pair[1].wardsPlaced,
+          ])}
+        />
+        <span className="stat-title">Wards Placed</span>
+      </div>
     </div>
   );
 }

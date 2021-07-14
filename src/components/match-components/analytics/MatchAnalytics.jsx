@@ -4,7 +4,7 @@ import TeamAnalytics from "./TeamAnalytics";
 import cx from "classnames";
 
 export default function MatchAnalytics(props) {
-  const { participants, TEAM } = props;
+  const { participants, match } = props;
   const [activeTab, setActiveTab] = useState("team-analytics");
 
   const onRadioChange = (event) => {
@@ -46,7 +46,7 @@ export default function MatchAnalytics(props) {
           "active-sub-tab": activeTab === "team-analytics",
         })}
       >
-        <TeamAnalytics participants={participants} TEAM={{ TEAM }} />
+        <TeamAnalytics participants={participants} match={match} />
       </div>
       <div
         className={cx("tab-content", {
