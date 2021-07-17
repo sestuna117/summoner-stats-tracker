@@ -10,9 +10,9 @@ import {
   Label,
   LabelList,
 } from "recharts";
-import "./DuoVerticalCharts.css";
+import "./DuoVerticalBarCharts.css";
 
-export default function DuoVerticalCharts(props) {
+export default function DuoVerticalBarCharts(props) {
   const { participants, rolePairs } = props;
   const [data, setData] = useState([]);
 
@@ -23,12 +23,11 @@ export default function DuoVerticalCharts(props) {
     const dataMap = [];
     rolePairs.forEach((pair) => {
       const data = {
-        blue: pair[0],
-        red: pair[1],
+        Blue: pair[0],
+        Red: pair[1],
       };
       dataMap.push(data);
     });
-    console.log(dataMap);
     setData(dataMap);
   }
 
@@ -65,16 +64,16 @@ export default function DuoVerticalCharts(props) {
             width={0}
           />
           <Tooltip />
-          <Bar dataKey="blue" fill="#7db2ff" stackId="a">
+          <Bar dataKey="Blue" fill="#7db2ff" stackId="a">
             <LabelList
-              dataKey="blue"
+              dataKey="Blue"
               position="center"
               content={renderCustomizedLabel}
             />
           </Bar>
-          <Bar dataKey="red" fill="#ff938b" stackId="a">
+          <Bar dataKey="Red" fill="#ff938b" stackId="a">
             <LabelList
-              dataKey="red"
+              dataKey="Red"
               position="center"
               content={renderCustomizedLabel}
             />

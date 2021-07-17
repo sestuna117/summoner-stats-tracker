@@ -1,28 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PlayerRunesPage from "./PlayerRunesPage";
 import SkillOrder from "./SkillOrder";
 import "./PlayerBuild.css";
-import { getMatchTimeline } from "../../../api/services/request.services";
 import ItemTimeline from "./ItemTimeline";
 
 export default function PlayerBuild(props) {
-  const { player, match } = props;
-  const [playersId, setPlayersId] = useState();
-  const [timeline, setTimeline] = useState();
-
-  async function loadTimeline() {
-    const result = await getMatchTimeline(match.metadata.matchId);
-    setTimeline(result);
-    console.log(result);
-    const { participantId } = result.info.participants.find(
-      (participant) => participant.puuid === player.puuid
-    );
-    setPlayersId(participantId);
-  }
-
-  useEffect(() => {
-    loadTimeline();
-  }, []);
+  const { player, match, playersId, timeline } = props;
 
   return (
     <div className="player-builds">

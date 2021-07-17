@@ -26,7 +26,6 @@ export default function ItemTimeline(props) {
         timestamp: Math.round(event.timestamp / MINUTE),
       }));
     setPlayerEvent(playerEvents);
-    console.log(playerEvents);
   }
 
   useEffect(() => {

@@ -1,0 +1,16 @@
+.custom-tooltip {
+    background-color: #f2f2f2;
+    border: #adadad 1px solid;
+    box-shadow: inset 0 -9px #a258c4;
+    padding: 5px;
+    border-radius: 5%;
+}
+
+.custom-tooltip p {
+    margin: 3px;
+    font-size: 15px;
+}
+
+.custom-tooltip p:last-child {
+    margin-bottom: 10px;
+}

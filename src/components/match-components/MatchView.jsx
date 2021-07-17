@@ -30,6 +30,7 @@ function MatchView(props) {
     }
     team.push(participant);
   });
+
   // console.log(participants);
 
   function getGameType() {
@@ -112,14 +113,13 @@ function MatchView(props) {
           </button>
         </div>
       </div>
-      {showFull ? (
-        <FullMatchDetail
-          participants={participants}
-          TEAM={TEAM}
-          player={player}
-          match={match}
-        />
-      ) : null}
+      <FullMatchDetail
+        participants={participants}
+        display={showFull}
+        TEAM={TEAM}
+        player={player}
+        match={match}
+      />
     </li>
   );
 }

@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FullMatchDetail.css";
 import FullTeamDetail from "./overview/FullTeamDetail";
 import PlayerBuild from "./player-builds/PlayerBuild";
 import MatchAnalytics from "./analytics/MatchAnalytics";
 import cx from "classnames";
+import { getMatchTimeline } from "../../api/services/request.services";
 
 export default function FullMatchDetail(props) {
-  const { participants, TEAM, player, match } = props;
+  const { participants, TEAM, player, match, display } = props;
   const [activeTab, setActiveTab] = useState("overview");
+  const [playersId, setPlayersId] = useState();
+  const [timeline, setTimeline] = useState();
+
+  async function loadTimeline() {
+    const result = await getMatchTimeline(match.metadata.matchId);
+    setTimeline(result);
+    console.log(result);
+    const { participantId } = result.info.participants.find(
+      (participant) => participant.puuid === player.puuid
+    );
+    setPlayersId(participantId);
+  }
+
+  useEffect(() => {
+    loadTimeline();
+  }, []);
 
   const onRadioChange = (event) => {
     setActiveTab(event.target.id);
   };
 
   return (
-    <div className="full-match-detail">
+    <div
+      className={cx("full-match-detail", { "match-detail-opened": display })}
+    >
       <form className="tabs">
         <input
           type="radio"
@@ -62,14 +81,23 @@ export default function FullMatchDetail(props) {
           "active-tab": activeTab === "analytics",
         })}
       >
-        <MatchAnalytics participants={participants} match={match.info} />
+        <MatchAnalytics
+          participants={participants}
+          match={match.info}
+          timeline={timeline}
+        />
       </div>
       <div
         className={cx("tab-content", {
           "active-tab": activeTab === "builds",
         })}
       >
-        <PlayerBuild match={match} player={player} />
+        <PlayerBuild
+          match={match}
+          player={player}
+          playersId={playersId}
+          timeline={timeline}
+        />
       </div>
     </div>
   );

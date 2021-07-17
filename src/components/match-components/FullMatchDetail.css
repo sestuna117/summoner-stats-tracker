@@ -42,3 +42,11 @@
     background-color: #ffffff;
     border-bottom: #ffffff solid 1px;
 }
+
+.full-match-detail {
+    display: none;
+}
+
+.match-detail-opened {
+    display: block;
+}
