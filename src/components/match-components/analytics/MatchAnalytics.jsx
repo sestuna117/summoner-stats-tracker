@@ -3,6 +3,7 @@ import "./MatchAnalytics.css";
 import cx from "classnames";
 import TeamAnalytics from "./TeamAnalytics";
 import AdvantageGraphs from "./AdvantageGraphs";
+import StatsTable from "./StatsTable";
 
 export default function MatchAnalytics(props) {
   const { participants, match, timeline } = props;
@@ -27,7 +28,6 @@ export default function MatchAnalytics(props) {
         timestamp: Math.round(event.timestamp / MINUTE),
       }));
     setKillData(playerEvents);
-    console.log(playerEvents);
   }
 
   useEffect(() => {
@@ -144,7 +144,9 @@ export default function MatchAnalytics(props) {
         className={cx("tab-content", {
           "active-sub-tab": activeTab === "stats-table",
         })}
-      ></div>
+      >
+        <StatsTable match={match} />
+      </div>
     </div>
   );
 }

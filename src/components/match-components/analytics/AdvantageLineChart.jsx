@@ -27,7 +27,7 @@ export default function AdvantageLineChart(props) {
       >
         <CartesianGrid vertical={false} />
         <XAxis
-          interval={0}
+          interval={1}
           dataKey="timestamp"
           unit=" m"
           tick={{ fontSize: 10 }}

@@ -9,7 +9,6 @@ export default function KillGraph(props) {
     if (!killData || !teamSides) {
       return;
     }
-    console.log(killData);
     let blueSum = 0;
     let redSum = 0;
     const teamsEvents = new Map();
@@ -29,7 +28,6 @@ export default function KillGraph(props) {
         timestamp: time,
       });
     });
-    console.log(teamsEvents);
     setKillTimeline(Array.from(teamsEvents.values()));
   }
 

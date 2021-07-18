@@ -50,6 +50,14 @@ function MatchView(props) {
     }
   }
 
+  function calcDuration(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return seconds === 60
+      ? minutes + 1 + ":00"
+      : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
+  }
+
   function displayFullData() {
     setShowFull((prev) => !prev);
   }
@@ -59,7 +67,7 @@ function MatchView(props) {
       <div className="main-match-data">
         <div className="match-details">
           {getGameType()}
-          <p>Time placeholder</p>
+          <p>{calcDuration(match.info.gameDuration)}</p>
           <p>{player.win ? "Victory" : "Defeat"}</p>
         </div>
         <div className="chosen-sum-options">
