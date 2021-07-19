@@ -206,18 +206,18 @@ export default function StatsTable(props) {
               ))}
             </tr>
           </tbody>
-          {TABLE_SECTIONS.map(({ title, rows }) => (
-            <tbody className="table-section">
+          {TABLE_SECTIONS.map(({ title, rows }, index) => (
+            <tbody key={index} className="table-section">
               <tr className="table-section-title">
                 <th colSpan={20} className="table-row-title">
                   {title}
                 </th>
               </tr>
-              {rows.map(({ name, data }) => (
-                <tr>
+              {rows.map(({ name, data }, index) => (
+                <tr key={index}>
                   <td className="table-row-title">{name}</td>
-                  {data.map((value) => (
-                    <td>{value}</td>
+                  {data.map((value, index) => (
+                    <td key={index}>{value}</td>
                   ))}
                 </tr>
               ))}

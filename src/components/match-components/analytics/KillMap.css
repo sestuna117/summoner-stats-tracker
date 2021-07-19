@@ -1,0 +1,9 @@
+.kill-map-container {
+    display: flex;
+    justify-content: center;
+}
+
+.kill-map {
+    width: 400px;
+    height: 400px;
+}

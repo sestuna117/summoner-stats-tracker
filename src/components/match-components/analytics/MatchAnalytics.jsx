@@ -4,6 +4,7 @@ import cx from "classnames";
 import TeamAnalytics from "./TeamAnalytics";
 import AdvantageGraphs from "./AdvantageGraphs";
 import StatsTable from "./StatsTable";
+import KillMap from "./KillMap";
 
 export default function MatchAnalytics(props) {
   const { participants, match, timeline } = props;
@@ -13,7 +14,7 @@ export default function MatchAnalytics(props) {
   const [killData, setKillData] = useState();
 
   function loadKills() {
-    if (!timeline || !teamSides) {
+    if (!timeline) {
       return;
     }
 
@@ -32,7 +33,7 @@ export default function MatchAnalytics(props) {
 
   useEffect(() => {
     loadKills();
-  }, [timeline, teamSides]);
+  }, [timeline]);
 
   function loadTeamSides() {
     if (!timeline || !participants) {
@@ -46,9 +47,9 @@ export default function MatchAnalytics(props) {
           (player) => participant.puuid === player.puuid
         )
       ) {
-        teamMap[1].push(participant.participantId);
+        teamMap[1].push(participant);
       } else {
-        teamMap[0].push(participant.participantId);
+        teamMap[0].push(participant);
       }
     });
     setTeamSides(teamMap);
@@ -131,7 +132,9 @@ export default function MatchAnalytics(props) {
           participants={participants}
           timeline={timeline}
           rolePairs={rolePairs}
-          teamSides={teamSides}
+          teamSides={teamSides?.forEach((team) =>
+            team.map((player) => player.participantId)
+          )}
           killData={killData}
         />
       </div>
@@ -139,7 +142,9 @@ export default function MatchAnalytics(props) {
         className={cx("tab-content", {
           "active-sub-tab": activeTab === "kill-map",
         })}
-      ></div>
+      >
+        <KillMap killData={killData} teamSides={teamSides} map={match.mapId} />
+      </div>
       <div
         className={cx("tab-content", {
           "active-sub-tab": activeTab === "stats-table",
