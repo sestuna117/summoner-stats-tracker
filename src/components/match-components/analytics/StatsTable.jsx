@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./StatsTable.css";
 import ChampSprite from "../ChampSprite";
 
@@ -86,19 +86,95 @@ export default function StatsTable(props) {
   };
   const TABLE_SECTION_DMG_TAKEN = {
     title: "Damage Taken And Healed",
-    rows: [],
+    rows: [
+      {
+        name: "Damage Healed",
+        data: createRow("totalHeal"),
+      },
+      {
+        name: "Damage Taken",
+        data: createRow("totalDamageTaken"),
+      },
+      {
+        name: "Physical Damage Taken",
+        data: createRow("physicalDamageTaken"),
+      },
+      {
+        name: "Magic Damage Taken",
+        data: createRow("magicDamageTaken"),
+      },
+      {
+        name: "True Damage Taken",
+        data: createRow("trueDamageTaken"),
+      },
+      {
+        name: "Self Mitigated Damage",
+        data: createRow("damageSelfMitigated"),
+      },
+    ],
   };
   const TABLE_SECTION_VISION = {
     title: "Vision",
-    rows: [],
+    rows: [
+      {
+        name: "Vision Score",
+        data: createRow("visionScore"),
+      },
+      {
+        name: "Wards Placed",
+        data: createRow("wardsPlaced"),
+      },
+      {
+        name: "Wards Destroyed",
+        data: createRow("wardsKilled"),
+      },
+      {
+        name: "Control Wards Purchased",
+        data: createRow("visionWardsBoughtInGame"),
+      },
+    ],
   };
   const TABLE_SECTION_INCOME = {
     title: "Income",
-    rows: [],
+    rows: [
+      {
+        name: "Gold Earned",
+        data: createRow("goldEarned"),
+      },
+      {
+        name: "Gold Spent",
+        data: createRow("goldSpent"),
+      },
+      {
+        name: "Minions Killed",
+        data: createRow("totalMinionsKilled"),
+      },
+      {
+        name: "Neutral Minions Killed",
+        data: createRow("neutralMinionsKilled"),
+      },
+      {
+        name: "Neutral Minions Killed in Team Jungle",
+        data: match.participants.map(() => 0),
+      },
+      {
+        name: "Neutral Minions Killed in Enemy Jungle",
+        data: match.participants.map(() => 0),
+      },
+    ],
   };
   const TABLE_SECTION_MISCELLANEOUS = {
     title: "Miscellaneous",
-    rows: [],
+    rows: [
+      {
+        name: "Towers Destroyed",
+        data: createRow("turretKills"),
+      },
+      {
+        name: "Inhibitors Destroyed",
+        data: createRow("inhibitorKills"),
+      },
+    ],
   };
 
   const TABLE_SECTIONS = [
@@ -111,43 +187,44 @@ export default function StatsTable(props) {
   ];
 
   function createRow(key) {
-    return match.participants.map((participant) => participant[key]);
+    return match.participants.map((participant) =>
+      participant[key].toLocaleString()
+    );
   }
 
   return (
-    <div className="stats-table">
-      <table>
-        <thead>
-          <tr>
-            <th />
-            {match.participants.map((participant, index) => (
-              <th key={index}>
-                <ChampSprite participant={participant} />
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Combat</th>
-          </tr>
-          <tr>
-            <th>Damage Dealt</th>
-          </tr>
-          <tr>
-            <th>Damage Taken and Healed</th>
-          </tr>
-          <tr>
-            <th>Vision</th>
-          </tr>
-          <tr>
-            <th>Income</th>
-          </tr>
-          <tr>
-            <th>Miscellaneous</th>
-          </tr>
-        </tbody>
-      </table>
+    <div className="stats-table-center">
+      <div className="stats-table-container">
+        <table className="stats-table">
+          <tbody>
+            <tr>
+              <th />
+              {match.participants.map((participant, index) => (
+                <th key={index}>
+                  <ChampSprite participant={participant} />
+                </th>
+              ))}
+            </tr>
+          </tbody>
+          {TABLE_SECTIONS.map(({ title, rows }) => (
+            <tbody className="table-section">
+              <tr className="table-section-title">
+                <th colSpan={20} className="table-row-title">
+                  {title}
+                </th>
+              </tr>
+              {rows.map(({ name, data }) => (
+                <tr>
+                  <td className="table-row-title">{name}</td>
+                  {data.map((value) => (
+                    <td>{value}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          ))}
+        </table>
+      </div>
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import React from "react";
 import "./NavBar.css";
+import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
   const { name, region, onSearch, changeName, changeRegion } = props;
   return (
     <nav className="navbar">
-      <a className="navbar-logo" href={"#"}>
+      <Link className="navbar-logo" to={"/"} target="_parent">
         Home
-      </a>
+      </Link>
       <div className="navbar-right">
         <form
           onSubmit={(event) => {

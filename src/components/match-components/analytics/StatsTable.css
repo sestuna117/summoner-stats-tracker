@@ -3,3 +3,39 @@
     width: 40px;
     border-radius: 50%;
 }
+
+.stats-table-center {
+    display: flex;
+    justify-content: center;
+}
+
+.stats-table-container {
+    margin: 10px auto 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.stats-table {
+    width: 100%;
+    text-align: center;
+    border: #adadad 1px solid;
+    border-top: #a258c4 5px solid;
+    border-collapse: collapse;
+}
+
+.table-section  tr:not(:first-child):hover {
+    background-image: linear-gradient(to right, #d7b0e8, #a258c4);
+    color: #ffffff;
+}
+
+.stats-table th, td {
+    padding: 8px 10px;
+}
+
+.table-row-title {
+    text-align: left;
+}
+
+.table-section-title {
+    background-color: #f8f8f8;
+    border: #adadad 2px solid;
+}
