@@ -8,9 +8,9 @@
 
 .custom-tooltip p {
     margin: 3px;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .custom-tooltip p:last-child {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }

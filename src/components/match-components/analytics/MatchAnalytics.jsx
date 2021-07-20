@@ -12,7 +12,6 @@ export default function MatchAnalytics(props) {
   const [rolePairs, setRolePairs] = useState(new Map());
   const [teamSides, setTeamSides] = useState();
   const [killData, setKillData] = useState();
-  console.log(teamSides);
 
   function loadKills() {
     if (!timeline) {
@@ -44,14 +43,26 @@ export default function MatchAnalytics(props) {
     const participantTeams = Array.from(participants.values());
     const teamMap = [[], []];
     timeline.info.participants.forEach((participant) => {
-      if (
-        !participantTeams[0].find(
+      let player = participantTeams[0].find(
+        (player) => participant.puuid === player.puuid
+      );
+      if (!player) {
+        player = participantTeams[1].find(
           (player) => participant.puuid === player.puuid
-        )
-      ) {
-        teamMap[1].push(participant);
+        );
+        teamMap[1].push({
+          participantId: participant.participantId,
+          puuid: participant.puuid,
+          championId: player.championId,
+          summonerName: player.summonerName,
+        });
       } else {
-        teamMap[0].push(participant);
+        teamMap[0].push({
+          participantId: participant.participantId,
+          puuid: participant.puuid,
+          championId: player.championId,
+          summonerName: player.summonerName,
+        });
       }
     });
     setTeamSides(teamMap);
@@ -131,9 +142,7 @@ export default function MatchAnalytics(props) {
         })}
       >
         <AdvantageGraphs
-          participants={participants}
           timeline={timeline}
-          rolePairs={rolePairs}
           teamSides={teamSides?.map((team) =>
             team.map((player) => player.participantId)
           )}
@@ -145,7 +154,12 @@ export default function MatchAnalytics(props) {
           "active-sub-tab": activeTab === "kill-map",
         })}
       >
-        <KillMap killData={killData} teamSides={teamSides} map={match.mapId} />
+        <KillMap
+          killData={killData}
+          teamSides={teamSides}
+          map={match.mapId}
+          participants={participants}
+        />
       </div>
       <div
         className={cx("tab-content", {

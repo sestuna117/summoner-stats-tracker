@@ -1,16 +1,34 @@
-.custom-tooltip {
+.custom-scatter-tooltip {
     background-color: #f2f2f2;
     border: #adadad 1px solid;
     box-shadow: inset 0 -9px #a258c4;
     padding: 5px;
     border-radius: 5%;
+    font-weight: bold;
 }
 
-.custom-tooltip p {
+.custom-scatter-tooltip p {
     margin: 3px;
-    font-size: 15px;
+    font-size: 13px;
 }
 
-.custom-tooltip p:last-child {
+.custom-scatter-tooltip .desc {
+    font-size: 12px;
     margin-bottom: 10px;
+}
+
+.desc .champ-sprite {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 3px;
+}
+
+.desc .kill-text {
+    color: #b63a3a;
+}
+
+.desc .inline-section {
+    display: inline-block;
+    text-align: center;
 }

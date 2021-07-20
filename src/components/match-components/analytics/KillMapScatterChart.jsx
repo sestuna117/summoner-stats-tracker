@@ -48,7 +48,7 @@ export default function KillMapScatterChart(props) {
   }, [killData, mapId]);
 
   return (
-    <ScatterChart width={400} height={400}>
+    <ScatterChart width={350} height={350}>
       <XAxis type="number" dataKey="x" hide={true} domain={xDomain(mapId)} />
       <YAxis type="number" dataKey="y" hide={true} domain={yDomain(mapId)} />
       <Tooltip content={<CustomScatterTooltip />} />
