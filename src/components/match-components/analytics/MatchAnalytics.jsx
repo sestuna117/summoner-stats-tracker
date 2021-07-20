@@ -12,6 +12,7 @@ export default function MatchAnalytics(props) {
   const [rolePairs, setRolePairs] = useState(new Map());
   const [teamSides, setTeamSides] = useState();
   const [killData, setKillData] = useState();
+  console.log(teamSides);
 
   function loadKills() {
     if (!timeline) {
@@ -27,6 +28,7 @@ export default function MatchAnalytics(props) {
         killerId: event.killerId,
         victimId: event.victimId,
         timestamp: Math.round(event.timestamp / MINUTE),
+        position: event.position,
       }));
     setKillData(playerEvents);
   }
@@ -132,7 +134,7 @@ export default function MatchAnalytics(props) {
           participants={participants}
           timeline={timeline}
           rolePairs={rolePairs}
-          teamSides={teamSides?.forEach((team) =>
+          teamSides={teamSides?.map((team) =>
             team.map((player) => player.participantId)
           )}
           killData={killData}

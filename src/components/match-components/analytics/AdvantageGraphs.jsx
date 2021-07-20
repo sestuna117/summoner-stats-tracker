@@ -6,6 +6,7 @@ import KillGraph from "./KillGraph";
 
 export default function AdvantageGraphs(props) {
   const { timeline, teamSides, killData } = props;
+  console.log(teamSides);
 
   return (
     <div className="advantage-graphs">
