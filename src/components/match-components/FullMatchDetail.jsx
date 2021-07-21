@@ -15,7 +15,6 @@ export default function FullMatchDetail(props) {
   async function loadTimeline() {
     const result = await getMatchTimeline(match.metadata.matchId);
     setTimeline(result);
-    console.log(result);
     const { participantId } = result.info.participants.find(
       (participant) => participant.puuid === player.puuid
     );
@@ -26,41 +25,40 @@ export default function FullMatchDetail(props) {
     loadTimeline();
   }, []);
 
-  const onRadioChange = (event) => {
-    setActiveTab(event.target.id);
-  };
-
   return (
     <div
       className={cx("full-match-detail", { "match-detail-opened": display })}
     >
       <form className="tabs">
-        <input
-          type="radio"
-          id="overview"
-          name="tab"
-          checked={activeTab === "overview"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="overview">Overview</label>
+        <button
+          className={cx("tab", {
+            "tab-open": activeTab === "overview",
+          })}
+          type="button"
+          onClick={() => setActiveTab("overview")}
+        >
+          Overview
+        </button>
 
-        <input
-          type="radio"
-          id="analytics"
-          name="tab"
-          checked={activeTab === "analytics"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="analytics">Analytics</label>
+        <button
+          className={cx("tab", {
+            "tab-open": activeTab === "analytics",
+          })}
+          type="button"
+          onClick={() => setActiveTab("analytics")}
+        >
+          Analytics
+        </button>
 
-        <input
-          type="radio"
-          id="builds"
-          name="tab"
-          checked={activeTab === "builds"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="builds">Builds</label>
+        <button
+          className={cx("tab", {
+            "tab-open": activeTab === "builds",
+          })}
+          type="button"
+          onClick={() => setActiveTab("builds")}
+        >
+          Builds
+        </button>
       </form>
       <div
         className={cx("tab-content", {

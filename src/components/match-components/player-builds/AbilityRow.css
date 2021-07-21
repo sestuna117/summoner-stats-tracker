@@ -1,5 +1,7 @@
 .ability-row {
     display: flex;
+    width: 80%;
+    margin: auto;
     border-right: #adadad 1px solid;
     background-color: #e4e4e4;
 }

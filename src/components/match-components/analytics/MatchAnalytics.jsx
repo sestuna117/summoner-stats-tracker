@@ -92,41 +92,45 @@ export default function MatchAnalytics(props) {
   return (
     <div>
       <form className="tabs sub-tabs data-header">
-        <input
-          type="radio"
-          id="team-analytics"
-          name="tab"
-          checked={activeTab === "team-analytics"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="team-analytics">Team Analytics</label>
+        <button
+          className={cx({
+            "sub-tab-open": activeTab === "team-analytics",
+          })}
+          type="button"
+          onClick={() => setActiveTab("team-analytics")}
+        >
+          Team Analytics
+        </button>
 
-        <input
-          type="radio"
-          id="gold-kill"
-          name="tab"
-          checked={activeTab === "gold-kill"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="gold-kill">Advantage Graphs</label>
+        <button
+          className={cx({
+            "sub-tab-open": activeTab === "gold-kill",
+          })}
+          type="button"
+          onClick={() => setActiveTab("gold-kill")}
+        >
+          Advantage Graphs
+        </button>
 
-        <input
-          type="radio"
-          id="kill-map"
-          name="tab"
-          checked={activeTab === "kill-map"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="kill-map">Kill Map</label>
+        <button
+          className={cx({
+            "sub-tab-open": activeTab === "kill-map",
+          })}
+          type="button"
+          onClick={() => setActiveTab("kill-map")}
+        >
+          Kill Map
+        </button>
 
-        <input
-          type="radio"
-          id="stats-table"
-          name="tab"
-          checked={activeTab === "stats-table"}
-          onChange={onRadioChange}
-        />
-        <label htmlFor="stats-table">Stats Table</label>
+        <button
+          className={cx({
+            "sub-tab-open": activeTab === "stats-table",
+          })}
+          type="button"
+          onClick={() => setActiveTab("stats-table")}
+        >
+          Stats Table
+        </button>
       </form>
 
       <div

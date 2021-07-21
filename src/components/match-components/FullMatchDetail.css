@@ -5,11 +5,8 @@
     position: relative;
 }
 
-.tabs input[type="radio"] {
-    display: none;
-}
-
-.tabs label {
+.tabs .tab {
+    font-size: 14px;
     text-align: center;
     position: relative;
     height: 30px;
@@ -32,12 +29,13 @@
     display: block;
 }
 
-.tabs label:hover {
+.tabs .tab:hover {
     background-color: #f8f8f8;
     cursor: pointer;
 }
 
-.tabs input[type="radio"]:checked + label {
+.tabs .tab-open {
+    font-size: 15px;
     font-weight: bold;
     background-color: #ffffff;
     border-bottom: #ffffff solid 1px;
