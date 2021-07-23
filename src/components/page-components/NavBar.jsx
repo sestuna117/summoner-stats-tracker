@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 
 export default function NavBar(props) {
-  const { name, region, onSearch, changeName, changeRegion } = props;
+  const { onSearch } = props;
+  const [searchName, setSearchName] = useState("");
+  const [searchRegion, setSearchRegion] = useState("na1");
+
   return (
     <nav className="navbar">
       <Link className="navbar-logo" to={"/"} target="_parent">
@@ -13,18 +16,21 @@ export default function NavBar(props) {
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            onSearch();
+            onSearch(searchName, searchRegion);
             return false;
           }}
         >
           <input
-            value={name}
+            value={searchName}
             type={"text"}
             placeholder={"Input Summoner Name..."}
-            onChange={(e) => changeName(e.target.value)}
+            onChange={(e) => setSearchName(e.target.value)}
           />
           <button type={"submit"}>Search</button>
-          <select value={region} onChange={(e) => changeRegion(e.target.value)}>
+          <select
+            value={searchRegion}
+            onChange={(e) => setSearchRegion(e.target.value)}
+          >
             <option value={"br1"}>BR</option>
             <option value={"eun1"}>EUNE</option>
             <option value={"euw1"}>EUW</option>

@@ -25,10 +25,6 @@ export function SummonerPage(props) {
   const name = query.get("name") ?? "";
   const region = query.get("region") ?? "na1";
 
-  // Search box
-  const [tempName, setName] = useState(name);
-  const [tempRegion, setRegion] = useState(region);
-
   const [data, setData] = useState();
   const [matches, setMatches] = useState([]);
 
@@ -46,8 +42,8 @@ export function SummonerPage(props) {
     history.push({ search: queryString }); // Update page URL with new query parameters
   };
 
-  const onSearch = () => {
-    setQueryParams(tempName, tempRegion); // Updates page URL
+  const onSearch = (name, region) => {
+    setQueryParams(name, region); // Updates page URL
   };
 
   const getProfile = async () => {
@@ -81,13 +77,7 @@ export function SummonerPage(props) {
   return (
     <div>
       <div className="top">
-        <NavBar
-          name={tempName}
-          region={tempRegion}
-          onSearch={onSearch}
-          changeName={setName}
-          changeRegion={setRegion}
-        />
+        <NavBar onSearch={onSearch} />
       </div>
       {data && matches && (
         <div className="main-body">
