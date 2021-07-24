@@ -53,7 +53,7 @@ export function SummonerPage(props) {
       const result = await getSumByName(name, region);
       console.log(result);
       setData(result);
-      const matches = await getMatches(name);
+      const matches = await getMatches(name, region);
       console.log(matches);
       matchIds = matches;
     } catch (e) {
@@ -63,7 +63,7 @@ export function SummonerPage(props) {
 
     const promises = matchIds.map(async (id) => {
       try {
-        const match = await getMatchInfo(id);
+        const match = await getMatchInfo(id, region);
         console.log(match);
         setMatches((prev) => [...prev, match]);
       } catch (e) {
@@ -83,7 +83,7 @@ export function SummonerPage(props) {
         <div className="main-body">
           <div className="content">
             <SummonerInfo data={data} dDragon={dDragon} />
-            <RankedInfo data={data} />
+            <RankedInfo data={data} region={region} />
             <div>
               <ul className="match-list">
                 {matches
@@ -94,6 +94,7 @@ export function SummonerPage(props) {
                       match={match}
                       puuid={data.puuid}
                       dDragon={dDragon}
+                      region={region}
                     />
                   ))}
               </ul>

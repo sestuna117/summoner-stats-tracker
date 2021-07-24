@@ -4,7 +4,7 @@ import { getRankedInfo } from "../../api/services/request.services";
 import "./RankedInfo.css";
 
 export default function RankedInfo(props) {
-  const { data } = props;
+  const { data, region } = props;
   const [rankData, setRankData] = useState();
   const ranks = getRankIcon;
   const [soloInfo, setSoloInfo] = useState({});
@@ -12,7 +12,7 @@ export default function RankedInfo(props) {
 
   async function loadRankedInfo() {
     try {
-      const result = await getRankedInfo(data.name);
+      const result = await getRankedInfo(data.name, region);
       setRankData(result);
       console.log(result);
       if (result.length !== 0) {

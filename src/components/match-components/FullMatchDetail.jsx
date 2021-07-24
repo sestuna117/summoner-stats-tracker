@@ -7,13 +7,13 @@ import cx from "classnames";
 import { getMatchTimeline } from "../../api/services/request.services";
 
 export default function FullMatchDetail(props) {
-  const { participants, TEAM, player, match, display } = props;
+  const { participants, TEAM, player, match, display, region } = props;
   const [activeTab, setActiveTab] = useState("overview");
   const [playersId, setPlayersId] = useState();
   const [timeline, setTimeline] = useState();
 
   async function loadTimeline() {
-    const result = await getMatchTimeline(match.metadata.matchId);
+    const result = await getMatchTimeline(match.metadata.matchId, region);
     setTimeline(result);
     const { participantId } = result.info.participants.find(
       (participant) => participant.puuid === player.puuid
@@ -69,6 +69,7 @@ export default function FullMatchDetail(props) {
           <FullTeamDetail
             key={id}
             participants={participants}
+            team={match.info.teams.find((team) => team.teamId === id)}
             id={id}
             TEAM={TEAM}
           />

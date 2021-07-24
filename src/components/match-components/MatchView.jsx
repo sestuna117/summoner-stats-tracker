@@ -13,7 +13,7 @@ const TEAM = {
 };
 
 function MatchView(props) {
-  const { match, puuid } = props;
+  const { match, puuid, region } = props;
   const participants = new Map();
   const champData = useContext(ChampionDataContext);
   const [showFull, setShowFull] = useState(false);
@@ -127,6 +127,7 @@ function MatchView(props) {
         TEAM={TEAM}
         player={player}
         match={match}
+        region={region}
       />
     </li>
   );
