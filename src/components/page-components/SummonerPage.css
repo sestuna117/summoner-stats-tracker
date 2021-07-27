@@ -14,9 +14,10 @@ body {
 
 .main-body {
     margin: 0 auto;
-    max-width: 950px;
+    max-width: 850px;
     width: 100%;
     padding-top: 10px;
+    font-size: 15px;
 }
 
 .content {

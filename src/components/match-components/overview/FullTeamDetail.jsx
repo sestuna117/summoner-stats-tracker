@@ -4,7 +4,6 @@ import "./FullTeamDetail.css";
 import ChampSprite from "../ChampSprite";
 import PerksSpells from "../PerksSpells";
 import ItemsBlock from "./ItemsBlock";
-import getMatchHistoryIcon from "../../../util/getMatchHistoryIcon";
 import TeamObjectiveInfo from "./TeamObjectiveInfo";
 
 export default function FullTeamDetail(props) {
@@ -21,7 +20,14 @@ export default function FullTeamDetail(props) {
       >
         <thead>
           <tr className="data-header">
-            <th className="header-cell">{`${isBlue ? "Blue" : "Red"} Team`}</th>
+            <th className="header-cell">
+              <TeamObjectiveInfo
+                id={id}
+                participants={participants}
+                team={team}
+                isBlue={isBlue}
+              />
+            </th>
             <th className="header-cell">KDA</th>
             <th className="header-cell">Vision</th>
             <th className="header-cell">CS</th>
@@ -62,7 +68,6 @@ export default function FullTeamDetail(props) {
           ))}
         </tbody>
       </table>
-      <TeamObjectiveInfo id={id} participants={participants} team={team} />
     </div>
   );
 }

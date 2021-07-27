@@ -1,6 +1,7 @@
 .full-data-table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 14px;
 }
 
 .table-blue {
@@ -16,6 +17,10 @@
     margin: 0;
 }
 
+thead .data-header {
+    border-top: none;
+}
+
 .data-header {
     width: 100%;
     padding-top: 5px;
@@ -23,6 +28,7 @@
 }
 
 .header-cell {
+    border-top: #adadad solid 1px;
     border-bottom: #adadad solid 1px;
     font-weight: normal;
     padding: 0;

@@ -21,6 +21,7 @@
     border: #adadad 1px solid;
     border-top: #a258c4 5px solid;
     border-collapse: collapse;
+    font-size: 14px;
 }
 
 .table-section tr:not(:first-child):hover {
@@ -28,8 +29,8 @@
     color: #ffffff;
 }
 
-.stats-table th, td {
-    padding: 8px 10px;
+.stats-table th, .stats-table td {
+    padding: 7px;
 }
 
 .table-row-title {

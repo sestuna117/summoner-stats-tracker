@@ -2,9 +2,10 @@ import React from "react";
 import getMatchHistoryIcon from "../../../util/getMatchHistoryIcon";
 import "./TeamObjectiveInfo.css";
 import getCollectionIcon from "../../../util/getCollectionsIcon";
+import cx from "classnames";
 
 export default function TeamObjectiveInfo(props) {
-  const { id, participants, team } = props;
+  const { id, participants, team, isBlue } = props;
   let goldTotal = 0;
   let deaths = 0;
   let assists = 0;
@@ -15,25 +16,60 @@ export default function TeamObjectiveInfo(props) {
     deaths += participant.deaths;
   });
 
+  const { baron, dragon, champion, tower } = team.objectives;
+
+  const OBJECTIVE_DATA = [
+    {
+      name: "kda",
+      img: getMatchHistoryIcon("kills", ""),
+      data: `${champion.kills}/${deaths}/${assists}`,
+    },
+    {
+      name: "gold",
+      img: getCollectionIcon("icon_gold"),
+      data: goldTotal,
+    },
+    {
+      name: "dragon",
+      img: getMatchHistoryIcon("dragon", -id),
+      data: dragon.kills,
+    },
+    {
+      name: "baron",
+      img: getMatchHistoryIcon("baron", -id),
+      data: baron.kills,
+    },
+    {
+      name: "tower",
+      img: getMatchHistoryIcon("tower", -id),
+      data: tower.kills,
+    },
+  ];
+
   return (
     <div className="team-objectives">
-      <span className="middle-dot">{String.fromCharCode(8226)}</span>
-      <span className="objective-score">{goldTotal}</span>
-      <span>{String.fromCharCode(8226)}</span>
-      <span>{`${team.objectives.champion.kills}/${deaths}/${assists}`}</span>
-      <span>{String.fromCharCode(8226)}</span>
-      <img
-        className="objective-icon"
-        src={getMatchHistoryIcon("dragon", -id)}
-      />
-      <span>{team.objectives.dragon.kills}</span>
-      <span>{String.fromCharCode(8226)}</span>
-      <img className="objective-icon" src={getMatchHistoryIcon("baron", -id)} />
-      <span>{team.objectives.baron.kills}</span>
-      <span>{String.fromCharCode(8226)}</span>
-      <img className="objective-icon" src={getMatchHistoryIcon("tower", -id)} />
-      <span>{team.objectives.tower.kills}</span>
-      <img className="objective-icon" src={getCollectionIcon("icon_gold")} />
+      <span
+        className={cx("match-result", {
+          "match-win": team.win,
+          "match-lost": !team.win,
+        })}
+      >
+        {team.win ? "Victory" : "Defeat"}
+      </span>
+      <span>{isBlue ? "Blue" : "Red"} Team</span>
+      <div>
+        {OBJECTIVE_DATA.map((objective) => (
+          <div className="inline-section objective-container">
+            <span>{String.fromCharCode(8226)}</span>
+            <img
+              className="objective-icon"
+              src={objective.img}
+              alt={objective.name}
+            />
+            <span className="objective-score">{objective.data}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
