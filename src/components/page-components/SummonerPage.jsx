@@ -14,7 +14,7 @@ import RankedInfo from "./RankedInfo";
 import "./SummonerPage.css";
 import { DDragonVersionContext } from "../../hook";
 
-export function SummonerPage(props) {
+export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
   console.log(dDragon);
 

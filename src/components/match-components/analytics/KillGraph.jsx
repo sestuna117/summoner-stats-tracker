@@ -12,7 +12,6 @@ export default function KillGraph(props) {
     let blueSum = 0;
     let redSum = 0;
     const teamsEvents = new Map();
-    const checkedTimes = new Set();
     killData.forEach((event) => {
       const killer = parseInt(event.killerId);
       const time = event.timestamp;

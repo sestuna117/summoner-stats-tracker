@@ -85,10 +85,6 @@ export default function MatchAnalytics(props) {
     loadPairs();
   }, []);
 
-  const onRadioChange = (event) => {
-    setActiveTab(event.target.id);
-  };
-
   return (
     <div>
       <form className="tabs sub-tabs data-header">

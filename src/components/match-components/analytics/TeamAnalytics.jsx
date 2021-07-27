@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./TeamAnalytics.css";
 import DuoVerticalBarCharts from "./DuoVerticalBarCharts";
 
