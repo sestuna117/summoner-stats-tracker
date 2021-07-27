@@ -1,10 +1,14 @@
+.bold {
+    font-weight: bold;
+}
+
 .players-items {
     width: 90px;
 }
 
 .match {
     list-style: none;
-    margin-top: 4px;
+    margin-bottom: 4px;
     border: 1px solid #adadad;
     box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
@@ -15,6 +19,15 @@
     align-items: center;
     width: 100%;
     border-bottom: 1px solid #adadad;
+    font-size: 14px;
+}
+
+.main-match-data p {
+    margin: 5px;
+}
+
+.match-duration {
+    font-size: 12px;
 }
 
 .main-match-teams {
@@ -31,8 +44,25 @@
     min-width: 125px;
 }
 
+.match-result {
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.match-win {
+    color: #3cbc8d;
+}
+
+.match-lost {
+    color: #e05d4d;
+}
+
 .macro-info {
     text-align: center;
+}
+
+.macro-info p {
+    font-size: 13px;
 }
 
 .data-header {
@@ -44,8 +74,8 @@
 
 .dropdown-match-button {
     display: block;
-    height: 127px;
-    border-width: 1px;
+    height: 118px;
+    border-width: 0;
     background-color: #f2f2f2;
 }
 
@@ -59,5 +89,5 @@
 
 .kda-subtext {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
 }

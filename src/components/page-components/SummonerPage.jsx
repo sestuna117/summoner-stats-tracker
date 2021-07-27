@@ -81,24 +81,22 @@ export function SummonerPage(props) {
       </div>
       {data && matches && (
         <div className="main-body">
+          <SummonerInfo data={data} dDragon={dDragon} />
           <div className="content">
-            <SummonerInfo data={data} dDragon={dDragon} />
             <RankedInfo data={data} region={region} />
-            <div>
-              <ul className="match-list">
-                {matches
-                  ?.sort((a, b) => b.info.gameCreation - a.info.gameCreation)
-                  .map((match) => (
-                    <MatchView
-                      key={match.metadata.matchId}
-                      match={match}
-                      puuid={data.puuid}
-                      dDragon={dDragon}
-                      region={region}
-                    />
-                  ))}
-              </ul>
-            </div>
+            <ul className="match-list">
+              {matches
+                ?.sort((a, b) => b.info.gameCreation - a.info.gameCreation)
+                .map((match) => (
+                  <MatchView
+                    key={match.metadata.matchId}
+                    match={match}
+                    puuid={data.puuid}
+                    dDragon={dDragon}
+                    region={region}
+                  />
+                ))}
+            </ul>
           </div>
         </div>
       )}

@@ -56,7 +56,7 @@ export default function TeamObjectiveInfo(props) {
       >
         {team.win ? "Victory" : "Defeat"}
       </span>
-      <span>{isBlue ? "Blue" : "Red"} Team</span>
+      <span className="match-team">{isBlue ? "Blue" : "Red"} Team</span>
       <div>
         {OBJECTIVE_DATA.map((objective) => (
           <div className="inline-section objective-container">

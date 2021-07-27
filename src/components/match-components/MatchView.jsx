@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./MatchView.css";
 import { ChampionDataContext } from "../../hook";
 import ChampSprite from "./ChampSprite";
@@ -6,6 +6,7 @@ import PerksSpells from "./PerksSpells";
 import ItemsBlock from "./overview/ItemsBlock";
 import FullMatchDetail from "./FullMatchDetail";
 import Team from "./Team";
+import cx from "classnames";
 
 const TEAM = {
   blue: 100,
@@ -17,6 +18,7 @@ function MatchView(props) {
   const participants = new Map();
   const champData = useContext(ChampionDataContext);
   const [showFull, setShowFull] = useState(false);
+  const [time, setTime] = useState();
 
   let player;
   match.info.participants.forEach((participant) => {
@@ -51,12 +53,64 @@ function MatchView(props) {
   }
 
   function calcDuration(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    const minutes = Math.floor(millis / 60000);
+    const seconds = ((millis % 60000) / 1000).toFixed(0);
     return seconds === 60
       ? minutes + 1 + ":00"
       : minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
   }
+
+  function getPlural(amount, singular, plural = `${singular}s`) {
+    return amount === 1 ? "a " + singular : amount + plural;
+  }
+
+  function calculateTime(millis) {
+    const SECONDS_IN_MINUTE = 60;
+    const MINUTES_IN_HOUR = 60;
+    const HOURS_IN_DAY = 24;
+    const DAYS_IN_MONTH = 30;
+
+    const SECONDS_IN_HOURS = SECONDS_IN_MINUTE * MINUTES_IN_HOUR;
+    const SECONDS_IN_DAYS = SECONDS_IN_HOURS * HOURS_IN_DAY;
+    const SECONDS_IN_MONTH = SECONDS_IN_DAYS * DAYS_IN_MONTH;
+
+    let timestamp = Math.abs(Date.now() - millis) / 1000;
+
+    const months = Math.floor(timestamp / SECONDS_IN_MONTH);
+    timestamp -= months * SECONDS_IN_MONTH;
+    const days = Math.floor(timestamp / SECONDS_IN_DAYS) % DAYS_IN_MONTH;
+    timestamp -= days * SECONDS_IN_DAYS;
+    const hours = Math.floor(timestamp / SECONDS_IN_HOURS) % HOURS_IN_DAY;
+    timestamp -= hours * SECONDS_IN_HOURS;
+    const minutes = Math.floor(timestamp / SECONDS_IN_MINUTE) % MINUTES_IN_HOUR;
+    timestamp -= minutes * SECONDS_IN_MINUTE;
+    const seconds = Math.floor(timestamp % SECONDS_IN_MINUTE);
+
+    if (months > 0) {
+      return getPlural(months, "month") + " ago";
+    } else if (days > 0) {
+      return getPlural(days, "day") + " ago";
+    } else if (hours > 0) {
+      return getPlural(hours, "hr") + " ago";
+    } else if (minutes > 0) {
+      return getPlural(minutes, "min") + (seconds > 0)
+        ? seconds + "s"
+        : "" + " ago";
+    } else {
+      return getPlural(seconds, "second") + " ago";
+    }
+  }
+
+  function loadTime() {
+    const timeMsg = calculateTime(
+      match.info.gameStartTimestamp + match.info.gameDuration
+    );
+    setTime(timeMsg);
+  }
+
+  useEffect(() => {
+    loadTime();
+  }, []);
 
   function displayFullData() {
     setShowFull((prev) => !prev);
@@ -66,9 +120,19 @@ function MatchView(props) {
     <li className="match">
       <div className="main-match-data">
         <div className="match-details">
-          {getGameType()}
-          <p>{calcDuration(match.info.gameDuration)}</p>
-          <p>{player.win ? "Victory" : "Defeat"}</p>
+          <p className="bold">{getGameType()}</p>
+          <p className="match-duration">{time}</p>
+          <p
+            className={cx("match-result", {
+              "match-win": player.win,
+              "match-lost": !player.win,
+            })}
+          >
+            {player.win ? "Victory" : "Defeat"}
+          </p>
+          <p className="match-duration">
+            {calcDuration(match.info.gameDuration)}
+          </p>
         </div>
         <div className="chosen-sum-options">
           <ChampSprite participant={player} isPlayer={true} />

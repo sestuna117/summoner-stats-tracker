@@ -1,10 +1,12 @@
 .team {
-    font-size: 14px;
+    font-size: 12px;
     list-style: none;
     padding: 3px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    margin: auto;
+}
+
+.team-member {
+    margin: 2px;
 }
 
 .team-blue {

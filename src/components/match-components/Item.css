@@ -1,8 +1,8 @@
 .item, .no-item {
     background-color: #e4e4e4;
     display: inline-block;
-    width: 28px;
-    height: 28px;
+    width: 23px;
+    height: 23px;
     border: #adadad 1px solid;
 }
 
