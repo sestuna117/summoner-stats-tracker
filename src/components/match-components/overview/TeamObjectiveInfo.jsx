@@ -59,7 +59,10 @@ export default function TeamObjectiveInfo(props) {
       <span className="match-team">{isBlue ? "Blue" : "Red"} Team</span>
       <div>
         {OBJECTIVE_DATA.map((objective) => (
-          <div className="inline-section objective-container">
+          <div
+            key={objective.name}
+            className="inline-section objective-container"
+          >
             <span>{String.fromCharCode(8226)}</span>
             <img
               className="objective-icon"

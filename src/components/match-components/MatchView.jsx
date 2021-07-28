@@ -93,9 +93,11 @@ function MatchView(props) {
     } else if (hours > 0) {
       return getPlural(hours, "hr") + " ago";
     } else if (minutes > 0) {
-      return getPlural(minutes, "min") + (seconds > 0)
-        ? seconds + "s"
-        : "" + " ago";
+      return (
+        (seconds > 0
+          ? minutes + "m " + seconds + "s "
+          : getPlural(minutes, "min")) + " ago"
+      );
     } else {
       return getPlural(seconds, "second") + " ago";
     }

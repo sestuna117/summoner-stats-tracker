@@ -1,0 +1,9 @@
+.cs-detail {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.cs-detail span:last-child {
+    font-size: 10px;
+}

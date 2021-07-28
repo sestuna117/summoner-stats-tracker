@@ -5,9 +5,10 @@ import ChampSprite from "../ChampSprite";
 import PerksSpells from "../PerksSpells";
 import ItemsBlock from "./ItemsBlock";
 import TeamObjectiveInfo from "./TeamObjectiveInfo";
+import CsDetail from "./CsDetail";
 
 export default function FullTeamDetail(props) {
-  const { id, participants, team, TEAM } = props;
+  const { id, participants, team, duration, TEAM } = props;
   const isBlue = id === TEAM.blue;
 
   return (
@@ -58,8 +59,16 @@ export default function FullTeamDetail(props) {
               <td>{`${participant.kills} / ${participant.deaths} / ${participant.assists}`}</td>
               <td>{participant.visionScore}</td>
               <td>
-                {participant.totalMinionsKilled +
-                  participant.neutralMinionsKilled}
+                <div>
+                  <CsDetail
+                    duration={duration}
+                    cs={
+                      participant.totalMinionsKilled +
+                      participant.neutralMinionsKilled
+                    }
+                  />
+                  <span>{}</span>
+                </div>
               </td>
               <td>
                 <ItemsBlock participant={participant} isPlayer={false} />

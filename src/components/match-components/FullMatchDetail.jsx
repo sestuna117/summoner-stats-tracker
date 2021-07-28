@@ -71,6 +71,7 @@ export default function FullMatchDetail(props) {
             participants={participants}
             team={match.info.teams.find((team) => team.teamId === id)}
             id={id}
+            duration={match.info.gameDuration}
             TEAM={TEAM}
           />
         ))}
