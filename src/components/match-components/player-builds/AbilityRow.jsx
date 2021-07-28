@@ -4,7 +4,7 @@ import "./AbilityRow.css";
 import AbilityRowSlot from "./AbilityRowSlot";
 
 export default function AbilityRow(props) {
-  const { spell, slot, skillOrder, maxLevel } = props;
+  const { spell, skillOrder, maxLevel } = props;
   const [isLoaded, setIsLoaded] = useState(false);
   const [levelOrder, setLevelOrder] = useState([]);
 

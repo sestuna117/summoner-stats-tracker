@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./AdvantageGraphs.css";
-import AdvantageAreaChart from "./AdvantageAreaChart";
 import GoldGraph from "./GoldGraph";
 import KillGraph from "./KillGraph";
 
