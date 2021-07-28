@@ -6,6 +6,8 @@ import PerksSpells from "../PerksSpells";
 import ItemsBlock from "./ItemsBlock";
 import TeamObjectiveInfo from "./TeamObjectiveInfo";
 import CsDetail from "./CsDetail";
+import WardDetails from "./WardDetails";
+import KdaDetail from "./KdaDetail";
 
 export default function FullTeamDetail(props) {
   const { id, participants, team, duration, TEAM } = props;
@@ -29,6 +31,7 @@ export default function FullTeamDetail(props) {
                 isBlue={isBlue}
               />
             </th>
+            <th className="header-cell">Tier</th>
             <th className="header-cell">KDA</th>
             <th className="header-cell">Vision</th>
             <th className="header-cell">CS</th>
@@ -56,19 +59,30 @@ export default function FullTeamDetail(props) {
                   </div>
                 </div>
               </td>
-              <td>{`${participant.kills} / ${participant.deaths} / ${participant.assists}`}</td>
-              <td>{participant.visionScore}</td>
+              <td/>
               <td>
-                <div>
-                  <CsDetail
-                    duration={duration}
-                    cs={
-                      participant.totalMinionsKilled +
-                      participant.neutralMinionsKilled
-                    }
-                  />
-                  <span>{}</span>
-                </div>
+                <KdaDetail
+                  kills={participant.kills}
+                  deaths={participant.deaths}
+                  assists={participant.assists}
+                />
+              </td>
+              <td>
+                <WardDetails
+                  visionScore={participant.visionScore}
+                  wardsPlaced={participant.wardsPlaced}
+                  wardsKilled={participant.wardsKilled}
+                  redsPlaced={participant.detectorWardsPlaced}
+                />
+              </td>
+              <td>
+                <CsDetail
+                  duration={duration}
+                  cs={
+                    participant.totalMinionsKilled +
+                    participant.neutralMinionsKilled
+                  }
+                />
               </td>
               <td>
                 <ItemsBlock participant={participant} isPlayer={false} />

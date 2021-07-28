@@ -17,6 +17,10 @@
     margin: 0;
 }
 
+.data-row .sum-name {
+    width: 120px;
+}
+
 thead .data-header {
     border-top: none;
 }
@@ -32,6 +36,10 @@ thead .data-header {
     border-bottom: #adadad solid 1px;
     font-weight: normal;
     padding: 0;
+}
+
+.full-data-table .data-header .header-cell:first-child {
+    width: 250px;
 }
 
 .chosen-options-name {
