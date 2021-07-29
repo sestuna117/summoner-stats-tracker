@@ -20,8 +20,14 @@ function MatchView(props) {
   const [showFull, setShowFull] = useState(false);
   const [time, setTime] = useState();
 
+  const isRemake = match.info.gameDuration < 5 * 60 * 1000;
+
+  let maxDamage = 0;
   let player;
   match.info.participants.forEach((participant) => {
+    if (participant.totalDamageDealtToChampions > maxDamage) {
+      maxDamage = participant.totalDamageDealtToChampions;
+    }
     if (participant.puuid === puuid) {
       player = participant;
     }
@@ -130,7 +136,7 @@ function MatchView(props) {
               "match-lost": !player.win,
             })}
           >
-            {player.win ? "Victory" : "Defeat"}
+            {isRemake ? "Remake" : player.win ? "Victory" : "Defeat"}
           </p>
           <p className="match-duration">
             {calcDuration(match.info.gameDuration)}
@@ -194,6 +200,7 @@ function MatchView(props) {
         player={player}
         match={match}
         region={region}
+        maxDamage={maxDamage}
       />
     </li>
   );

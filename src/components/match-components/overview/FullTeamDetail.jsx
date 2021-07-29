@@ -9,9 +9,10 @@ import CsDetail from "./CsDetail";
 import WardDetails from "./WardDetails";
 import KdaDetail from "./KdaDetail";
 import TierDetail from "./TierDetail";
+import DamageDetail from "./DamageDetail";
 
 export default function FullTeamDetail(props) {
-  const { id, participants, team, duration, TEAM } = props;
+  const { id, participants, team, duration, TEAM, maxDamage } = props;
   const isBlue = id === TEAM.blue;
 
   return (
@@ -32,10 +33,11 @@ export default function FullTeamDetail(props) {
                 isBlue={isBlue}
               />
             </th>
-            <th className="header-cell">Tier</th>
+            {/*<th className="header-cell">Tier</th>*/}
             <th className="header-cell">KDA</th>
             <th className="header-cell">Vision</th>
             <th className="header-cell">CS</th>
+            <th className="header-cell">Damage</th>
             <th className="header-cell">Item</th>
           </tr>
         </thead>
@@ -60,9 +62,9 @@ export default function FullTeamDetail(props) {
                   </div>
                 </div>
               </td>
-              <td>
-                <TierDetail name={participant.summonerName} />
-              </td>
+              {/*<td>*/}
+              {/*  <TierDetail name={participant.summonerName} />*/}
+              {/*</td>*/}
               <td>
                 <KdaDetail
                   kills={participant.kills}
@@ -85,6 +87,12 @@ export default function FullTeamDetail(props) {
                     participant.totalMinionsKilled +
                     participant.neutralMinionsKilled
                   }
+                />
+              </td>
+              <td>
+                <DamageDetail
+                  damage={participant.totalDamageDealtToChampions}
+                  maxDamage={maxDamage}
                 />
               </td>
               <td>

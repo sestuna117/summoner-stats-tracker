@@ -7,7 +7,8 @@ import cx from "classnames";
 import { getMatchTimeline } from "../../api/services/request.services";
 
 export default function FullMatchDetail(props) {
-  const { participants, TEAM, player, match, display, region } = props;
+  const { participants, TEAM, player, match, display, region, maxDamage } =
+    props;
   const [activeTab, setActiveTab] = useState("overview");
   const [playersId, setPlayersId] = useState();
   const [timeline, setTimeline] = useState();
@@ -73,6 +74,7 @@ export default function FullMatchDetail(props) {
             id={id}
             duration={match.info.gameDuration}
             TEAM={TEAM}
+            maxDamage={maxDamage}
           />
         ))}
       </div>
