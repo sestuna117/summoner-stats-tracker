@@ -1,4 +1,4 @@
-export default {
+const REGIONS = {
   br1: { name: "BR", continent: "america" },
   eun1: { name: "EUNE", continent: "europe" },
   euw1: { name: "EUW", continent: "europe" },
@@ -11,3 +11,5 @@ export default {
   ru: { name: "RU", continent: "europe" },
   tr1: { name: "TR", continent: "europe" },
 };
+
+export default REGIONS;

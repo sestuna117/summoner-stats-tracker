@@ -61,7 +61,7 @@ function MatchView(props) {
   }
 
   function getPlural(amount, singular, plural = `${singular}s`) {
-    return amount === 1 ? "a " + singular : amount + plural;
+    return amount === 1 ? "a " + singular : amount + " " + plural;
   }
 
   function calculateTime(millis) {

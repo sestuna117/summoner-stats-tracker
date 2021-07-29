@@ -8,6 +8,7 @@ import TeamObjectiveInfo from "./TeamObjectiveInfo";
 import CsDetail from "./CsDetail";
 import WardDetails from "./WardDetails";
 import KdaDetail from "./KdaDetail";
+import TierDetail from "./TierDetail";
 
 export default function FullTeamDetail(props) {
   const { id, participants, team, duration, TEAM } = props;
@@ -59,7 +60,9 @@ export default function FullTeamDetail(props) {
                   </div>
                 </div>
               </td>
-              <td/>
+              <td>
+                <TierDetail name={participant.summonerName} />
+              </td>
               <td>
                 <KdaDetail
                   kills={participant.kills}

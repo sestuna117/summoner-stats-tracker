@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-} from "recharts";
+import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, Cell } from "recharts";
 import CustomScatterTooltip from "./CustomScatterTooltip";
 
 function xDomain(mapId) {
