@@ -80,6 +80,7 @@
 .dropdown-match-button {
     display: block;
     height: 118px;
+    width: 30px;
     border-width: 0;
     background-color: #f2f2f2;
 }

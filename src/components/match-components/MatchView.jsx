@@ -198,7 +198,7 @@ function MatchView(props) {
             type={"button"}
             onClick={displayFullData}
           >
-            Display
+            {String.fromCharCode(showFull ? 9651 : 9661)}
           </button>
         </div>
       </div>
