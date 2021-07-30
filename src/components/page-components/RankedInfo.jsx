@@ -4,93 +4,80 @@ import { getRankedInfo } from "../../api/services/request.services";
 import "./RankedInfo.css";
 
 export default function RankedInfo(props) {
-  const { data, region } = props;
-  const [rankData, setRankData] = useState();
+  const { type, data } = props;
   const ranks = getRankIcon;
-  const [soloInfo, setSoloInfo] = useState({});
+  const [rankInfo, setRankInfo] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+  console.log(data, type);
 
-  async function loadRankedInfo() {
-    try {
-      const result = await getRankedInfo(data.name, region);
-      setRankData(result);
-      console.log(result);
-      if (result.length !== 0) {
-        setSoloInfo(
-          result?.find((queue) => queue?.queueType === "RANKED_SOLO_5x5")
-        );
-      } else {
-        setSoloInfo(undefined);
-      }
-    } catch (e) {
-      console.log(e);
+  async function loadRankInfo() {
+    if (!data) {
+      return;
     }
+    setRankInfo(data?.find((queue) => queue?.queueType === type.id));
   }
 
   useEffect(() => {
     setIsLoaded(false);
 
-    loadRankedInfo();
+    loadRankInfo();
 
     setIsLoaded(true);
-  }, [data?.id]);
+  }, [data]);
 
   const getTier = () => {
-    if (!soloInfo) {
+    if (!rankInfo) {
       return;
     }
-    switch (soloInfo?.rank) {
+    switch (rankInfo?.rank) {
       case "I":
-        return ranks.get(soloInfo?.tier)?.tiers.I;
+        return ranks.get(rankInfo?.tier)?.tiers.I;
       case "II":
-        return ranks.get(soloInfo?.tier)?.tiers.II;
+        return ranks.get(rankInfo?.tier)?.tiers.II;
       case "III":
-        return ranks.get(soloInfo?.tier)?.tiers.III;
+        return ranks.get(rankInfo?.tier)?.tiers.III;
       default:
-        return ranks.get(soloInfo?.tier)?.tiers.IV;
+        return ranks.get(rankInfo?.tier)?.tiers.IV;
     }
   };
 
-  if (soloInfo === undefined) {
-    return (
-      <div className="ranked-info">
-        <div className="rank-icon-container">
-          {isLoaded ? (
+  return (
+    <div className="ranked-info">
+      <div className="rank-icon-container">
+        {isLoaded ? (
+          !rankInfo ? (
             <img
               className="rank-icon"
               src={ranks.get("UNRANKED")?.tiers.I}
               alt={"Unranked"}
             />
           ) : (
-            "Loading..."
-          )}
-        </div>
+            <img
+              className="rank-icon"
+              src={getTier()}
+              alt={`${ranks.get(rankInfo?.tier)?.name}_${rankInfo?.rank}`}
+            />
+          )
+        ) : (
+          "Loading..."
+        )}
+      </div>
+      {!rankInfo ? (
         <div className="ranked-text">
-          <p>Ranked Solo</p>
+          <p>{type.name}</p>
           <p>Unranked</p>
         </div>
-      </div>
-    );
-  } else {
-    return isLoaded ? (
-      <div className="ranked-info">
-        <div className="rank-icon-container">
-          <img
-            className="rank-icon"
-            src={getTier()}
-            alt={`${ranks.get(soloInfo?.tier)?.name}_${soloInfo?.rank}`}
-          />
-        </div>
+      ) : (
         <div className="ranked-text">
-          <p>Ranked Solo</p>
+          <p>{type.name}</p>
           <p>{`Winrate: ${parseInt(
-            (soloInfo?.wins / (soloInfo?.wins + soloInfo?.losses)) * 100
+            (rankInfo?.wins / (rankInfo?.wins + rankInfo?.losses)) * 100
           )}%`}</p>
-          <p>{`${ranks.get(soloInfo?.tier)?.name} ${soloInfo?.rank}`}</p>
-          <p>{`${soloInfo?.leaguePoints} LP`}</p>
-          <p>{`${soloInfo?.wins}W - ${soloInfo?.losses}L`}</p>
+          <p>{`${ranks.get(rankInfo?.tier)?.name} ${rankInfo?.rank}`}</p>
+          <p>{`${rankInfo?.leaguePoints} LP`}</p>
+          <p>{`${rankInfo?.wins}W - ${rankInfo?.losses}L`}</p>
         </div>
-      </div>
-    ) : null;
-  }
+      )}
+    </div>
+  );
 }

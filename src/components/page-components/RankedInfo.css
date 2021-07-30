@@ -6,13 +6,24 @@
     border: 1px solid #adadad;
     font-size: 12px;
     margin-right: 10px;
+    margin-bottom: 10px;
     box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ranked-info:last-child {
+    height: 100px;
+}
+
+.ranked-info:last-child .rank-icon {
+    height: 100px;
+    width: 100px;
 }
 
 .rank-icon-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 120px;
 }
 
 .ranked-text {

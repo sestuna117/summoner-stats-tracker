@@ -13,6 +13,7 @@ import SummonerInfo from "./SummonerInfo";
 import RankedInfo from "./RankedInfo";
 import "./SummonerPage.css";
 import { DDragonVersionContext } from "../../hook";
+import RanksSection from "./RanksSection";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -83,7 +84,7 @@ export function SummonerPage() {
         <div className="main-body">
           <SummonerInfo data={data} dDragon={dDragon} />
           <div className="content">
-            <RankedInfo data={data} region={region} />
+            <RanksSection data={data} region={region} />
             <ul className="match-list">
               {matches
                 ?.sort((a, b) => b.info.gameCreation - a.info.gameCreation)
