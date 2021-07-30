@@ -149,7 +149,9 @@ function MatchView(props) {
         <div className="kda-info">
           <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>
           <p className="kda-subtext">
-            {isFinite((player.kills + player.assists) / player.deaths)
+            {player.kills + player.assists === 0
+              ? "0.00:1"
+              : isFinite((player.kills + player.assists) / player.deaths)
               ? ((player.kills + player.assists) / player.deaths).toFixed(2) +
                 ":1"
               : "Perfect"}{" "}
@@ -159,13 +161,20 @@ function MatchView(props) {
         <div className="macro-info">
           <p>Level {player?.champLevel}</p>
           <p>{player.totalMinionsKilled + player.neutralMinionsKilled} CS</p>
-          <p>
-            {(
-              ((player.kills + player.assists) /
+          <p className="kp-text">
+            {isFinite(
+              (player.kills + player.assists) /
                 match.info.teams.find((team) => team.teamId === player.teamId)
-                  .objectives.champion.kills) *
-              100
-            ).toFixed(1)}{" "}
+                  .objectives.champion.kills
+            )
+              ? `${(
+                  ((player.kills + player.assists) /
+                    match.info.teams.find(
+                      (team) => team.teamId === player.teamId
+                    ).objectives.champion.kills) *
+                  100
+                ).toFixed(1)} `
+              : "0.0 "}
             KP%
           </p>
         </div>

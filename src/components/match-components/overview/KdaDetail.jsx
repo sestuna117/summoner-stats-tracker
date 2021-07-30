@@ -7,7 +7,9 @@ export default function KdaDetail(props) {
     <div className="table-detail">
       <span>{`${kills} / ${deaths} / ${assists}`}</span>
       <span>
-        {isFinite((kills + assists) / deaths)
+        {kills + assists === 0
+          ? "0.00:1"
+          : isFinite((kills + assists) / deaths)
           ? ((kills + assists) / deaths).toFixed(2) + ":1"
           : "Perfect"}{" "}
         KDA
