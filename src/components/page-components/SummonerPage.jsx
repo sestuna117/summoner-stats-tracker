@@ -54,7 +54,7 @@ export function SummonerPage() {
       const result = await getSumByName(name, region);
       console.log(result);
       setData(result);
-      const matches = await getMatches(name, region);
+      const matches = await getMatches(name, region, 0);
       console.log(matches);
       matchIds = matches;
     } catch (e) {
@@ -85,19 +85,22 @@ export function SummonerPage() {
           <SummonerInfo data={data} dDragon={dDragon} />
           <div className="content">
             <RanksSection data={data} region={region} />
-            <ul className="match-list">
-              {matches
-                ?.sort((a, b) => b.info.gameCreation - a.info.gameCreation)
-                .map((match) => (
-                  <MatchView
-                    key={match.metadata.matchId}
-                    match={match}
-                    puuid={data.puuid}
-                    dDragon={dDragon}
-                    region={region}
-                  />
-                ))}
-            </ul>
+            <div className="match-section">
+              <ul className="match-list">
+                {matches
+                  ?.sort((a, b) => b.info.gameCreation - a.info.gameCreation)
+                  .map((match) => (
+                    <MatchView
+                      key={match.metadata.matchId}
+                      match={match}
+                      puuid={data.puuid}
+                      dDragon={dDragon}
+                      region={region}
+                    />
+                  ))}
+              </ul>
+              <button>Show More</button>
+            </div>
           </div>
         </div>
       )}

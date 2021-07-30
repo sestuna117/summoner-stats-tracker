@@ -12,8 +12,8 @@ export const getSumByName = async (name, region) => {
 };
 
 /* takes puuid and returns JSON array of last 10 matches */
-export const getMatches = async (sumName, region) => {
-  const link = `${process.env.REACT_APP_API_URL}/${region}/riot/summoner/${sumName}/matches`;
+export const getMatches = async (sumName, region, start) => {
+  const link = `${process.env.REACT_APP_API_URL}/${region}/riot/summoner/${sumName}/matches/${start}`;
   try {
     const response = await axiosConfig.get(link);
     return response.data;

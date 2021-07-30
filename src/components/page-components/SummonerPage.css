@@ -29,6 +29,12 @@ body {
     flex-wrap: wrap;
 }
 
+.match-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .match-list {
     width: 800px;
     padding: 0;
