@@ -10,10 +10,10 @@ import qs from "query-string";
 import useQuery from "../../util/useQuery";
 import NavBar from "./NavBar";
 import SummonerInfo from "./SummonerInfo";
-import RankedInfo from "./RankedInfo";
 import "./SummonerPage.css";
 import { DDragonVersionContext } from "../../hook";
 import RanksSection from "./RanksSection";
+import PageFooter from "./PageFooter";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -101,6 +101,7 @@ export function SummonerPage() {
           </div>
         </div>
       )}
+      <PageFooter />
     </div>
   );
 }
