@@ -125,7 +125,7 @@ function MatchView(props) {
   }
 
   return (
-    <li className="match">
+    <li className={cx("match", { "match-remake": isRemake })}>
       <div className="main-match-data">
         <div className="match-details">
           <p className="bold">{getGameType()}</p>
@@ -210,6 +210,7 @@ function MatchView(props) {
         match={match}
         region={region}
         maxDamage={maxDamage}
+        isRemake={isRemake}
       />
     </li>
   );

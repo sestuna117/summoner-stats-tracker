@@ -12,7 +12,7 @@ import TierDetail from "./TierDetail";
 import DamageDetail from "./DamageDetail";
 
 export default function FullTeamDetail(props) {
-  const { id, participants, team, duration, TEAM, maxDamage } = props;
+  const { id, participants, team, duration, TEAM, maxDamage, isRemake } = props;
   const isBlue = id === TEAM.blue;
 
   return (
@@ -31,6 +31,7 @@ export default function FullTeamDetail(props) {
                 participants={participants}
                 team={team}
                 isBlue={isBlue}
+                isRemake={isRemake}
               />
             </th>
             {/*<th className="header-cell">Tier</th>*/}

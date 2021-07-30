@@ -5,7 +5,7 @@ import getCollectionIcon from "../../../util/getCollectionsIcon";
 import cx from "classnames";
 
 export default function TeamObjectiveInfo(props) {
-  const { id, participants, team, isBlue } = props;
+  const { id, participants, team, isBlue, isRemake } = props;
   let goldTotal = 0;
   let deaths = 0;
   let assists = 0;
@@ -54,7 +54,7 @@ export default function TeamObjectiveInfo(props) {
           "match-lost": !team.win,
         })}
       >
-        {team.win ? "Victory" : "Defeat"}
+        {isRemake ? "" : team.win ? "Victory" : "Defeat"}
       </span>
       <span className="match-team">{isBlue ? "Blue" : "Red"} Team</span>
       <div>

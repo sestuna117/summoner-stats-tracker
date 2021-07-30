@@ -9,6 +9,7 @@
 .match {
     list-style: none;
     margin-bottom: 4px;
+    background-color: #eaeaea;
     border: 1px solid #adadad;
     box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
@@ -94,4 +95,12 @@
 .kda-subtext {
     font-weight: bold;
     font-size: 12px;
+}
+
+.match-remake, .match-remake .team {
+    background-color: #adadad;
+}
+
+.match-remake .match-result {
+    color: dimgrey;
 }
