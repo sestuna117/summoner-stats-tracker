@@ -45,13 +45,14 @@ export function SummonerPage() {
   };
 
   const onSearch = (name, region) => {
+    setStartMatchIndex(0);
     setQueryParams(name, region); // Updates page URL
   };
 
   const getProfile = async () => {
-    setStartMatchIndex(0);
     setMatches([]);
-    setMatchViews([]);
+    await setMatchViews([]);
+
     try {
       const result = await getSumByName(name, region);
       console.log(result);
