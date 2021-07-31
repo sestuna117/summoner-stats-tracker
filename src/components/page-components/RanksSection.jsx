@@ -10,7 +10,7 @@ const RANKED_TYPES = [
 export default function RanksSection(props) {
   const { data, region } = props;
   const [rankData, setRankData] = useState();
-  console.log(data, region);
+  // console.log(data, region);
 
   async function loadRankedInfo() {
     try {
@@ -28,7 +28,7 @@ export default function RanksSection(props) {
   return (
     <div>
       {RANKED_TYPES.map((type) => (
-        <RankedInfo key={type} type={type} data={rankData} />
+        <RankedInfo key={type.id} type={type} data={rankData} />
       ))}
     </div>
   );

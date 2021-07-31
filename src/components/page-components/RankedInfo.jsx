@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import getRankIcon from "../../util/getRankIcon";
-import { getRankedInfo } from "../../api/services/request.services";
 import "./RankedInfo.css";
 
 export default function RankedInfo(props) {
@@ -8,7 +7,7 @@ export default function RankedInfo(props) {
   const ranks = getRankIcon;
   const [rankInfo, setRankInfo] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
-  console.log(data, type);
+  // console.log(data, type);
 
   async function loadRankInfo() {
     if (!data) {

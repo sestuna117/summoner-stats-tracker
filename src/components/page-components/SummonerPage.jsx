@@ -17,7 +17,6 @@ import PageFooter from "./PageFooter";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
-  console.log(dDragon);
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -28,6 +27,8 @@ export function SummonerPage() {
 
   const [data, setData] = useState();
   const [matches, setMatches] = useState([]);
+  const [matchViews, setMatchViews] = useState([]);
+  const [startMatchIndex, setStartMatchIndex] = useState(0);
 
   // On page load, if name specified in query parameters, start loading profile
   useEffect(() => {
@@ -48,13 +49,44 @@ export function SummonerPage() {
   };
 
   const getProfile = async () => {
+    setStartMatchIndex(0);
     setMatches([]);
-    let matchIds = [];
+    setMatchViews([]);
     try {
       const result = await getSumByName(name, region);
       console.log(result);
       setData(result);
-      const matches = await getMatches(name, region, 0);
+      await loadMatches();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(async () => {
+    if (!data || !(matches.length % 10 === 0)) {
+      return;
+    }
+    matches
+      .sort((a, b) => b.info.gameCreation - a.info.gameCreation)
+      .forEach((match) => {
+        setMatchViews((prev) => [
+          ...prev,
+          <MatchView
+            key={match.metadata.matchId}
+            match={match}
+            puuid={data.puuid}
+            dDragon={dDragon}
+            region={region}
+          />,
+        ]);
+      });
+  }, [data, matches]);
+
+  async function loadMatches() {
+    console.log(startMatchIndex);
+    let matchIds;
+    try {
+      const matches = await getMatches(name, region, startMatchIndex);
       console.log(matches);
       matchIds = matches;
     } catch (e) {
@@ -73,7 +105,14 @@ export function SummonerPage() {
     });
 
     await Promise.all(promises);
-  };
+  }
+
+  useEffect(() => {
+    if (!startMatchIndex || !(matches.length % 10 === 0)) {
+      return;
+    }
+    loadMatches();
+  }, [startMatchIndex]);
 
   return (
     <div>
@@ -86,20 +125,15 @@ export function SummonerPage() {
           <div className="content">
             <RanksSection data={data} region={region} />
             <div className="match-section">
-              <ul className="match-list">
-                {matches
-                  ?.sort((a, b) => b.info.gameCreation - a.info.gameCreation)
-                  .map((match) => (
-                    <MatchView
-                      key={match.metadata.matchId}
-                      match={match}
-                      puuid={data.puuid}
-                      dDragon={dDragon}
-                      region={region}
-                    />
-                  ))}
-              </ul>
-              <button>Show More</button>
+              <ul className="match-list">{matchViews}</ul>
+              <button
+                onClick={() => {
+                  setStartMatchIndex((prev) => prev + 10);
+                  setMatches([]);
+                }}
+              >
+                Show More
+              </button>
             </div>
           </div>
         </div>
