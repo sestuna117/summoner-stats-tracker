@@ -14,9 +14,12 @@ import "./SummonerPage.css";
 import { DDragonVersionContext } from "../../hook";
 import RanksSection from "./RanksSection";
 import PageFooter from "./PageFooter";
+import LoadingSpinner from "./LoadingSpinner";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMatches, setIsLoadingMatches] = useState(false);
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -50,6 +53,8 @@ export function SummonerPage() {
   };
 
   const getProfile = async () => {
+    setIsLoading(true);
+
     setMatches([]);
     await setMatchViews([]);
 
@@ -61,6 +66,8 @@ export function SummonerPage() {
     } catch (e) {
       console.error(e);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(async () => {
@@ -84,6 +91,8 @@ export function SummonerPage() {
   }, [data, matches]);
 
   async function loadMatches() {
+    setIsLoadingMatches(true);
+
     console.log(startMatchIndex);
     let matchIds;
     try {
@@ -106,6 +115,8 @@ export function SummonerPage() {
     });
 
     await Promise.all(promises);
+
+    setIsLoadingMatches(false);
   }
 
   useEffect(() => {
@@ -121,22 +132,32 @@ export function SummonerPage() {
         <NavBar onSearch={onSearch} />
       </div>
       {data && matches && (
-        <div className="main-body">
-          <SummonerInfo data={data} dDragon={dDragon} />
-          <div className="content">
-            <RanksSection data={data} region={region} />
-            <div className="match-section">
-              <ul className="match-list">{matchViews}</ul>
-              <button
-                onClick={() => {
-                  setStartMatchIndex((prev) => prev + 10);
-                  setMatches([]);
-                }}
-              >
-                Show More
-              </button>
+        <div className="body">
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <div className="main-body">
+              <SummonerInfo data={data} dDragon={dDragon} />
+              <div className="content">
+                <RanksSection data={data} region={region} />
+                <div className="match-section">
+                  <ul className="match-list">{matchViews}</ul>
+                  {isLoadingMatches ? (
+                    <LoadingSpinner isMatch={true} />
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setStartMatchIndex((prev) => prev + 10);
+                        setMatches([]);
+                      }}
+                    >
+                      Show More
+                    </button>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
       <PageFooter />

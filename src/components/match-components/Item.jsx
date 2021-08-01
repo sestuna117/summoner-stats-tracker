@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { DDragonVersionContext, ItemDataContext } from "../../hook";
 import getItemIcon from "../../util/getItemIcon";
 import "./Item.css";
-import noItem from "../../icons/noitem.png";
+import noItem from "../../icons/emptyslot.png";
 
 export default function Item(props) {
   const { itemId } = props;

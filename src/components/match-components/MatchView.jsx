@@ -42,17 +42,30 @@ function MatchView(props) {
   // console.log(participants);
 
   function getGameType() {
-    switch (match.info.queueId) {
-      case 400:
+    const { queueId } = match.info;
+    switch (true) {
+      case queueId === 400:
         return "Normal Draft";
-      case 420:
+      case queueId === 420:
         return "Ranked Solo/Duo";
-      case 430:
+      case queueId === 430:
         return "Normal Blind";
-      case 440:
+      case queueId === 440:
         return "Ranked Flex";
-      case 450:
+      case queueId === 450:
         return "ARAM";
+      case queueId === 700:
+        return "Clash";
+      case 830 <= queueId <= 850:
+        return "Co-op vs AI Bot";
+      case queueId === 900:
+        return "URF";
+      case queueId === 1300:
+        return "Nexus Blitz";
+      case queueId === 1400:
+        return "Ultimate Spellbook";
+      case 2000 <= queueId:
+        return "Tutorial";
       default:
         return "Customs";
     }
