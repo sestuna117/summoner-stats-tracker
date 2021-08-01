@@ -2,6 +2,11 @@ body {
     background-color: #eaeaea;
 }
 
+.page {
+    position: relative;
+    min-height: 100vh;
+}
+
 .top {
     position: fixed;
     top: 0;
@@ -11,13 +16,16 @@ body {
     z-index: 99;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19)
 }
+
 .body {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 50px auto 0;
     padding-top: 10px;
+    padding-bottom: 160px;
 }
+
 .main-body {
     display: flex;
     flex-direction: column;
@@ -47,5 +55,17 @@ body {
 
 button:hover {
     cursor: pointer;
+}
+
+.show-more-button {
+    margin: 10px auto;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5%;
+    background-color: #a258c4;
+    color: #f2f2f2;
 }
 

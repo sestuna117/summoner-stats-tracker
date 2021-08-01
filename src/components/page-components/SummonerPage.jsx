@@ -127,7 +127,7 @@ export function SummonerPage() {
   }, [startMatchIndex]);
 
   return (
-    <div>
+    <div className="page">
       <div className="top">
         <NavBar onSearch={onSearch} />
       </div>
@@ -146,6 +146,7 @@ export function SummonerPage() {
                     <LoadingSpinner isMatch={true} />
                   ) : (
                     <button
+                      className="show-more-button"
                       onClick={() => {
                         setStartMatchIndex((prev) => prev + 10);
                         setMatches([]);

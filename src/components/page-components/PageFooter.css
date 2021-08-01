@@ -1,11 +1,12 @@
 .footer-container {
+    position: absolute;
     width: 100%;
     bottom: 0;
 }
 
 .footer {
     width: 80%;
-    margin: auto;
+    margin: auto auto 20px;
 }
 
 .footer p {
