@@ -7,6 +7,8 @@ import {
 import getSummonerSpellUrl from "../../util/getSummonerSpellUrl";
 import getRuneIcon from "../../util/getRuneIcon";
 import "./PerksSpells.css";
+import noSpell from "../../icons/emptyslot.png";
+import cx from "classnames";
 
 export default function PerksSpells(props) {
   const dDragon = useContext(DDragonVersionContext);
@@ -33,16 +35,38 @@ export default function PerksSpells(props) {
   return (
     <div className="perks-spells">
       <div className="spells-column">
-        <img
-          className={isTeamDetail ? "team-spell" : "sum-spell"}
-          src={getSummonerSpellUrl(sum1?.id, dDragon)}
-          alt={sum1}
-        />
-        <img
-          className={isTeamDetail ? "team-spell" : "sum-spell"}
-          src={getSummonerSpellUrl(sum2?.id, dDragon)}
-          alt={sum2}
-        />
+        {!sum1 ? (
+          <img
+            className={cx("no-spell", {
+              "team-spell": isTeamDetail,
+              "sum-spell": !isTeamDetail,
+            })}
+            src={noSpell}
+            alt={"No Spell"}
+          />
+        ) : (
+          <img
+            className={isTeamDetail ? "team-spell" : "sum-spell"}
+            src={getSummonerSpellUrl(sum1?.id, dDragon)}
+            alt={sum1}
+          />
+        )}
+        {!sum2 ? (
+          <img
+            className={cx("no-spell", {
+              "team-spell": isTeamDetail,
+              "sum-spell": !isTeamDetail,
+            })}
+            src={noSpell}
+            alt={"No Spell"}
+          />
+        ) : (
+          <img
+            className={isTeamDetail ? "team-spell" : "sum-spell"}
+            src={getSummonerSpellUrl(sum2?.id, dDragon)}
+            alt={sum2}
+          />
+        )}
       </div>
       <div className="runes-column">
         <img

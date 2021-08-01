@@ -14,3 +14,7 @@
 .sum-spell, .sum-rune {
     width: 30px;
 }
+
+.no-spell {
+    opacity: 0;
+}

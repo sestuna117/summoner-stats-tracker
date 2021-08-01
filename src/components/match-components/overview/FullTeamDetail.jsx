@@ -14,6 +14,7 @@ import DamageDetail from "./DamageDetail";
 export default function FullTeamDetail(props) {
   const { id, participants, team, duration, TEAM, maxDamage, isRemake } = props;
   const isBlue = id === TEAM.blue;
+  let index = 1;
 
   return (
     <div className="team-detail">
@@ -43,64 +44,72 @@ export default function FullTeamDetail(props) {
           </tr>
         </thead>
         <tbody>
-          {participants.map((participant) => (
-            <tr className="data-row" key={participant.puuid}>
-              <td>
-                <div className="chosen-options-name">
-                  <div className="chosen-sum-options">
-                    <ChampSprite
-                      participant={participant}
-                      isPlayer={false}
-                      isTeamDetail={true}
-                    />
-                    <PerksSpells
-                      participant={participant}
-                      isTeamDetail={true}
-                    />
+          {participants.map((participant) => {
+            let id = participant.puuid;
+            if (id === "BOT") {
+              id = id + index;
+              index++;
+            }
+
+            return (
+              <tr className="data-row" key={id}>
+                <td>
+                  <div className="chosen-options-name">
+                    <div className="chosen-sum-options">
+                      <ChampSprite
+                        participant={participant}
+                        isPlayer={false}
+                        isTeamDetail={true}
+                      />
+                      <PerksSpells
+                        participant={participant}
+                        isTeamDetail={true}
+                      />
+                    </div>
+                    <div className="sum-name-container">
+                      <p className="sum-name">{participant.summonerName}</p>
+                    </div>
                   </div>
-                  <div className="sum-name-container">
-                    <p className="sum-name">{participant.summonerName}</p>
-                  </div>
-                </div>
-              </td>
-              {/*<td>*/}
-              {/*  <TierDetail name={participant.summonerName} />*/}
-              {/*</td>*/}
-              <td>
-                <KdaDetail
-                  kills={participant.kills}
-                  deaths={participant.deaths}
-                  assists={participant.assists}
-                />
-              </td>
-              <td>
-                <WardDetails
-                  visionScore={participant.visionScore}
-                  wardsPlaced={participant.wardsPlaced}
-                  wardsKilled={participant.wardsKilled}
-                  redsPlaced={participant.detectorWardsPlaced}
-                />
-              </td>
-              <td>
-                <CsDetail
-                  duration={duration}
-                  cs={
-                    participant.totalMinionsKilled +
-                    participant.neutralMinionsKilled
-                  }
-                />
-              </td>
-              <td>
-                <DamageDetail
-                  damage={participant.totalDamageDealtToChampions}
-                  maxDamage={maxDamage}
-                />
-              </td>
-              <td>
-                <ItemsBlock participant={participant} isPlayer={false} />
-              </td>
-            </tr>
-          ))}
+                </td>
+                {/*<td>*/}
+                {/*  <TierDetail name={participant.summonerName} />*/}
+                {/*</td>*/}
+                <td>
+                  <KdaDetail
+                    kills={participant.kills}
+                    deaths={participant.deaths}
+                    assists={participant.assists}
+                  />
+                </td>
+                <td>
+                  <WardDetails
+                    visionScore={participant.visionScore}
+                    wardsPlaced={participant.wardsPlaced}
+                    wardsKilled={participant.wardsKilled}
+                    redsPlaced={participant.detectorWardsPlaced}
+                  />
+                </td>
+                <td>
+                  <CsDetail
+                    duration={duration}
+                    cs={
+                      participant.totalMinionsKilled +
+                      participant.neutralMinionsKilled
+                    }
+                  />
+                </td>
+                <td>
+                  <DamageDetail
+                    damage={participant.totalDamageDealtToChampions}
+                    maxDamage={maxDamage}
+                  />
+                </td>
+                <td>
+                  <ItemsBlock participant={participant} isPlayer={false} />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
