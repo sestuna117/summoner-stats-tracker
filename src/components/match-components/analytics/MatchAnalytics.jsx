@@ -41,7 +41,6 @@ export default function MatchAnalytics(props) {
       return;
     }
     const participantTeams = Array.from(participants.values());
-    console.log(participantTeams);
     const teamMap = [[], []];
     let players = timeline.info.participants;
     if (!players) {

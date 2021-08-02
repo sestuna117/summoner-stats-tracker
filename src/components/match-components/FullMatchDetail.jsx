@@ -23,7 +23,6 @@ export default function FullMatchDetail(props) {
 
   async function loadTimeline() {
     const result = await getMatchTimeline(match.metadata.matchId, region);
-    console.log(result);
     setTimeline(result);
     let participantId;
     const players = result.info.participants;
