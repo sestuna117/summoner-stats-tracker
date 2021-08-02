@@ -1,38 +1,24 @@
 import React, { useEffect, useState } from "react";
+import ChampionStatBar from "./ChampionStatBar";
+import "./WinRatesSection.css";
 
 export default function WinRatesSection(props) {
   const { matches, player } = props;
-  const usedChamps = new Map();
-
-  // const CHAMPION_USE_DATA = {
-  //   total: {
-  //     kills: sumUpMatchesData("kills", MATCH_TYPES),
-  //     deaths: sumUpMatchesData("deaths", MATCH_TYPES),
-  //     assists: sumUpMatchesData("assists", MATCH_TYPES),
-  //     played: sumUpMatchesData("played", MATCH_TYPES),
-  //     wins: sumUpMatchesData("wins", MATCH_TYPES),
-  //   },
-  // };
-  //
-  // function sumUpMatchesData(stat, matchTypes) {
-  //   let sum;
-  //   matchTypes.forEach((type) => {
-  //     sum += type[stat];
-  //   });
-  //   return sum;
-  // }
+  const [usedChamps, setUsedChamps] = useState(new Map());
 
   useEffect(async () => {
     if (!player || !(matches.length % 10 === 0)) {
       return;
     }
+    const newChamps = new Map();
     matches.forEach((match) => {
       const { queueId, participants } = match.info;
       const { championId, kills, deaths, assists, win } = participants.find(
         (participant) => participant.puuid === player.puuid
       );
-      if (!usedChamps.has(championId)) {
-        usedChamps.set(championId, [
+      let champData;
+      if (!newChamps.has(championId)) {
+        newChamps.set(championId, [
           {
             kills: 0,
             deaths: 0,
@@ -56,14 +42,13 @@ export default function WinRatesSection(props) {
           },
         ]);
       }
-      const champData = usedChamps.get(championId);
+      champData = newChamps.get(championId);
       let id = 0;
       if (queueId === 420) {
         id = 1;
       } else if (queueId === 440) {
         id = 2;
       }
-      console.log(id);
 
       champData[id].kills += kills;
       champData[id].deaths += deaths;
@@ -72,10 +57,30 @@ export default function WinRatesSection(props) {
       if (win) {
         champData[id].wins++;
       }
-      usedChamps.set(championId, champData);
+      newChamps.set(championId, champData);
     });
-    console.log(usedChamps);
+    Array.from(newChamps.entries()).forEach(([id, champData]) => {
+      if (!usedChamps.has(id)) {
+        setUsedChamps(new Map(usedChamps.set(id, champData)));
+      } else {
+        const updatedData = usedChamps.get(id);
+        updatedData.forEach((type, index) => {
+          Object.keys(type).forEach((stat) => {
+            type[stat] += champData[index][stat];
+          });
+        });
+        setUsedChamps(new Map(usedChamps.set(id, updatedData)));
+      }
+    });
   }, [matches, player]);
+  console.log(usedChamps);
 
-  return <div></div>;
+  return (
+    <div className="winrate-section">
+      <div>Current Champions used in Displayed Matches</div>
+      {Array.from(usedChamps.entries()).map(([id, values]) => (
+        <ChampionStatBar key={id} id={id} matchTypes={values} />
+      ))}
+    </div>
+  );
 }
