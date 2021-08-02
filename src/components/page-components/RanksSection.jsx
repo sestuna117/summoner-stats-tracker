@@ -26,7 +26,7 @@ export default function RanksSection(props) {
   }, [data, region]);
 
   return (
-    <div>
+    <div className="rank-section">
       {RANKED_TYPES.map((type) => (
         <RankedInfo key={type.id} type={type} data={rankData} />
       ))}
