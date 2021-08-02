@@ -23,10 +23,17 @@ export default function FullMatchDetail(props) {
 
   async function loadTimeline() {
     const result = await getMatchTimeline(match.metadata.matchId, region);
+    console.log(result);
     setTimeline(result);
-    const { participantId } = result.info.participants.find(
-      (participant) => participant.puuid === player.puuid
-    );
+    let participantId;
+    const players = result.info.participants;
+    if (!players) {
+      participantId = result.metadata.participants.indexOf(player.puuid) + 1;
+    } else {
+      participantId = players.find(
+        (participant) => participant.puuid === player.puuid
+      ).participantId;
+    }
     setPlayersId(participantId);
   }
 

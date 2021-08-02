@@ -41,30 +41,60 @@ export default function MatchAnalytics(props) {
       return;
     }
     const participantTeams = Array.from(participants.values());
+    console.log(participantTeams);
     const teamMap = [[], []];
-    timeline.info.participants.forEach((participant) => {
-      let player = participantTeams[0].find(
-        (player) => participant.puuid === player.puuid
-      );
-      if (!player) {
-        player = participantTeams[1].find(
+    let players = timeline.info.participants;
+    if (!players) {
+      let index = 1;
+      timeline.metadata.participants.forEach((participant) => {
+        let player = participantTeams[0].find(
+          (member) => participant === member.puuid
+        );
+        if (!player) {
+          player = participantTeams[1].find(
+            (member) => participant === member.puuid
+          );
+          teamMap[1].push({
+            participantId: index,
+            puuid: participant,
+            championId: player.championId,
+            summonerName: player.summonerName,
+          });
+        } else {
+          teamMap[0].push({
+            participantId: index,
+            puuid: participant,
+            championId: player.championId,
+            summonerName: player.summonerName,
+          });
+        }
+        index++;
+      });
+    } else {
+      players.forEach((participant) => {
+        let player = participantTeams[0].find(
           (player) => participant.puuid === player.puuid
         );
-        teamMap[1].push({
-          participantId: participant.participantId,
-          puuid: participant.puuid,
-          championId: player.championId,
-          summonerName: player.summonerName,
-        });
-      } else {
-        teamMap[0].push({
-          participantId: participant.participantId,
-          puuid: participant.puuid,
-          championId: player.championId,
-          summonerName: player.summonerName,
-        });
-      }
-    });
+        if (!player) {
+          player = participantTeams[1].find(
+            (player) => participant.puuid === player.puuid
+          );
+          teamMap[1].push({
+            participantId: participant.participantId,
+            puuid: participant.puuid,
+            championId: player.championId,
+            summonerName: player.summonerName,
+          });
+        } else {
+          teamMap[0].push({
+            participantId: participant.participantId,
+            puuid: participant.puuid,
+            championId: player.championId,
+            summonerName: player.summonerName,
+          });
+        }
+      });
+    }
     setTeamSides(teamMap);
   }
 
