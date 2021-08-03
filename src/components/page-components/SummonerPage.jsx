@@ -15,7 +15,7 @@ import { DDragonVersionContext } from "../../hook";
 import RanksSection from "./RanksSection";
 import PageFooter from "./PageFooter";
 import LoadingSpinner from "./LoadingSpinner";
-import WinRatesSection from "./WinRatesSection";
+import RecentChampionSection from "./RecentChampionSection";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -142,7 +142,7 @@ export function SummonerPage() {
               <div className="content">
                 <div className="side-content">
                   <RanksSection data={data} region={region} />
-                  <WinRatesSection matches={matches} player={data} />
+                  <RecentChampionSection matches={matches} player={data} />
                 </div>
                 <div className="match-section">
                   <ul className="match-list">{matchViews}</ul>

@@ -1,5 +1,5 @@
 import React from "react";
-import DamageBar from "./DamageBar";
+import ProgressBar from "../../ProgressBar";
 import "./DamageDetail.css";
 
 export default function DamageDetail(props) {
@@ -8,7 +8,7 @@ export default function DamageDetail(props) {
   return (
     <div className="table-detail">
       <div className="damage-text">{damage}</div>
-      <DamageBar damage={damage} maxDamage={maxDamage} />
+      <ProgressBar damage={damage} maxDamage={maxDamage} />
     </div>
   );
 }

@@ -1,8 +1,19 @@
 .used-champion-bar {
     display: flex;
+    align-items: center;
+}
+
+.used-champion-bar .progress-bar {
+    width: 50px;
 }
 
 .used-champ-icon {
     border-radius: 50%;
     width: 50px;
+    margin: 5px 5px 5px 10px;
+}
+
+.used-champ-text {
+    display: flex;
+    justify-content: space-between;
 }

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ChampionStatBar from "./ChampionStatBar";
-import "./WinRatesSection.css";
+import "./RecentChampionSection.css";
 
-export default function WinRatesSection(props) {
+export default function RecentChampionSection(props) {
   const { matches, player } = props;
   const [usedChamps, setUsedChamps] = useState(new Map());
+  const [maxPlayed, setMaxPlayed] = useState(0);
 
   useEffect(async () => {
     if (!player || !(matches.length % 10 === 0)) {
@@ -75,11 +76,30 @@ export default function WinRatesSection(props) {
   }, [matches, player]);
   console.log(usedChamps);
 
+  useEffect(() => {
+    if (!usedChamps) {
+      return;
+    }
+    let max = 0;
+    Array.from(usedChamps.values()).forEach((types) => {
+      let sum = types.reduce((total, type) => total + type.played, 0);
+      if (sum > max) {
+        max = sum;
+      }
+    });
+    setMaxPlayed(max);
+  }, [usedChamps]);
+
   return (
     <div className="winrate-section">
-      <div>Current Champions used in Displayed Matches</div>
+      <div>Recent Champions Summary</div>
       {Array.from(usedChamps.entries()).map(([id, values]) => (
-        <ChampionStatBar key={id} id={id} matchTypes={values} />
+        <ChampionStatBar
+          key={id}
+          id={id}
+          matchTypes={values}
+          maxPlayed={maxPlayed}
+        />
       ))}
     </div>
   );

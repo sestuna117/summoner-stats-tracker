@@ -1,6 +1,6 @@
 {
   "name": "summoner-stats-tracker",
-  "version": "0.15.5",
+  "version": "0.15.6",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.13.0",
