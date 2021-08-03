@@ -8,7 +8,6 @@ export default function ChampionStatBar(props) {
   const { id, matchTypes, maxPlayed } = props;
   const champData = useContext(ChampionDataContext);
   const dDragon = useContext(DDragonVersionContext);
-  console.log(maxPlayed);
 
   const CHAMPION_TOTAL_DATA = {
     kills: sumUpMatchesData("kills", matchTypes),
@@ -32,26 +31,26 @@ export default function ChampionStatBar(props) {
 
   const { kills, deaths, assists, played, wins } = CHAMPION_TOTAL_DATA;
   return (
-    <div className="used-champion-bar">
-      <img
-        className="used-champ-icon"
-        src={getChampionIcon(champion.id, dDragon)}
-        alt={champion.id}
-      />
-      <div className="used-champ-text">
-        <div>
-          <div>{champion.name}</div>
-          <div>{`${kills} / ${deaths} / ${assists}`}</div>
+    <tr className="used-champion-bar">
+      <td className="used-champ">
+        <img
+          className="used-champ-icon"
+          src={getChampionIcon(champion.id, dDragon)}
+          alt={champion.id}
+        />
+        <div className="used-champ-name-text">
+          <div className="used-champ-name">{champion.name}</div>
+          <div className="used-champ-kda">{`${kills} / ${deaths} / ${assists}`}</div>
         </div>
-        <div>
-          {played}
-          <ProgressBar progress={played} maxValue={maxPlayed} />
-        </div>
-        <div>
-          {((wins / played) * 100).toFixed(1)}
-          <ProgressBar progress={wins} maxValue={played} />
-        </div>
-      </div>
-    </div>
+      </td>
+      <td className="champ-played">
+        <span className="bar-text">{played}</span>
+        <ProgressBar progress={played} maxValue={maxPlayed} />
+      </td>
+      <td className="champ-winrate">
+        <span className="bar-text">{((wins / played) * 100).toFixed(1)}%</span>
+        <ProgressBar progress={wins} maxValue={played} />
+      </td>
+    </tr>
   );
 }

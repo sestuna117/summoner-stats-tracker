@@ -74,7 +74,6 @@ export default function RecentChampionSection(props) {
       }
     });
   }, [matches, player]);
-  console.log(usedChamps);
 
   useEffect(() => {
     if (!usedChamps) {
@@ -92,15 +91,23 @@ export default function RecentChampionSection(props) {
 
   return (
     <div className="winrate-section">
-      <div>Recent Champions Summary</div>
-      {Array.from(usedChamps.entries()).map(([id, values]) => (
-        <ChampionStatBar
-          key={id}
-          id={id}
-          matchTypes={values}
-          maxPlayed={maxPlayed}
-        />
-      ))}
+      <table className="winrate-table">
+        <tbody>
+          <tr className="winrate-table-header">
+            <th>Name</th>
+            <th>Played</th>
+            <th>Winrate</th>
+          </tr>
+          {Array.from(usedChamps.entries()).map(([id, values]) => (
+            <ChampionStatBar
+              key={id}
+              id={id}
+              matchTypes={values}
+              maxPlayed={maxPlayed}
+            />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

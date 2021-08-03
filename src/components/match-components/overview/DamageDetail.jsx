@@ -8,7 +8,7 @@ export default function DamageDetail(props) {
   return (
     <div className="table-detail">
       <div className="damage-text">{damage}</div>
-      <ProgressBar damage={damage} maxDamage={maxDamage} />
+      <ProgressBar progress={damage} maxValue={maxDamage} />
     </div>
   );
 }
