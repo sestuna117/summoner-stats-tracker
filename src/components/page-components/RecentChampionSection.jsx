@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ChampionStatBar from "./ChampionStatBar";
 import "./RecentChampionSection.css";
+import cx from "classnames";
 
 export default function RecentChampionSection(props) {
   const { matches, player } = props;
   const [usedChamps, setUsedChamps] = useState(new Map());
   const [maxPlayed, setMaxPlayed] = useState(0);
+  const [toggleDisplay, setToggleDisplay] = useState(true);
 
   useEffect(async () => {
     if (!player || !(matches.length % 10 === 0)) {
@@ -91,23 +93,36 @@ export default function RecentChampionSection(props) {
 
   return (
     <div className="winrate-section">
-      <table className="winrate-table">
-        <tbody>
-          <tr className="winrate-table-header">
-            <th>Name</th>
-            <th>Played</th>
-            <th>Winrate</th>
-          </tr>
-          {Array.from(usedChamps.entries()).map(([id, values]) => (
-            <ChampionStatBar
-              key={id}
-              id={id}
-              matchTypes={values}
-              maxPlayed={maxPlayed}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div
+        className="winrate-title"
+        onClick={() => setToggleDisplay((prev) => !prev)}
+      >
+        <span className="winrate-title-text">Recent Champion Summary</span>
+        <span>{String.fromCharCode(toggleDisplay ? 9661 : 9651)}</span>
+      </div>
+      <div
+        className={cx("winrate-container", {
+          "winrate-closed": toggleDisplay,
+        })}
+      >
+        <table className="winrate-table">
+          <tbody>
+            <tr className="winrate-table-header">
+              <th>Name</th>
+              <th>Played</th>
+              <th>Winrate</th>
+            </tr>
+            {Array.from(usedChamps.entries()).map(([id, values]) => (
+              <ChampionStatBar
+                key={id}
+                id={id}
+                matchTypes={values}
+                maxPlayed={maxPlayed}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

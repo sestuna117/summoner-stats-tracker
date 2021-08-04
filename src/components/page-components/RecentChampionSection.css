@@ -1,4 +1,7 @@
 .winrate-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 300px;
     background-color: #f2f2f2;
     border: 1px solid #adadad;
@@ -6,6 +9,34 @@
     margin-right: 10px;
     margin-bottom: 10px;
     /*box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);*/
+}
+
+.winrate-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    color: #6f6f6f;
+    border-bottom: #adadad 1px solid;
+}
+
+.winrate-title:hover {
+    cursor: pointer;
+}
+
+.winrate-title-text {
+    margin: 0;
+}
+
+.winrate-container {
+    max-height: 285px;
+    display: block;
+    overflow: auto;
+}
+
+.winrate-closed {
+    display: none;
 }
 
 .winrate-table {
