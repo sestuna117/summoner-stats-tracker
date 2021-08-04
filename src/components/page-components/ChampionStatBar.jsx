@@ -9,28 +9,12 @@ export default function ChampionStatBar(props) {
   const champData = useContext(ChampionDataContext);
   const dDragon = useContext(DDragonVersionContext);
 
-  const CHAMPION_TOTAL_DATA = {
-    kills: sumUpMatchesData("kills", matchTypes),
-    deaths: sumUpMatchesData("deaths", matchTypes),
-    assists: sumUpMatchesData("assists", matchTypes),
-    played: sumUpMatchesData("played", matchTypes),
-    wins: sumUpMatchesData("wins", matchTypes),
-  };
-
-  function sumUpMatchesData(stat, matchTypes) {
-    let sum = 0;
-    matchTypes.forEach((type) => {
-      sum += type[stat];
-    });
-    return sum;
-  }
-
   let champion = Object.values(champData.data).find(
     (champ) => parseInt(champ.key) === id
   );
 
-  const { kills, deaths, assists, played, wins } = CHAMPION_TOTAL_DATA;
-  return (
+  const { kills, deaths, assists, played, wins } = matchTypes;
+  return played !== 0 ? (
     <tr className="used-champion-bar">
       <td className="used-champ">
         <img
@@ -52,5 +36,5 @@ export default function ChampionStatBar(props) {
         <ProgressBar progress={wins} maxValue={played} />
       </td>
     </tr>
-  );
+  ) : null;
 }

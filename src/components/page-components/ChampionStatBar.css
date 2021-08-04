@@ -1,5 +1,6 @@
 .used-champ {
     display: flex;
+    width: 135px;
 }
 
 .used-champ-name-text {

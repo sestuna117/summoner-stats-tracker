@@ -8,6 +8,7 @@ export default function RecentChampionSection(props) {
   const [usedChamps, setUsedChamps] = useState(new Map());
   const [maxPlayed, setMaxPlayed] = useState(0);
   const [toggleDisplay, setToggleDisplay] = useState(true);
+  const [activeTab, setActiveTab] = useState("total-used-champs");
 
   useEffect(async () => {
     if (!player || !(matches.length % 10 === 0)) {
@@ -43,6 +44,13 @@ export default function RecentChampionSection(props) {
             played: 0,
             wins: 0,
           },
+          {
+            kills: 0,
+            deaths: 0,
+            assists: 0,
+            played: 0,
+            wins: 0,
+          },
         ]);
       }
       champData = newChamps.get(championId);
@@ -57,8 +65,13 @@ export default function RecentChampionSection(props) {
       champData[id].deaths += deaths;
       champData[id].assists += assists;
       champData[id].played++;
+      champData[3].kills += kills;
+      champData[3].deaths += deaths;
+      champData[3].assists += assists;
+      champData[3].played++;
       if (win) {
         champData[id].wins++;
+        champData[3].wins++;
       }
       newChamps.set(championId, champData);
     });
@@ -76,20 +89,35 @@ export default function RecentChampionSection(props) {
       }
     });
   }, [matches, player]);
+  console.log(usedChamps);
 
   useEffect(() => {
     if (!usedChamps) {
       return;
     }
+    let index;
+    switch (activeTab) {
+      case "norm-champs-used":
+        index = 0;
+        break;
+      case "solo-champs-used":
+        index = 1;
+        break;
+      case "flex-champs-used":
+        index = 2;
+        break;
+      default:
+        index = 3;
+    }
     let max = 0;
     Array.from(usedChamps.values()).forEach((types) => {
-      let sum = types.reduce((total, type) => total + type.played, 0);
-      if (sum > max) {
-        max = sum;
+      let mostPlayed = types[index].played;
+      if (mostPlayed > max) {
+        max = mostPlayed;
       }
     });
     setMaxPlayed(max);
-  }, [usedChamps]);
+  }, [usedChamps, activeTab]);
 
   return (
     <div className="winrate-section">
@@ -105,18 +133,68 @@ export default function RecentChampionSection(props) {
           "winrate-closed": toggleDisplay,
         })}
       >
+        <form className="queue-tabs-bar">
+          <button
+            className={cx("queue-tab", {
+              "queue-tab-open": activeTab === "total-champs-used",
+            })}
+            type="button"
+            onClick={() => setActiveTab("total-champs-used")}
+          >
+            Total
+          </button>
+          <button
+            className={cx("queue-tab", {
+              "queue-tab-open": activeTab === "solo-champs-used",
+            })}
+            type="button"
+            onClick={() => setActiveTab("solo-champs-used")}
+          >
+            Ranked Solo
+          </button>
+          <button
+            className={cx("queue-tab", {
+              "queue-tab-open": activeTab === "flex-champs-used",
+            })}
+            type="button"
+            onClick={() => setActiveTab("flex-champs-used")}
+          >
+            Ranked Flex
+          </button>
+          <button
+            className={cx("queue-tab", {
+              "queue-tab-open": activeTab === "norm-champs-used",
+            })}
+            type="button"
+            onClick={() => setActiveTab("norm-champs-used")}
+          >
+            Other
+          </button>
+        </form>
         <table className="winrate-table">
-          <tbody>
+          <thead>
             <tr className="winrate-table-header">
               <th>Name</th>
               <th>Played</th>
               <th>Winrate</th>
             </tr>
+          </thead>
+          <tbody>
             {Array.from(usedChamps.entries()).map(([id, values]) => (
               <ChampionStatBar
                 key={id}
                 id={id}
-                matchTypes={values}
+                matchTypes={
+                  values[
+                    activeTab === "total-champs-used"
+                      ? 3
+                      : activeTab === "flex-champs-used"
+                      ? 2
+                      : activeTab === "solo-champs-used"
+                      ? 1
+                      : 0
+                  ]
+                }
                 maxPlayed={maxPlayed}
               />
             ))}

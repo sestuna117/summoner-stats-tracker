@@ -11,7 +11,7 @@ export default function NavBar(props) {
   return (
     <nav className="navbar">
       <Link className="navbar-logo" to={"/"} target="_parent">
-        Home
+        THINKING CAP
       </Link>
       <div className="navbar-right">
         <form
