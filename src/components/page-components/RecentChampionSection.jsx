@@ -89,7 +89,6 @@ export default function RecentChampionSection(props) {
       }
     });
   }, [matches, player]);
-  console.log(usedChamps);
 
   useEffect(() => {
     if (!usedChamps) {
@@ -130,10 +129,10 @@ export default function RecentChampionSection(props) {
       </div>
       <div
         className={cx("winrate-container", {
-          "winrate-closed": toggleDisplay,
+          "winrate-tab-closed": toggleDisplay,
         })}
       >
-        <form className="queue-tabs-bar">
+        <form>
           <button
             className={cx("queue-tab", {
               "queue-tab-open": activeTab === "total-champs-used",
@@ -171,35 +170,37 @@ export default function RecentChampionSection(props) {
             Other
           </button>
         </form>
-        <table className="winrate-table">
-          <thead>
-            <tr className="winrate-table-header">
-              <th>Name</th>
-              <th>Played</th>
-              <th>Winrate</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from(usedChamps.entries()).map(([id, values]) => (
-              <ChampionStatBar
-                key={id}
-                id={id}
-                matchTypes={
-                  values[
-                    activeTab === "total-champs-used"
-                      ? 3
-                      : activeTab === "flex-champs-used"
-                      ? 2
-                      : activeTab === "solo-champs-used"
-                      ? 1
-                      : 0
-                  ]
-                }
-                maxPlayed={maxPlayed}
-              />
-            ))}
-          </tbody>
-        </table>
+        <div className="winrate-table-container">
+          <table className="winrate-table">
+            <thead>
+              <tr className="winrate-table-header">
+                <th>Name</th>
+                <th>Played</th>
+                <th>Winrate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from(usedChamps.entries()).map(([id, values]) => (
+                <ChampionStatBar
+                  key={id}
+                  id={id}
+                  matchTypes={
+                    values[
+                      activeTab === "total-champs-used"
+                        ? 3
+                        : activeTab === "flex-champs-used"
+                        ? 2
+                        : activeTab === "solo-champs-used"
+                        ? 1
+                        : 0
+                    ]
+                  }
+                  maxPlayed={maxPlayed}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
