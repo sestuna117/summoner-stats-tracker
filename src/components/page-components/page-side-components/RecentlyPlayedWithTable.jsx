@@ -22,7 +22,11 @@ export default function RecentlyPlayedWithTable(props) {
         />
         <tbody>
           {items.map((player) => (
-            <PlayerStatBar playerStats={player} maxPlayed={maxPlayed} />
+            <PlayerStatBar
+              key={player.name}
+              playerStats={player}
+              maxPlayed={maxPlayed}
+            />
           ))}
         </tbody>
       </table>

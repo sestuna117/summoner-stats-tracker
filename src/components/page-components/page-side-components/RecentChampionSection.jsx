@@ -8,7 +8,7 @@ export default function RecentChampionSection(props) {
   const { matches, player, numOfMatches } = props;
   const [usedChamps, setUsedChamps] = useState(new Map());
   const [maxPlayed, setMaxPlayed] = useState(0);
-  const [toggleDisplay, setToggleDisplay] = useState(false);
+  const [toggleDisplay, setToggleDisplay] = useState(true);
   const [activeTab, setActiveTab] = useState("total-champs-used");
 
   useEffect(async () => {

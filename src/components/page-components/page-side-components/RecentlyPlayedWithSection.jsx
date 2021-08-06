@@ -57,7 +57,6 @@ export default function RecentlyPlayedWithSection(props) {
       });
     });
   }, [matches, player]);
-  console.log(playedWith);
 
   useEffect(() => {
     if (!playedWith) {
@@ -72,8 +71,6 @@ export default function RecentlyPlayedWithSection(props) {
     });
     setMaxPlayed(max);
   }, [playedWith]);
-
-  console.log(Array.from(playedWith.values()));
 
   return (
     <div className="side-section side-section-dropdown">

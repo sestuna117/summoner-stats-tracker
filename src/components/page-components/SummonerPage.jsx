@@ -100,13 +100,11 @@ export function SummonerPage() {
   async function loadMatches() {
     setIsLoadingMatches(true);
 
-    console.log(startMatchIndex);
     let matchIds;
     try {
       const matches = await getMatches(name, region, startMatchIndex);
       console.log(matches);
       matchIds = matches;
-      console.log(matchIds.length);
       setNumMatchesToLoad(matchIds.length);
     } catch (e) {
       console.error(e);
