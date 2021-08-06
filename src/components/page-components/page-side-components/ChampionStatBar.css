@@ -31,13 +31,6 @@
     padding-left: 10px;
 }
 
-.used-champion-bar .progress-bar {
-    width: 50px;
-    height: 12px;
-    border: none;
-    background-color: #f2f2f2;
-}
-
 .used-champ-icon {
     border-radius: 50%;
     width: 40px;
@@ -48,19 +41,4 @@
     display: flex;
     justify-content: space-between;
     width: 230px;
-}
-
-.champ-played .progress-bar-fill {
-    background-color: #4782b3;
-    border: #245884 1px solid;
-}
-
-.champ-winrate .progress-bar-fill {
-    background-color: #3cbc8d;
-    border: #1f9268 1px solid;
-}
-
-.bar-text {
-    font-size: 11px;
-    margin-left: 5px;
 }

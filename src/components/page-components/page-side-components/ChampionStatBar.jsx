@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ChampionDataContext, DDragonVersionContext } from "../../../hook";
 import getChampionIcon from "../../../util/getChampionIcon";
 import "./ChampionStatBar.css";
+import "./StatBar.css";
 import ProgressBar from "../../ProgressBar";
 
 export default function ChampionStatBar(props) {
@@ -41,11 +42,11 @@ export default function ChampionStatBar(props) {
           </div>
         </div>
       </td>
-      <td className="champ-played">
+      <td className="progress-played">
         <span className="bar-text">{played}</span>
         <ProgressBar progress={played} maxValue={maxPlayed} />
       </td>
-      <td className="champ-winrate">
+      <td className="progress-winrate">
         <span className="bar-text">{winrate.toFixed(1)}%</span>
         <ProgressBar progress={wins} maxValue={played} />
       </td>

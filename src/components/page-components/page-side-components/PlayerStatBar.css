@@ -1,0 +1,9 @@
+.played-with-player {
+    padding-left: 10px;
+    width: 135px;
+}
+
+.played-with-name {
+    margin: auto 5px;
+    font-weight: bold;
+}

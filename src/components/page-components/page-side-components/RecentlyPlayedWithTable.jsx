@@ -1,12 +1,11 @@
 import React from "react";
-import ChampionStatBar from "./ChampionStatBar";
 import useSortableData from "../../useSortableData";
-import "./WinRateTable.css";
 import WinRateTableTHead from "./WinRateTableTHead";
+import PlayerStatBar from "./PlayerStatBar";
 
-export default function RecentChampionTable(props) {
-  const { usedChamps, maxPlayed } = props;
-  const { items, requestSort, sortConfig } = useSortableData(usedChamps);
+export default function RecentlyPlayedWithTable(props) {
+  const { teammates, maxPlayed } = props;
+  const { items, requestSort, sortConfig } = useSortableData(teammates);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
@@ -22,12 +21,8 @@ export default function RecentChampionTable(props) {
           getClassNamesFor={getClassNamesFor}
         />
         <tbody>
-          {items.map((champ) => (
-            <ChampionStatBar
-              key={champ.id}
-              champStats={champ}
-              maxPlayed={maxPlayed}
-            />
+          {items.map((player) => (
+            <PlayerStatBar playerStats={player} maxPlayed={maxPlayed} />
           ))}
         </tbody>
       </table>

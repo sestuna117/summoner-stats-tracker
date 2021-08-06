@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./RecentChampionSection.css";
+import "./SideContent.css";
 import cx from "classnames";
 import RecentChampionTable from "./RecentChampionTable";
 
 export default function RecentChampionSection(props) {
-  const { matches, player } = props;
+  const { matches, player, numOfMatches } = props;
   const [usedChamps, setUsedChamps] = useState(new Map());
   const [maxPlayed, setMaxPlayed] = useState(0);
-  const [toggleDisplay, setToggleDisplay] = useState(true);
+  const [toggleDisplay, setToggleDisplay] = useState(false);
   const [activeTab, setActiveTab] = useState("total-champs-used");
 
   useEffect(async () => {
-    if (!player || !(matches.length % 10 === 0)) {
+    if (numOfMatches === 0 || !player || !(matches.length === numOfMatches)) {
       return;
     }
     const newChamps = new Map();
@@ -98,7 +99,7 @@ export default function RecentChampionSection(props) {
         setUsedChamps(new Map(usedChamps.set(id, updatedData)));
       }
     });
-  }, [matches, player]);
+  }, [matches, player, numOfMatches]);
 
   useEffect(() => {
     if (!usedChamps) {
@@ -129,17 +130,17 @@ export default function RecentChampionSection(props) {
   }, [usedChamps, activeTab]);
 
   return (
-    <div className="winrate-section">
+    <div className="side-section side-section-dropdown">
       <div
-        className="winrate-title"
+        className="side-section-title"
         onClick={() => setToggleDisplay((prev) => !prev)}
       >
-        <span className="winrate-title-text">Recent Champion Summary</span>
+        <span className="side-section-title-text">Recent Champion Summary</span>
         <span>{String.fromCharCode(toggleDisplay ? 9661 : 9651)}</span>
       </div>
       <div
-        className={cx("winrate-container", {
-          "winrate-tab-closed": toggleDisplay,
+        className={cx("side-section-container", {
+          "side-section-tab-closed": !toggleDisplay,
         })}
       >
         <form>

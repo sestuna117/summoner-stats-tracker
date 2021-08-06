@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getRankIcon from "../../../util/getRankIcon";
 import "./RankedInfo.css";
+import "./SideContent.css";
 
 export default function RankedInfo(props) {
   const { type, data } = props;
@@ -41,7 +42,7 @@ export default function RankedInfo(props) {
   };
 
   return (
-    <div className="ranked-info">
+    <div className="side-section ranked-info">
       <div className="rank-icon-container">
         {isLoaded ? (
           !rankInfo ? (

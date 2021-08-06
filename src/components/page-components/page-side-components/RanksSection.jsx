@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getRankedInfo } from "../../../api/services/request.services";
 import RankedInfo from "./RankedInfo";
+import "./SideContent.css";
 
 const RANKED_TYPES = [
   { name: "Ranked Solo", id: "RANKED_SOLO_5x5" },

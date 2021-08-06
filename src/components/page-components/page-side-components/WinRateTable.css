@@ -1,0 +1,13 @@
+.winrate-table-container {
+    max-height: 290px;
+    display: block;
+    overflow: auto;
+    background-color: #eaeaea;
+    border-top: #adadad 1px solid;
+}
+
+.winrate-table {
+    width: 95%;
+    margin: 10px auto auto;
+    border-collapse: collapse;
+}

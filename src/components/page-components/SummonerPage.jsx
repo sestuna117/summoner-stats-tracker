@@ -22,6 +22,7 @@ export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingMatches, setIsLoadingMatches] = useState(false);
+  const [numMatchesToLoad, setNumMatchesToLoad] = useState(0);
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -73,7 +74,11 @@ export function SummonerPage() {
   };
 
   useEffect(async () => {
-    if (!data || !(matches.length % 10 === 0)) {
+    if (
+      numMatchesToLoad === 0 ||
+      !data ||
+      !(matches.length === numMatchesToLoad)
+    ) {
       return;
     }
     matches
@@ -90,7 +95,7 @@ export function SummonerPage() {
           />,
         ]);
       });
-  }, [data, matches]);
+  }, [data, matches, numMatchesToLoad]);
 
   async function loadMatches() {
     setIsLoadingMatches(true);
@@ -101,6 +106,8 @@ export function SummonerPage() {
       const matches = await getMatches(name, region, startMatchIndex);
       console.log(matches);
       matchIds = matches;
+      console.log(matchIds.length);
+      setNumMatchesToLoad(matchIds.length);
     } catch (e) {
       console.error(e);
       return;
@@ -122,11 +129,11 @@ export function SummonerPage() {
   }
 
   useEffect(() => {
-    if (!startMatchIndex || !(matches.length % 10 === 0)) {
+    if (!startMatchIndex || !(matches.length === 0)) {
       return;
     }
     loadMatches();
-  }, [startMatchIndex]);
+  }, [startMatchIndex, matches]);
 
   return (
     <div className="page">
@@ -143,8 +150,16 @@ export function SummonerPage() {
               <div className="content">
                 <div className="side-content">
                   <RanksSection data={data} region={region} />
-                  <RecentChampionSection matches={matches} player={data} />
-                  <RecentlyPlayedWithSection matches={matches} player={data} />
+                  <RecentChampionSection
+                    matches={matches}
+                    player={data}
+                    numOfMatches={numMatchesToLoad}
+                  />
+                  <RecentlyPlayedWithSection
+                    matches={matches}
+                    player={data.puuid}
+                    numOfMatches={numMatchesToLoad}
+                  />
                 </div>
                 <div className="match-section">
                   <ul className="match-list">{matchViews}</ul>
