@@ -30,34 +30,12 @@
     margin: 0;
 }
 
-.winrate-table-container {
-    max-height: 290px;
-    display: block;
-    overflow: auto;
-    background-color: #eaeaea;
-    border-top: #adadad 1px solid;
-}
-
 .winrate-container {
     display: block;
 }
 
 .winrate-tab-closed {
     display: none;
-}
-
-.winrate-table {
-    width: 95%;
-    margin: 10px auto auto;
-    border-collapse: collapse;
-}
-
-.winrate-table-header {
-    font-size: 13px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-bottom: #adadad 2px solid;
-    color: #6f6f6f;
 }
 
 .queue-tab {

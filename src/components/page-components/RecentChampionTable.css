@@ -1,0 +1,37 @@
+.winrate-table-container {
+    max-height: 290px;
+    display: block;
+    overflow: auto;
+    background-color: #eaeaea;
+    border-top: #adadad 1px solid;
+}
+
+.winrate-table {
+    width: 95%;
+    margin: 10px auto auto;
+    border-collapse: collapse;
+}
+
+.winrate-table-header {
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: #adadad 2px solid;
+    color: #6f6f6f;
+}
+
+.winrate-table-header:hover {
+    cursor: pointer;
+}
+
+thead .ascending::after {
+    content: '▽';
+    display: inline-block;
+    margin-left: 1em;
+}
+
+thead .descending::after {
+    content: '△';
+    display: inline-block;
+    margin-left: 1em;
+}

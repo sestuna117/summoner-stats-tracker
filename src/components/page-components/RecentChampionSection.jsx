@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import ChampionStatBar from "./ChampionStatBar";
 import "./RecentChampionSection.css";
 import cx from "classnames";
+import RecentChampionTable from "./RecentChampionTable";
 
 export default function RecentChampionSection(props) {
   const { matches, player } = props;
   const [usedChamps, setUsedChamps] = useState(new Map());
   const [maxPlayed, setMaxPlayed] = useState(0);
   const [toggleDisplay, setToggleDisplay] = useState(true);
-  const [activeTab, setActiveTab] = useState("total-used-champs");
+  const [activeTab, setActiveTab] = useState("total-champs-used");
 
   useEffect(async () => {
     if (!player || !(matches.length % 10 === 0)) {
@@ -17,9 +17,8 @@ export default function RecentChampionSection(props) {
     const newChamps = new Map();
     matches.forEach((match) => {
       const { queueId, participants } = match.info;
-      const { championId, kills, deaths, assists, win } = participants.find(
-        (participant) => participant.puuid === player.puuid
-      );
+      const { championId, championName, kills, deaths, assists, win } =
+        participants.find((participant) => participant.puuid === player.puuid);
       let champData;
       if (!newChamps.has(championId)) {
         newChamps.set(championId, [
@@ -29,6 +28,8 @@ export default function RecentChampionSection(props) {
             assists: 0,
             played: 0,
             wins: 0,
+            name: championName,
+            id: championId,
           },
           {
             kills: 0,
@@ -36,6 +37,8 @@ export default function RecentChampionSection(props) {
             assists: 0,
             played: 0,
             wins: 0,
+            name: championName,
+            id: championId,
           },
           {
             kills: 0,
@@ -43,6 +46,8 @@ export default function RecentChampionSection(props) {
             assists: 0,
             played: 0,
             wins: 0,
+            name: championName,
+            id: championId,
           },
           {
             kills: 0,
@@ -50,6 +55,8 @@ export default function RecentChampionSection(props) {
             assists: 0,
             played: 0,
             wins: 0,
+            name: championName,
+            id: championId,
           },
         ]);
       }
@@ -170,37 +177,24 @@ export default function RecentChampionSection(props) {
             Other
           </button>
         </form>
-        <div className="winrate-table-container">
-          <table className="winrate-table">
-            <thead>
-              <tr className="winrate-table-header">
-                <th>Name</th>
-                <th>Played</th>
-                <th>Winrate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Array.from(usedChamps.entries()).map(([id, values]) => (
-                <ChampionStatBar
-                  key={id}
-                  id={id}
-                  matchTypes={
-                    values[
-                      activeTab === "total-champs-used"
-                        ? 3
-                        : activeTab === "flex-champs-used"
-                        ? 2
-                        : activeTab === "solo-champs-used"
-                        ? 1
-                        : 0
-                    ]
-                  }
-                  maxPlayed={maxPlayed}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <RecentChampionTable
+          usedChamps={Array.from(usedChamps.entries()).map(([id, queues]) => {
+            let champ =
+              queues[
+                activeTab === "total-champs-used"
+                  ? 3
+                  : activeTab === "flex-champs-used"
+                  ? 2
+                  : activeTab === "solo-champs-used"
+                  ? 1
+                  : 0
+              ];
+            champ.winrate = (champ.wins / champ.played) * 100;
+
+            return champ;
+          })}
+          maxPlayed={maxPlayed}
+        />
       </div>
     </div>
   );
