@@ -11,8 +11,20 @@
     font-weight: bold;
 }
 
-.used-champ-kda {
+.used-champ-k\/d\/a, .used-champ-kda {
     font-size: 10px;
+}
+
+.used-champ-k {
+    color: #3cbc8d;
+}
+
+.used-champ-d {
+    color: #d54141;
+}
+
+.used-champ-a {
+    color: #d9a330;
 }
 
 .used-champion-bar td {

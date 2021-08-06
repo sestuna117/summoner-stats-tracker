@@ -24,7 +24,21 @@ export default function ChampionStatBar(props) {
         />
         <div className="used-champ-name-text">
           <div className="used-champ-name">{champion.name}</div>
-          <div className="used-champ-kda">{`${kills} / ${deaths} / ${assists}`}</div>
+          <div className="used-champ-k/d/a">
+            <span className="used-champ-k">{kills}</span>
+            {" / "}
+            <span className="used-champ-d">{deaths}</span>
+            {" / "}
+            <span className="used-champ-a">{assists}</span>
+          </div>
+          <div className="used-champ-kda">
+            {kills + assists === 0
+              ? "0.00:1"
+              : isFinite((kills + assists) / deaths)
+              ? ((kills + assists) / deaths).toFixed(2) + ":1"
+              : "Perfect"}{" "}
+            KDA
+          </div>
         </div>
       </td>
       <td className="champ-played">

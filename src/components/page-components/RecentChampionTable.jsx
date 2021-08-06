@@ -6,7 +6,6 @@ import "./RecentChampionTable.css";
 export default function RecentChampionTable(props) {
   const { usedChamps, maxPlayed } = props;
   const { items, requestSort, sortConfig } = useSortableData(usedChamps);
-  console.log(sortConfig);
   const getClassNamesFor = (name) => {
     if (!sortConfig) {
       return;
@@ -25,7 +24,7 @@ export default function RecentChampionTable(props) {
                 requestSort("name");
               }}
             >
-              Name
+              <span>Name</span>
             </th>
             <th
               className={getClassNamesFor("played")}
@@ -33,7 +32,7 @@ export default function RecentChampionTable(props) {
                 requestSort("played");
               }}
             >
-              Played
+              <span>Played</span>
             </th>
             <th
               className={getClassNamesFor("winrate")}
@@ -41,7 +40,7 @@ export default function RecentChampionTable(props) {
                 requestSort("winrate");
               }}
             >
-              Winrate
+              <span>Winrate</span>
             </th>
           </tr>
         </thead>

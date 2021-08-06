@@ -89,6 +89,9 @@ export default function RecentChampionSection(props) {
         const updatedData = usedChamps.get(id);
         updatedData.forEach((type, index) => {
           Object.keys(type).forEach((stat) => {
+            if (stat === "id" || stat === "name") {
+              return;
+            }
             type[stat] += champData[index][stat];
           });
         });
