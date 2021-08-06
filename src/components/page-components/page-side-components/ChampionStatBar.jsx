@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { ChampionDataContext, DDragonVersionContext } from "../../hook";
-import getChampionIcon from "../../util/getChampionIcon";
+import { ChampionDataContext, DDragonVersionContext } from "../../../hook";
+import getChampionIcon from "../../../util/getChampionIcon";
 import "./ChampionStatBar.css";
-import ProgressBar from "../ProgressBar";
+import ProgressBar from "../../ProgressBar";
 
 export default function ChampionStatBar(props) {
   const { champStats, maxPlayed } = props;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getRankedInfo } from "../../api/services/request.services";
+import { getRankedInfo } from "../../../api/services/request.services";
 import RankedInfo from "./RankedInfo";
 
 const RANKED_TYPES = [

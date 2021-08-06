@@ -1,6 +1,6 @@
 import React from "react";
 import ChampionStatBar from "./ChampionStatBar";
-import useSortableData from "../useSortableData";
+import useSortableData from "../../useSortableData";
 import "./RecentChampionTable.css";
 
 export default function RecentChampionTable(props) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import getRankIcon from "../../util/getRankIcon";
+import getRankIcon from "../../../util/getRankIcon";
 import "./RankedInfo.css";
 
 export default function RankedInfo(props) {

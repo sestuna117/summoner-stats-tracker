@@ -12,10 +12,11 @@ import NavBar from "./NavBar";
 import SummonerInfo from "./SummonerInfo";
 import "./SummonerPage.css";
 import { DDragonVersionContext } from "../../hook";
-import RanksSection from "./RanksSection";
+import RanksSection from "./page-side-components/RanksSection";
 import PageFooter from "./PageFooter";
 import LoadingSpinner from "./LoadingSpinner";
-import RecentChampionSection from "./RecentChampionSection";
+import RecentChampionSection from "./page-side-components/RecentChampionSection";
+import RecentlyPlayedWithSection from "./page-side-components/RecentlyPlayedWithSection";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -143,6 +144,7 @@ export function SummonerPage() {
                 <div className="side-content">
                   <RanksSection data={data} region={region} />
                   <RecentChampionSection matches={matches} player={data} />
+                  <RecentlyPlayedWithSection matches={matches} player={data} />
                 </div>
                 <div className="match-section">
                   <ul className="match-list">{matchViews}</ul>
