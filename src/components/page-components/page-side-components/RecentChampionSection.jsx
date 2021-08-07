@@ -11,10 +11,7 @@ export default function RecentChampionSection(props) {
   const [toggleDisplay, setToggleDisplay] = useState(true);
   const [activeTab, setActiveTab] = useState("total-champs-used");
 
-  useEffect(async () => {
-    if (numOfMatches === 0 || !player || !(matches.length === numOfMatches)) {
-      return;
-    }
+  async function loadChampions() {
     const newChamps = new Map();
     matches.forEach((match) => {
       const { queueId, participants } = match.info;
@@ -99,6 +96,13 @@ export default function RecentChampionSection(props) {
         setUsedChamps(new Map(usedChamps.set(id, updatedData)));
       }
     });
+  }
+
+  useEffect(() => {
+    if (numOfMatches === 0 || !player || !(matches.length === numOfMatches)) {
+      return;
+    }
+    loadChampions();
   }, [matches, player, numOfMatches]);
 
   useEffect(() => {

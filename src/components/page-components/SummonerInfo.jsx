@@ -37,31 +37,33 @@ export default function SummonerInfo(props) {
 
   /* for later mastery addition */
   /*const [champMastery, setChampMastery] = useState();
-                                const [isLoaded, setIsLoaded] = useState(false);
-                            
-                                async function loadChampMasteries() {
-                                    try {
-                                        const result = await getChampMastery(data.id);
-                                        setChampMastery(result);
-                                        console.log(result);
-                                    } catch (e) {
-                                        console.log(e);
-                                    }
-                                }
-                            
-                                useEffect(() => {
-                                    setIsLoaded(false);
-                            
-                                    loadChampMasteries();
-                            
-                                    setIsLoaded(true);
-                                }, [data?.id]);*/
+                                        const [isLoaded, setIsLoaded] = useState(false);
+                                    
+                                        async function loadChampMasteries() {
+                                            try {
+                                                const result = await getChampMastery(data.id);
+                                                setChampMastery(result);
+                                                console.log(result);
+                                            } catch (e) {
+                                                console.log(e);
+                                            }
+                                        }
+                                    
+                                        useEffect(() => {
+                                            setIsLoaded(false);
+                                    
+                                            loadChampMasteries();
+                                    
+                                            setIsLoaded(true);
+                                        }, [data?.id]);*/
 
   return (
     <div
       className="summoner-info"
       style={{
-        backgroundImage: `url(${getChampionSplash(champBGI)})`,
+        backgroundImage: champBGI
+          ? `url(${getChampionSplash(champBGI)})`
+          : "none",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "50% 20%",
       }}

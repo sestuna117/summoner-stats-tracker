@@ -18,6 +18,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import RecentChampionSection from "./page-side-components/RecentChampionSection";
 import RecentlyPlayedWithSection from "./page-side-components/RecentlyPlayedWithSection";
 import cx from "classnames";
+import thinkingCapLogo from "../../icons/thinkingcap.png";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -30,8 +31,8 @@ export function SummonerPage() {
   const query = useQuery(); // Query parameters (the bit after ? in URL)
 
   // Pull data from query parameters and use these to load data
-  const name = query.get("name") ?? "";
-  const region = query.get("region") ?? "na1";
+  const name = query.get("name");
+  const region = query.get("region");
 
   const [data, setData] = useState();
   const [matches, setMatches] = useState([]);
@@ -40,6 +41,9 @@ export function SummonerPage() {
 
   // On page load, if name specified in query parameters, start loading profile
   useEffect(() => {
+    if (!name || !region) {
+      return;
+    }
     if (name.length > 0) {
       getProfile();
     }
@@ -75,14 +79,7 @@ export function SummonerPage() {
     setIsLoading(false);
   };
 
-  useEffect(async () => {
-    if (
-      numMatchesToLoad === 0 ||
-      !data ||
-      !(matches.length === numMatchesToLoad)
-    ) {
-      return;
-    }
+  async function loadMatchViews() {
     matches
       .sort((a, b) => b.info.gameCreation - a.info.gameCreation)
       .forEach((match) => {
@@ -97,6 +94,17 @@ export function SummonerPage() {
           />,
         ]);
       });
+  }
+
+  useEffect(() => {
+    if (
+      numMatchesToLoad === 0 ||
+      !data ||
+      !(matches.length === numMatchesToLoad)
+    ) {
+      return;
+    }
+    loadMatchViews();
   }, [data, matches, numMatchesToLoad]);
 
   async function loadMatches() {
@@ -140,74 +148,85 @@ export function SummonerPage() {
       <div className="top">
         <NavBar onSearch={onSearch} />
       </div>
-      {data && matches && (
-        <div className="body">
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : (
-            <div className="main-body">
-              <SummonerInfo
-                data={data}
-                matches={matches}
-                startMatchIndex={startMatchIndex}
-                numMatchesToLoad={numMatchesToLoad}
-              />
-              <div className="content-menu">
-                <div className="content-menu-tab-container">
-                  <button
-                    className={cx("content-menu-tab", {
-                      "content-menu-tab-active": activeTab === "overview",
-                    })}
-                    type="button"
-                    onClick={() => setActiveTab("overview")}
-                  >
-                    Overview
-                  </button>
-                  {/*<button*/}
-                  {/*  className={cx("content-menu-tab", {*/}
-                  {/*    "content-menu-tab-active": activeTab === "champions",*/}
-                  {/*  })}*/}
-                  {/*  type="button"*/}
-                  {/*  onClick={() => setActiveTab("champions")}*/}
-                  {/*>*/}
-                  {/*  Champions*/}
-                  {/*</button>*/}
-                </div>
-              </div>
-              <div className="content">
-                <div className="side-content">
-                  <RanksSection data={data} region={region} />
-                  <RecentChampionSection
-                    matches={matches}
-                    player={data}
-                    numOfMatches={numMatchesToLoad}
-                  />
-                  <RecentlyPlayedWithSection
-                    matches={matches}
-                    player={data.puuid}
-                    numOfMatches={numMatchesToLoad}
-                  />
-                </div>
-                <div className="match-section">
-                  <ul className="match-list">{matchViews}</ul>
-                  {isLoadingMatches ? (
-                    <LoadingSpinner isMatch={true} />
-                  ) : (
-                    <button
-                      className="show-more-button"
-                      onClick={() => {
-                        setStartMatchIndex((prev) => prev + 10);
-                        setMatches([]);
-                      }}
-                    >
-                      Show More
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
+      {!name || !region ? (
+        <div className="body body-home">
+          <img
+            className="site-logo"
+            src={thinkingCapLogo}
+            alt={thinkingCapLogo}
+          />
         </div>
+      ) : (
+        data &&
+        matches && (
+          <div className="body">
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <div className="main-body">
+                <SummonerInfo
+                  data={data}
+                  matches={matches}
+                  startMatchIndex={startMatchIndex}
+                  numMatchesToLoad={numMatchesToLoad}
+                />
+                <div className="content-menu">
+                  <div className="content-menu-tab-container">
+                    <button
+                      className={cx("content-menu-tab", {
+                        "content-menu-tab-active": activeTab === "overview",
+                      })}
+                      type="button"
+                      onClick={() => setActiveTab("overview")}
+                    >
+                      Overview
+                    </button>
+                    {/*<button*/}
+                    {/*  className={cx("content-menu-tab", {*/}
+                    {/*    "content-menu-tab-active": activeTab === "champions",*/}
+                    {/*  })}*/}
+                    {/*  type="button"*/}
+                    {/*  onClick={() => setActiveTab("champions")}*/}
+                    {/*>*/}
+                    {/*  Champions*/}
+                    {/*</button>*/}
+                  </div>
+                </div>
+                <div className="content">
+                  <div className="side-content">
+                    <RanksSection data={data} region={region} />
+                    <RecentChampionSection
+                      matches={matches}
+                      player={data}
+                      numOfMatches={numMatchesToLoad}
+                    />
+                    <RecentlyPlayedWithSection
+                      matches={matches}
+                      player={data.puuid}
+                      numOfMatches={numMatchesToLoad}
+                    />
+                  </div>
+                  <div className="match-section">
+                    <ul className="match-list">{matchViews}</ul>
+                    {isLoadingMatches ? (
+                      <LoadingSpinner isMatch={true} />
+                    ) : (
+                      <button
+                        className="show-more-button"
+                        onClick={() => {
+                          setStartMatchIndex((prev) => prev + 10);
+                          setMatches([]);
+                        }}
+                      >
+                        Show More
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )
       )}
       <PageFooter />
     </div>

@@ -1,16 +1,24 @@
 .summoner-info {
     display: flex;
     padding-top: 30px;
-    padding-bottom: 50px;
-    width: 70%;
+    padding-bottom: 80px;
+    width: 75%;
     color: #eaeaea;
 }
 
 .profile-icon {
     margin-left: 10%;
-    width: 150px;
+    width: 100px;
 }
 
 .summoner-text {
     padding-left: 10px;
+}
+
+.summoner-text h2 {
+    margin-bottom: 5px;
+}
+
+.summoner-text p {
+    margin: 0;
 }

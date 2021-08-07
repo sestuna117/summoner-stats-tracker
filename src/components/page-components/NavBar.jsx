@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./NavBar.css";
 import { Link } from "react-router-dom";
 import REGIONS from "../../api/util/regions";
+import { FaSearch } from "react-icons/fa";
 
 export default function NavBar(props) {
   const { onSearch } = props;
@@ -15,6 +16,7 @@ export default function NavBar(props) {
       </Link>
       <div className="navbar-right">
         <form
+          className="navbar-search"
           onSubmit={(event) => {
             event.preventDefault();
             onSearch(searchName, searchRegion);
@@ -22,18 +24,22 @@ export default function NavBar(props) {
           }}
         >
           <input
+            className="navbar-search-bar"
             value={searchName}
             type={"text"}
             placeholder={"Input Summoner Name..."}
             onChange={(e) => setSearchName(e.target.value)}
           />
-          <button type={"submit"}>Search</button>
+          <button className="navbar-search-bar-button" type={"submit"}>
+            <FaSearch />
+          </button>
           <select
+            className="navbar-search-bar-region-selected"
             value={searchRegion}
             onChange={(e) => setSearchRegion(e.target.value)}
           >
             {Object.entries(REGIONS).map(([id, { name }]) => (
-              <option key={id} value={id}>
+              <option className="navbar-search-bar-region" key={id} value={id}>
                 {name}
               </option>
             ))}
