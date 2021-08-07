@@ -36,6 +36,7 @@
 }
 
 .navbar-search-bar-region-selected {
+    font-weight: bold;
     padding-left: 5px;
     margin-right: 10px;
     margin-left: 10px;
@@ -50,4 +51,8 @@
 .navbar-search-bar-region-selected:hover {
     background-color: #7f38a0;
     cursor: pointer;
+}
+
+.navbar-search-bar-region {
+    font-weight: bold;
 }

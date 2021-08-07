@@ -19,6 +19,8 @@ import RecentChampionSection from "./page-side-components/RecentChampionSection"
 import RecentlyPlayedWithSection from "./page-side-components/RecentlyPlayedWithSection";
 import cx from "classnames";
 import thinkingCapLogo from "../../icons/thinkingcap.png";
+import DefaultHomePage from "./DefaultHomePage";
+import ErrorPage from "./ErrorPage";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -26,6 +28,7 @@ export function SummonerPage() {
   const [isLoadingMatches, setIsLoadingMatches] = useState(false);
   const [numMatchesToLoad, setNumMatchesToLoad] = useState(0);
   const [activeTab, setActiveTab] = useState("overview");
+  const [availableData, setAvailableData] = useState(true);
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -70,8 +73,13 @@ export function SummonerPage() {
     try {
       const result = await getSumByName(name, region);
       console.log(result);
-      setData(result);
-      await loadMatches();
+      if (!result) {
+        setAvailableData(false);
+      } else {
+        setData(result);
+        await loadMatches();
+        setAvailableData(true);
+      }
     } catch (e) {
       console.error(e);
     }
@@ -142,20 +150,17 @@ export function SummonerPage() {
     }
     loadMatches();
   }, [startMatchIndex, matches]);
+  console.log(availableData);
 
   return (
     <div className="page">
       <div className="top">
         <NavBar onSearch={onSearch} />
       </div>
-      {!name || !region ? (
-        <div className="body body-home">
-          <img
-            className="site-logo"
-            src={thinkingCapLogo}
-            alt={thinkingCapLogo}
-          />
-        </div>
+      {!name && !region ? (
+        <DefaultHomePage onSearch={onSearch} />
+      ) : !availableData ? (
+        <ErrorPage />
       ) : (
         data &&
         matches && (
