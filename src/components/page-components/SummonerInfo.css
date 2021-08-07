@@ -1,8 +1,13 @@
 .summoner-info {
     display: flex;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    width: 70%;
+    color: #eaeaea;
 }
 
 .profile-icon {
+    margin-left: 10%;
     width: 150px;
 }
 

@@ -35,6 +35,31 @@ body {
     font-size: 15px;
 }
 
+.content-menu {
+    width: 100%;
+    border-top: #adadad 1px solid;
+}
+
+.content-menu-tab-container {
+    display: flex;
+    margin-left: 20%;
+}
+
+.content-menu-tab {
+    font-size: 14px;
+    position: relative;
+    padding: 10px 15px;
+    bottom: 38px;
+    background-color: #cecece;
+    margin-left: 15px;
+    border: #adadad 1px solid;
+}
+
+.content-menu-tab-active {
+    background-color: #eaeaea;
+    border-bottom: #eaeaea 1px solid;
+}
+
 .content {
     margin-top: 30px;
     display: flex;

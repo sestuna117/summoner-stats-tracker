@@ -17,12 +17,14 @@ import PageFooter from "./PageFooter";
 import LoadingSpinner from "./LoadingSpinner";
 import RecentChampionSection from "./page-side-components/RecentChampionSection";
 import RecentlyPlayedWithSection from "./page-side-components/RecentlyPlayedWithSection";
+import cx from "classnames";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingMatches, setIsLoadingMatches] = useState(false);
   const [numMatchesToLoad, setNumMatchesToLoad] = useState(0);
+  const [activeTab, setActiveTab] = useState("overview");
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -144,7 +146,34 @@ export function SummonerPage() {
             <LoadingSpinner />
           ) : (
             <div className="main-body">
-              <SummonerInfo data={data} dDragon={dDragon} />
+              <SummonerInfo
+                data={data}
+                matches={matches}
+                startMatchIndex={startMatchIndex}
+                numMatchesToLoad={numMatchesToLoad}
+              />
+              <div className="content-menu">
+                <div className="content-menu-tab-container">
+                  <button
+                    className={cx("content-menu-tab", {
+                      "content-menu-tab-active": activeTab === "overview",
+                    })}
+                    type="button"
+                    onClick={() => setActiveTab("overview")}
+                  >
+                    Overview
+                  </button>
+                  {/*<button*/}
+                  {/*  className={cx("content-menu-tab", {*/}
+                  {/*    "content-menu-tab-active": activeTab === "champions",*/}
+                  {/*  })}*/}
+                  {/*  type="button"*/}
+                  {/*  onClick={() => setActiveTab("champions")}*/}
+                  {/*>*/}
+                  {/*  Champions*/}
+                  {/*</button>*/}
+                </div>
+              </div>
               <div className="content">
                 <div className="side-content">
                   <RanksSection data={data} region={region} />
