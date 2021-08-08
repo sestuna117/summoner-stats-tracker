@@ -21,7 +21,7 @@
 .navbar-search-bar {
     border: none;
     outline: none;
-    border-radius: 5%;
+    border-radius: 8px;
     padding: 8px 40px 8px 15px;
 }
 
