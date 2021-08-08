@@ -18,9 +18,9 @@ import LoadingSpinner from "./LoadingSpinner";
 import RecentChampionSection from "./page-side-components/RecentChampionSection";
 import RecentlyPlayedWithSection from "./page-side-components/RecentlyPlayedWithSection";
 import cx from "classnames";
-import thinkingCapLogo from "../../icons/thinkingcap.png";
 import DefaultHomePage from "./DefaultHomePage";
 import ErrorPage from "./ErrorPage";
+import { IoAlertCircleOutline } from "react-icons/all";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -72,7 +72,6 @@ export function SummonerPage() {
 
     try {
       const result = await getSumByName(name, region);
-      console.log(result);
       if (!result) {
         setAvailableData(false);
       } else {
@@ -150,7 +149,6 @@ export function SummonerPage() {
     }
     loadMatches();
   }, [startMatchIndex, matches]);
-  console.log(availableData);
 
   return (
     <div className="page">
@@ -211,22 +209,35 @@ export function SummonerPage() {
                       numOfMatches={numMatchesToLoad}
                     />
                   </div>
-                  <div className="match-section">
-                    <ul className="match-list">{matchViews}</ul>
-                    {isLoadingMatches ? (
-                      <LoadingSpinner isMatch={true} />
-                    ) : (
-                      <button
-                        className="show-more-button"
-                        onClick={() => {
-                          setStartMatchIndex((prev) => prev + 10);
-                          setMatches([]);
-                        }}
-                      >
-                        Show More
-                      </button>
-                    )}
-                  </div>
+                  {startMatchIndex === 0 && matches.length === 0 ? (
+                    <div className="no-matches-msg">
+                      <IoAlertCircleOutline className="alert-icon" />
+                      <p>Could not retrieve recorded data on Summoner.</p>
+                      <p>Please try again.</p>
+                    </div>
+                  ) : (
+                    <div className="match-section">
+                      <ul className="match-list">{matchViews}</ul>
+                      {isLoadingMatches ? (
+                        <LoadingSpinner isMatch={true} />
+                      ) : startMatchIndex > 0 && matches.length === 0 ? (
+                        <div className="no-matches-msg">
+                          <IoAlertCircleOutline className="alert-icon" />
+                          <p>No more recorded matches</p>
+                        </div>
+                      ) : (
+                        <button
+                          className="show-more-button"
+                          onClick={() => {
+                            setStartMatchIndex((prev) => prev + 10);
+                            setMatches([]);
+                          }}
+                        >
+                          Show More
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             )}

@@ -13,7 +13,8 @@ export default function SummonerInfo(props) {
     if (
       !data ||
       !(startMatchIndex === 0) ||
-      !(matches.length === numMatchesToLoad)
+      !(matches.length === numMatchesToLoad) ||
+      matches.length === 0
     ) {
       return;
     }
@@ -28,7 +29,6 @@ export default function SummonerInfo(props) {
         champs.set(champ, champs.get(champ) + 1);
       }
     });
-    console.log(champs);
     const id = Array.from(champs.entries()).reduce((a, b) =>
       b[1] > a[1] ? b : a
     )[0];
@@ -37,25 +37,25 @@ export default function SummonerInfo(props) {
 
   /* for later mastery addition */
   /*const [champMastery, setChampMastery] = useState();
-                                        const [isLoaded, setIsLoaded] = useState(false);
-                                    
-                                        async function loadChampMasteries() {
-                                            try {
-                                                const result = await getChampMastery(data.id);
-                                                setChampMastery(result);
-                                                console.log(result);
-                                            } catch (e) {
-                                                console.log(e);
-                                            }
-                                        }
-                                    
-                                        useEffect(() => {
-                                            setIsLoaded(false);
-                                    
-                                            loadChampMasteries();
-                                    
-                                            setIsLoaded(true);
-                                        }, [data?.id]);*/
+                                                  const [isLoaded, setIsLoaded] = useState(false);
+                                              
+                                                  async function loadChampMasteries() {
+                                                      try {
+                                                          const result = await getChampMastery(data.id);
+                                                          setChampMastery(result);
+                                                          console.log(result);
+                                                      } catch (e) {
+                                                          console.log(e);
+                                                      }
+                                                  }
+                                              
+                                                  useEffect(() => {
+                                                      setIsLoaded(false);
+                                              
+                                                      loadChampMasteries();
+                                              
+                                                      setIsLoaded(true);
+                                                  }, [data?.id]);*/
 
   return (
     <div
@@ -63,7 +63,7 @@ export default function SummonerInfo(props) {
       style={{
         backgroundImage: champBGI
           ? `url(${getChampionSplash(champBGI)})`
-          : "none",
+          : "url(https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/gamemodeassets/classic_sru/img/gameflow-background.jpg)",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "50% 20%",
       }}

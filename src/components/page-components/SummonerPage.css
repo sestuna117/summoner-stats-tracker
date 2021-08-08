@@ -85,7 +85,26 @@ body {
 .match-section {
     display: flex;
     flex-direction: column;
+}
+
+.no-matches-msg {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: #adadad 1px solid;
+    width: 800px;
+    font-size: 14px;
+}
+
+.match-section .no-matches-msg .alert-icon {
+    padding-top: 10px;
+    height: 50px;
+}
+
+.alert-icon {
+    height: 100px;
+    width: 80px;
 }
 
 .match-list {
