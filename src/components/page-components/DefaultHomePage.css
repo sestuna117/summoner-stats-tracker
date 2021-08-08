@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
 .site-name {
+    font-family: 'Gloria Hallelujah', cursive;
     color: #eaeaea;
-    font-size: 50px;
-    padding: 20px 40px;
-    background-color: rgba(162, 88, 196, 0.95);
+    font-size: 65px;
+    text-decoration: underline;
+    padding: 0 40px 10px;
+    background-color: rgba(162, 88, 196, 0.9);
     border-radius: 10px;
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    margin: 0 0 50px;
 }
 
 .main-search {
