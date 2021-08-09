@@ -3,7 +3,8 @@ import "./TeamAnalytics.css";
 import DuoVerticalBarCharts from "./DuoVerticalBarCharts";
 
 export default function TeamAnalytics(props) {
-  const { participants, rolePairs } = props;
+  const { participants, rolePairs, map } = props;
+  console.log(map);
 
   return (
     <div className="team-analytics">
@@ -57,16 +58,18 @@ export default function TeamAnalytics(props) {
           ])}
         />
       </div>
-      <div className="team-stat">
-        <span className="stat-title">Wards Placed</span>
-        <DuoVerticalBarCharts
-          participants={participants}
-          rolePairs={Array.from(rolePairs.values()).map((pair) => [
-            pair[0].wardsPlaced,
-            pair[1].wardsPlaced,
-          ])}
-        />
-      </div>
+      {map === 11 ? (
+        <div className="team-stat">
+          <span className="stat-title">Wards Placed</span>
+          <DuoVerticalBarCharts
+            participants={participants}
+            rolePairs={Array.from(rolePairs.values()).map((pair) => [
+              pair[0].wardsPlaced,
+              pair[1].wardsPlaced,
+            ])}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

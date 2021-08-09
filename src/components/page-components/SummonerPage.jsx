@@ -29,7 +29,7 @@ export function SummonerPage() {
   const [numMatchesToLoad, setNumMatchesToLoad] = useState(0);
   const [activeTab, setActiveTab] = useState("overview");
   const [availableData, setAvailableData] = useState(true);
-  const [theme, setTheme] = useState("light-mode");
+  const [theme, setTheme] = useState("dark-mode");
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)

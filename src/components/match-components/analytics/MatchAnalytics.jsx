@@ -163,7 +163,11 @@ export default function MatchAnalytics(props) {
           "active-sub-tab": activeTab === "team-analytics",
         })}
       >
-        <TeamAnalytics participants={participants} rolePairs={rolePairs} />
+        <TeamAnalytics
+          participants={participants}
+          rolePairs={rolePairs}
+          map={match.mapId}
+        />
       </div>
       <div
         className={cx("tab-content", {
