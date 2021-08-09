@@ -6,7 +6,7 @@ export default function ToggleSwitch(props) {
 
   return (
     <label className="switch">
-      <input type="checkbox" onClick={() => event()} checked={isChecked} />
+      <input type="checkbox" onChange={() => event()} checked={isChecked} />
       <span className="slider round" />
     </label>
   );

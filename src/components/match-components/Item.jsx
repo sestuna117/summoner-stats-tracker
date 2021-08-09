@@ -10,8 +10,8 @@ export default function Item(props) {
   const dDragon = useContext(DDragonVersionContext);
   const itemData = useContext(ItemDataContext);
 
-  let itemInfo = Object.values(itemData.data).find(
-    (item) => parseInt(item) === itemId
+  let itemInfo = Object.entries(itemData.data).find(
+    (item) => parseInt(item[0]) === itemId
   );
 
   return isNoItem ? (
@@ -23,7 +23,7 @@ export default function Item(props) {
       <img
         className="item-sprite"
         src={getItemIcon(itemId, dDragon)}
-        alt={`${itemInfo?.name}`}
+        alt={`${itemInfo[1].name}`}
       />
     </div>
   );

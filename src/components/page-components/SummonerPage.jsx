@@ -32,7 +32,7 @@ export function SummonerPage() {
   const [theme, setTheme] = useState("light-mode");
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       const page = document.querySelector(".page");
       const thematic = localStorage.getItem("theme");
       if (thematic) {
@@ -41,6 +41,16 @@ export function SummonerPage() {
       console.log(page);
     }, 500);
   }, []);
+
+  const changeTheme = () => {
+    if (theme === "light-mode") {
+      setTheme("dark-mode");
+      localStorage.setItem("theme", "dark-mode");
+    } else {
+      setTheme("light-mode");
+      localStorage.setItem("theme", "light-mode");
+    }
+  };
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -70,16 +80,6 @@ export function SummonerPage() {
     // TODO https://reactrouter.com/web/example/basic
     const queryString = qs.stringify({ name, region }); // Turns name and region in to '?name=NAME&region=REGION'
     history.push({ search: queryString }); // Update page URL with new query parameters
-  };
-
-  const changeTheme = () => {
-    if (theme === "light-mode") {
-      setTheme("dark-mode");
-      localStorage.setItem("theme", "dark-mode");
-    } else {
-      setTheme("light-mode");
-      localStorage.setItem("theme", "light-mode");
-    }
   };
 
   const onSearch = (name, region) => {
