@@ -3,9 +3,10 @@ import "./NavBar.css";
 import { Link } from "react-router-dom";
 import REGIONS from "../../api/util/regions";
 import { FaSearch } from "react-icons/fa";
+import ToggleSwitch from "../ToggleSwitch";
 
 export default function NavBar(props) {
-  const { onSearch } = props;
+  const { onSearch, changeTheme, theme } = props;
   const [searchName, setSearchName] = useState("");
   const [searchRegion, setSearchRegion] = useState("na1");
 
@@ -15,6 +16,7 @@ export default function NavBar(props) {
         THINKING CAP
       </Link>
       <div className="navbar-right">
+        <ToggleSwitch event={changeTheme} isChecked={theme === "dark-mode"} />
         <form
           className="navbar-search"
           onSubmit={(event) => {

@@ -29,7 +29,18 @@ export function SummonerPage() {
   const [numMatchesToLoad, setNumMatchesToLoad] = useState(0);
   const [activeTab, setActiveTab] = useState("overview");
   const [availableData, setAvailableData] = useState(true);
-  const [theme, setTheme] = useState("dark-mode");
+  const [theme, setTheme] = useState("light-mode");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const page = document.querySelector(".page");
+      const thematic = localStorage.getItem("theme");
+      if (thematic) {
+        setTheme(thematic);
+      }
+      console.log(page);
+    }, 500);
+  }, []);
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -61,7 +72,15 @@ export function SummonerPage() {
     history.push({ search: queryString }); // Update page URL with new query parameters
   };
 
-  const changeTheme = () => {};
+  const changeTheme = () => {
+    if (theme === "light-mode") {
+      setTheme("dark-mode");
+      localStorage.setItem("theme", "dark-mode");
+    } else {
+      setTheme("light-mode");
+      localStorage.setItem("theme", "light-mode");
+    }
+  };
 
   const onSearch = (name, region) => {
     setQueryParams(name, region); // Updates page URL
@@ -156,7 +175,7 @@ export function SummonerPage() {
   return (
     <div id={"page-theme"} className={`page ${theme}`}>
       <div className="top">
-        <NavBar onSearch={onSearch} />
+        <NavBar onSearch={onSearch} changeTheme={changeTheme} theme={theme} />
       </div>
       {!name && !region ? (
         <DefaultHomePage onSearch={onSearch} />

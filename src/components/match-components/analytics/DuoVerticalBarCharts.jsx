@@ -11,7 +11,6 @@ import {
   LabelList,
 } from "recharts";
 import "./DuoVerticalBarCharts.css";
-import CustomTooltip from "./CustomTooltip";
 import CustomBarTooltip from "./CustomBarTooltip";
 
 export default function DuoVerticalBarCharts(props) {

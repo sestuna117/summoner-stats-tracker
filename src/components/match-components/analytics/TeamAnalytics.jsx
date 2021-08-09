@@ -4,7 +4,6 @@ import DuoVerticalBarCharts from "./DuoVerticalBarCharts";
 
 export default function TeamAnalytics(props) {
   const { participants, rolePairs, map } = props;
-  console.log(map);
 
   return (
     <div className="team-analytics">

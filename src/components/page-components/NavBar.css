@@ -14,6 +14,15 @@
     font-size: 20px;
 }
 
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .switch {
+    margin-right: 20px;
+}
+
 .navbar-search {
     font-size: 16px;
 }
