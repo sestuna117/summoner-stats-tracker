@@ -1,3 +1,5 @@
+@import "../Themes.css";
+
 .tabs {
     display: flex;
     justify-content: space-evenly;
@@ -6,16 +8,17 @@
 }
 
 .tabs .tab {
+    color: var(--text);
     font-size: 14px;
     text-align: center;
     position: relative;
     height: 30px;
     bottom: -1px;
-    background-color: #f2f2f2;
+    background-color: var(--tab-background);
     min-width: 220px;
     padding-top: 5px;
     margin-top: 8px;
-    border: #adadad solid 1px;
+    border: var(--border) solid 1px;
     z-index: 2;
 }
 
@@ -30,19 +33,19 @@
 }
 
 .tabs .tab:hover {
-    background-color: #ffffff;
+    background-color: var(--inner-tab-background);
     cursor: pointer;
 }
 
 .tabs .tab-open {
     font-size: 15px;
     font-weight: bold;
-    background-color: #ffffff;
-    border-bottom: #ffffff solid 1px;
+    background-color: var(--inner-tab-background);
+    border-bottom: var(--inner-tab-background) solid 1px;
 }
 
 .full-match-detail {
-    background-color: #eaeaea;
+    background-color: var(--background);
     display: none;
 }
 

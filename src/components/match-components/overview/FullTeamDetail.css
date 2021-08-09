@@ -1,3 +1,5 @@
+@import "../../Themes.css";
+
 .full-data-table {
     width: 100%;
     border-collapse: collapse;
@@ -5,11 +7,11 @@
 }
 
 .table-blue {
-    background-color: #aacbfc;
+    background-color: var(--team-blue);
 }
 
 .table-red {
-    background-color: #ffb3ad;
+    background-color: var(--team-red);
 }
 
 .data-row, .data-header {

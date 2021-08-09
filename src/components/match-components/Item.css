@@ -1,9 +1,11 @@
+@import "../Themes.css";
+
 .item, .no-item {
     background-color: #e4e4e4;
     display: inline-block;
     width: 23px;
     height: 23px;
-    border: #adadad 1px solid;
+    border: var(--border) 1px solid;
 }
 
 .item-sprite, .no-item {

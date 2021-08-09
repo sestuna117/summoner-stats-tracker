@@ -1,0 +1,47 @@
+:root {
+    --white1: #ffffff;
+    --white2: #f2f2f2;
+    --white3: #eaeaea;
+    --gray1: #adadad;
+    --gray2: #6f6f6f;
+    --gray3: #36393f;
+    --gray4: #2f3136;
+    --gray5: #202225;
+    --black: #000000;
+    --blue1: #aacbfc;
+    --blue2: #7db2ff;
+    --blue3: #4782b3;
+    --blue4: #336d9e;
+    --red1: #ffb3ad;
+    --red2: #ff938b;
+    --red3: #b65c6f;
+    --red4: #9e4155;
+}
+
+.light-mode {
+    --text: var(--black);
+    --subtext: var(--gray2);
+    --subsubtext: var(--gray4);
+    --border: var(--gray1);
+    --background: var(--white3);
+    --tab-background: var(--white2);
+    --inner-tab-background: var(--white1);
+    --match-blue: var(--blue2);
+    --team-blue: var(--blue1);
+    --match-red: var(--red2);
+    --team-red: var(--red1);
+}
+
+.dark-mode {
+    --text: var(--white3);
+    --subtext: var(--gray1);
+    --subsubtext: var(--gray2);
+    --border: var(--gray2);
+    --background: var(--gray3);
+    --tab-background: var(--gray4);
+    --inner-tab-background: var(--gray5);
+    --match-blue: var(--blue4);
+    --team-blue: var(--blue3);
+    --match-red: var(--red4);
+    --team-red: var(--red3);
+}

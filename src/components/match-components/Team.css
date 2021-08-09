@@ -1,3 +1,5 @@
+@import "../Themes.css";
+
 .team {
     font-size: 12px;
     list-style: none;
@@ -10,9 +12,9 @@
 }
 
 .team-blue {
-    background-color: #7db2ff;
+    background-color: var(--match-blue);
 }
 
 .team-red {
-    background-color: #ff938b;
+    background-color: var(--match-red);
 }

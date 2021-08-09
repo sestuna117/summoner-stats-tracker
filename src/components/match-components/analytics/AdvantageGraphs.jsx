@@ -1,5 +1,4 @@
 import React from "react";
-import "./AdvantageGraphs.css";
 import GoldGraph from "./GoldGraph";
 import KillGraph from "./KillGraph";
 

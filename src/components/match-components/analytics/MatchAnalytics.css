@@ -1,12 +1,15 @@
+@import "../../Themes.css";
+
 .sub-tabs {
     display: flex;
     align-items: flex-end;
 }
 
 .sub-tabs button {
+    color: var(--subtext);
     font-size: 14px;
     height: 25px;
-    background-color: #ffffff;
+    background-color: var(--inner-tab-background);
     min-width: 150px;
     padding-top: 2px;
     padding-bottom: 10px;
@@ -16,13 +19,13 @@
 
 .sub-tabs .sub-tab-open {
     font-weight: bold;
-    background-color: #ffffff;
+    background-color: var(--inner-tab-background);
     box-shadow: inset 0 -3px 0 #a258c4;
     color: #a258c4;
 }
 
 .sub-tabs button:hover {
-    background-color: #ffffff;
+    background-color: var(--inner-tab-background);
     color: #a258c4;
 }
 

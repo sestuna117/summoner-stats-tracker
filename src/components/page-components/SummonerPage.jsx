@@ -29,6 +29,7 @@ export function SummonerPage() {
   const [numMatchesToLoad, setNumMatchesToLoad] = useState(0);
   const [activeTab, setActiveTab] = useState("overview");
   const [availableData, setAvailableData] = useState(true);
+  const [theme, setTheme] = useState("light-mode");
 
   const history = useHistory(); // Search history (page URL etc.)
   const query = useQuery(); // Query parameters (the bit after ? in URL)
@@ -48,6 +49,7 @@ export function SummonerPage() {
       return;
     }
     if (name.length > 0) {
+      setStartMatchIndex(0);
       getProfile();
     }
   }, [name, region]);
@@ -59,8 +61,9 @@ export function SummonerPage() {
     history.push({ search: queryString }); // Update page URL with new query parameters
   };
 
+  const changeTheme = () => {};
+
   const onSearch = (name, region) => {
-    setStartMatchIndex(0);
     setQueryParams(name, region); // Updates page URL
   };
 
@@ -151,7 +154,7 @@ export function SummonerPage() {
   }, [startMatchIndex, matches]);
 
   return (
-    <div className="page">
+    <div id={"page-theme"} className={`page ${theme}`}>
       <div className="top">
         <NavBar onSearch={onSearch} />
       </div>

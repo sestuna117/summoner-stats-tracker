@@ -1,18 +1,23 @@
 @import "../../Themes.css";
 
-.custom-tooltip {
+.custom-bar-tooltip {
+    width: 150px;
     background-color: var(--tab-background);
     border: var(--border) 1px solid;
     box-shadow: inset 0 -9px #a258c4;
-    padding: 5px;
     border-radius: 5%;
+    padding: 5px 5px 12px;
 }
 
-.custom-tooltip p {
+.custom-bar-tooltip .label, .custom-bar-tooltip p {
     margin: 3px;
     font-size: 14px;
 }
 
-.custom-tooltip p:last-child {
-    margin-bottom: 8px;
+.label-blue {
+    color: var(--match-blue);
+}
+
+.label-red {
+    color: var(--match-red);
 }

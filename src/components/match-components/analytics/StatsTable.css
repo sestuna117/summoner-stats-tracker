@@ -1,3 +1,5 @@
+@import "../../Themes.css";
+
 .stats-table .champ-sprite {
     height: 40px;
     width: 40px;
@@ -16,17 +18,18 @@
 }
 
 .stats-table {
+    color: var(--subtext);
     width: 100%;
     text-align: center;
-    border: #adadad 1px solid;
+    border: var(--border) 1px solid;
     border-top: #a258c4 5px solid;
     border-collapse: collapse;
     font-size: 14px;
 }
 
 .table-section tr:not(:first-child):hover {
-    background-image: linear-gradient(to right, #d7b0e8, #a258c4);
-    color: #ffffff;
+    background-color: #a258c4;
+    color: #f8f8f8;
 }
 
 .stats-table th, .stats-table td {
@@ -38,6 +41,6 @@
 }
 
 .table-section-title {
-    background-color: #f8f8f8;
-    border: #adadad 2px solid;
+    background-color: var(--tab-background);
+    border: var(--border) 2px solid;
 }

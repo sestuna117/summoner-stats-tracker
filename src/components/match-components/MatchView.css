@@ -1,3 +1,5 @@
+@import "../Themes.css";
+
 .bold {
     font-weight: bold;
 }
@@ -9,8 +11,8 @@
 .match {
     list-style: none;
     margin-bottom: 4px;
-    background-color: #eaeaea;
-    border: 1px solid #adadad;
+    background-color: var(--background);
+    border: 1px solid var(--border);
     /*box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);*/
 }
 
@@ -19,7 +21,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid #adadad;
+    border-bottom: 1px solid var(--border);;
     font-size: 14px;
 }
 
@@ -71,18 +73,19 @@
 }
 
 .data-header {
-    background-color: #ffffff;
+    background-color: var(--inner-tab-background);
     height: 30px;
-    border-top: #adadad solid 1px;
-    border-bottom: #adadad solid 1px;
+    border-top: var(--border) solid 1px;
+    border-bottom: var(--border) solid 1px;
 }
 
 .dropdown-match-button {
+    color: var(--text);
     display: block;
     height: 118px;
     width: 30px;
     border-width: 0;
-    background-color: #f2f2f2;
+    background-color: var(--tab-background);
 }
 
 .kda-info {
@@ -94,12 +97,13 @@
 }
 
 .kda-subtext {
+    color: var(--subsubtext);
     font-weight: bold;
     font-size: 12px;
 }
 
 .match-remake, .match-remake .team {
-    background-color: #adadad;
+    background-color: var(--border);
 }
 
 .match-remake .match-result {

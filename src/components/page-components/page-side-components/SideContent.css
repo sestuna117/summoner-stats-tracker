@@ -1,8 +1,10 @@
+@import "../../Themes.css";
+
 .side-section {
     display: flex;
     width: 300px;
-    background-color: #f2f2f2;
-    border: 1px solid #adadad;
+    background-color: var(--tab-background);
+    border: 1px solid var(--border);
     font-size: 12px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -15,9 +17,9 @@
     font-size: 12px;
     font-weight: bold;
     padding: 10px;
-    color: #6f6f6f;
-    background-color: #f2f2f2;
-    border-bottom: #adadad 1px solid;
+    color: var(--subtext);
+    background-color: var(--tab-background);
+    border-bottom: var(--border) 1px solid;
 }
 
 .side-section-dropdown {

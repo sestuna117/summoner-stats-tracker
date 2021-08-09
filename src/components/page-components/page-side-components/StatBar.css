@@ -1,8 +1,10 @@
+@import "../../Themes.css";
+
 .used-champion-bar .progress-bar, .played-with-bar .progress-bar {
     width: 50px;
     height: 12px;
     border: none;
-    background-color: #f2f2f2;
+    background-color: var(--tab-background);
 }
 
 .progress-played .progress-bar-fill {

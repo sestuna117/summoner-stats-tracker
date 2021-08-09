@@ -22,7 +22,7 @@ export default function TeamObjectiveInfo(props) {
     {
       name: "kda",
       img: getMatchHistoryIcon("kills", ""),
-      data: `${champion.kills}/${deaths}/${assists}`,
+      data: `${champion.kills} / ${deaths} / ${assists}`,
     },
     {
       name: "gold",

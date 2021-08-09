@@ -11,10 +11,14 @@ import {
   LabelList,
 } from "recharts";
 import "./DuoVerticalBarCharts.css";
+import CustomTooltip from "./CustomTooltip";
+import CustomBarTooltip from "./CustomBarTooltip";
 
 export default function DuoVerticalBarCharts(props) {
   const { participants, rolePairs } = props;
   const [data, setData] = useState([]);
+  const theme = document.getElementById("page-theme").className;
+  const isDark = theme === "page dark-mode";
 
   function createData() {
     if (!rolePairs) {
@@ -63,15 +67,15 @@ export default function DuoVerticalBarCharts(props) {
             fontSize="12"
             width={0}
           />
-          <Tooltip />
-          <Bar dataKey="Blue" fill="#7db2ff" stackId="a">
+          <Tooltip content={<CustomBarTooltip />} />
+          <Bar dataKey="Blue" fill={isDark ? "#336d9e" : "#7db2ff"} stackId="a">
             <LabelList
               dataKey="Blue"
               position="center"
               content={renderCustomizedLabel}
             />
           </Bar>
-          <Bar dataKey="Red" fill="#ff938b" stackId="a">
+          <Bar dataKey="Red" fill={isDark ? "#9e4155" : "#ff938b"} stackId="a">
             <LabelList
               dataKey="Red"
               position="center"

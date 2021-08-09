@@ -1,10 +1,12 @@
+@import "../../Themes.css";
+
 .ability-level-slot {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 40%;
     height: 35px;
-    border-top: #adadad 1px solid;
+    border-top: var(--border) 1px solid;
 }
 
 .ability-slot-active {

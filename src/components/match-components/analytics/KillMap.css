@@ -1,10 +1,12 @@
+@import "../../Themes.css";
+
 .kill-map-container {
     width: 95%;
     display: flex;
     justify-content: center;
     padding: 5px;
-    border-top: #adadad 3px solid;
-    border-bottom: #adadad 3px solid;
+    border-top: var(--border) 3px solid;
+    border-bottom: var(--border) 3px solid;
 }
 
 .kill-map {
@@ -17,8 +19,8 @@
     width: 50%;
     margin: auto;
     border-radius: 5%;
-    border: #adadad 2px solid;
-    background-color: #f2f2f2;
+    border: var(--border) 2px solid;
+    background-color: var(--tab-background);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
