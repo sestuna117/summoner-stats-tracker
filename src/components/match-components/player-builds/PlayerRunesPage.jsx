@@ -4,6 +4,7 @@ import getRuneIcon from "../../../util/getRuneIcon";
 import "./PlayerRunesPage.css";
 import RuneRow from "./RuneRow";
 import RuneShards from "./RuneShards";
+import SummonerRune from "../SummonerRune";
 
 export default function PlayerRunesPage(props) {
   const { player } = props;
@@ -26,10 +27,11 @@ export default function PlayerRunesPage(props) {
       <p className="data-header">Runes</p>
       <div className="runes-body">
         <div className="primary-runes">
-          <img
-            className="rune rune-active"
-            src={getRuneIcon(primaryRunes?.icon)}
-            alt={primaryRunes?.key}
+          <SummonerRune
+            runeInfo={primaryRunes}
+            isRunePage={true}
+            isActive={true}
+            isKeystone={true}
           />
           {primaryRunes?.slots.map((slot) => (
             <RuneRow
@@ -41,10 +43,11 @@ export default function PlayerRunesPage(props) {
           <p className="perk-type-name">{primaryRunes.name}</p>
         </div>
         <div className="secondary-runes">
-          <img
-            className="rune rune-active"
-            src={getRuneIcon(secondaryRunes?.icon)}
-            alt={secondaryRunes?.key}
+          <SummonerRune
+            runeInfo={secondaryRunes}
+            isRunePage={true}
+            isActive={true}
+            isKeystone={true}
           />
           {secondaryRunes?.slots.slice(1).map((slot) => (
             <RuneRow

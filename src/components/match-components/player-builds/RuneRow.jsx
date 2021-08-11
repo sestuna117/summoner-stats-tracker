@@ -1,6 +1,6 @@
 import React from "react";
 import "./RuneRow.css";
-import Rune from "./Rune";
+import SummonerRune from "../SummonerRune";
 
 export default function RuneRow(props) {
   const { activeRunes, slot } = props;
@@ -8,10 +8,11 @@ export default function RuneRow(props) {
   return (
     <div className="runes-page-row">
       {slot?.runes.map((rune) => (
-        <Rune
+        <SummonerRune
           key={rune.id}
+          runeInfo={rune}
           isActive={activeRunes.includes(rune.id)}
-          rune={rune}
+          isRunePage={true}
         />
       ))}
     </div>

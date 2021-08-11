@@ -1,21 +1,13 @@
 import React, { useContext } from "react";
-import {
-  DDragonVersionContext,
-  RuneDataContext,
-  SumsDataContext,
-} from "../../hook";
-import getSummonerSpellUrl from "../../util/getSummonerSpellUrl";
-import getRuneIcon from "../../util/getRuneIcon";
+import { RuneDataContext, SumsDataContext } from "../../hook";
 import "./PerksSpells.css";
-import noSpell from "../../icons/emptyslot.png";
-import cx from "classnames";
 import SummonerRune from "./SummonerRune";
 import SummonerSpell from "./SummonerSpell";
 
 export default function PerksSpells(props) {
   const sumsData = useContext(SumsDataContext);
   const runeData = useContext(RuneDataContext);
-  const { participant, isTeamDetail } = props;
+  const { participant, isTeamDetail, isPerk } = props;
   const allRunePage = runeData.flatMap((page) =>
     page.slots.flatMap((slot) => slot.runes)
   );
@@ -40,8 +32,17 @@ export default function PerksSpells(props) {
         <SummonerSpell spellInfo={sum2} isTeamDetail={isTeamDetail} />
       </div>
       <div className="runes-column">
-        <SummonerRune runeInfo={rune1} isTeamDetail={isTeamDetail} />
-        <SummonerRune runeInfo={rune2} isTeamDetail={isTeamDetail} />
+        <SummonerRune
+          runeInfo={rune1}
+          isTeamDetail={isTeamDetail}
+          isPerk={isPerk}
+        />
+        <SummonerRune
+          runeInfo={rune2}
+          isTeamDetail={isTeamDetail}
+          isPerk={isPerk}
+          isKeystone={true}
+        />
       </div>
     </div>
   );

@@ -1,0 +1,16 @@
+.summoner-spell {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-spell {
+    width: 17px;
+}
+
+.sum-spell {
+    width: 30px;
+}
+
+.no-spell {
+    opacity: 0;
+}

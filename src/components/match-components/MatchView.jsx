@@ -157,7 +157,7 @@ function MatchView(props) {
         </div>
         <div className="chosen-sum-options">
           <ChampSprite participant={player} isPlayer={true} />
-          <PerksSpells participant={player} />
+          <PerksSpells participant={player} isPerk={true} />
         </div>
         <div className="kda-info">
           <p>{`${player.kills} / ${player.deaths} / ${player.assists}`}</p>

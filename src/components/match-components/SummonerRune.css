@@ -1,3 +1,8 @@
+.summoner-rune {
+    display: flex;
+    flex-direction: column;
+}
+
 .rune {
     filter: grayscale(50%) opacity(30%);
     transition: filter 0.2s ease-in-out;
@@ -6,4 +11,12 @@
 
 .rune-active {
     filter: grayscale(0%) opacity(100%);
+}
+
+.team-rune {
+    width: 17px;
+}
+
+.sum-rune {
+    width: 30px;
 }

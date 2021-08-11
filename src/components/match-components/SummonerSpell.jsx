@@ -5,6 +5,8 @@ import getSummonerSpellUrl from "../../util/getSummonerSpellUrl";
 import { DDragonVersionContext } from "../../hook";
 import { usePopper } from "react-popper";
 import SummonerSpellTooltip from "./SummonerSpellTooltip";
+import "./SummonerSpell.css";
+import "../PopperTooltip.css";
 
 export default function SummonerSpell(props) {
   const { spellInfo, isTeamDetail } = props;
@@ -33,7 +35,7 @@ export default function SummonerSpell(props) {
       alt={"No Spell"}
     />
   ) : (
-    <div>
+    <div className="summoner-spell">
       <img
         className={isTeamDetail ? "team-spell" : "sum-spell"}
         src={getSummonerSpellUrl(spellInfo?.id, dDragon)}
