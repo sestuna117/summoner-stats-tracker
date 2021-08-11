@@ -33,7 +33,6 @@ export function SummonerPage() {
 
   useEffect(() => {
     setTimeout(() => {
-      const page = document.querySelector(".page");
       const thematic = localStorage.getItem("theme");
       if (thematic) {
         setTheme(thematic);
@@ -68,10 +67,7 @@ export function SummonerPage() {
     if (!name || !region) {
       return;
     }
-    if (name.length > 0) {
-      setStartMatchIndex(0);
-      getProfile();
-    }
+    getProfile();
   }, [name, region]);
 
   // Updates query parameters in URL
@@ -82,7 +78,10 @@ export function SummonerPage() {
   };
 
   const onSearch = (name, region) => {
-    setQueryParams(name, region); // Updates page URL
+    if (name.length > 0) {
+      setStartMatchIndex(0);
+      setQueryParams(name, region); // Updates page URL
+    }
   };
 
   const getProfile = async () => {
