@@ -38,7 +38,6 @@ export function SummonerPage() {
       if (thematic) {
         setTheme(thematic);
       }
-      console.log(page);
     }, 500);
   }, []);
 

@@ -15,8 +15,8 @@ export default function ItemTooltip(props) {
       <p className="item-tooltip-name">{name}</p>
       <p className="item-tooltip-text">{plaintext}</p>
       <div className="item-tooltip-desc">
-        {itemDesc.map((desc) => (
-          <p>
+        {itemDesc.map((desc, index) => (
+          <p key={"line" + index}>
             {desc.replace(BRACKETS, "")}
             <br />
           </p>

@@ -34,8 +34,8 @@ thead .data-header {
 }
 
 .header-cell {
-    border-top: #adadad solid 1px;
-    border-bottom: #adadad solid 1px;
+    border-top: var(--border) solid 1px;
+    border-bottom: var(--border) solid 1px;
     font-weight: normal;
     padding: 0;
 }

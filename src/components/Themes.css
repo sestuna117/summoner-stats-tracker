@@ -30,6 +30,7 @@
     --team-blue: var(--blue1);
     --match-red: var(--red2);
     --team-red: var(--red1);
+    --tooltip-border: none;
 }
 
 .dark-mode {
@@ -44,4 +45,5 @@
     --team-blue: var(--blue3);
     --match-red: var(--red4);
     --team-red: var(--red3);
+    --tooltip-border: var(--gray2) 1px solid;
 }

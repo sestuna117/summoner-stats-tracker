@@ -9,9 +9,10 @@ import getRuneIcon from "../../util/getRuneIcon";
 import "./PerksSpells.css";
 import noSpell from "../../icons/emptyslot.png";
 import cx from "classnames";
+import SummonerRune from "./SummonerRune";
+import SummonerSpell from "./SummonerSpell";
 
 export default function PerksSpells(props) {
-  const dDragon = useContext(DDragonVersionContext);
   const sumsData = useContext(SumsDataContext);
   const runeData = useContext(RuneDataContext);
   const { participant, isTeamDetail } = props;
@@ -35,50 +36,12 @@ export default function PerksSpells(props) {
   return (
     <div className="perks-spells">
       <div className="spells-column">
-        {!sum1 ? (
-          <img
-            className={cx("no-spell", {
-              "team-spell": isTeamDetail,
-              "sum-spell": !isTeamDetail,
-            })}
-            src={noSpell}
-            alt={"No Spell"}
-          />
-        ) : (
-          <img
-            className={isTeamDetail ? "team-spell" : "sum-spell"}
-            src={getSummonerSpellUrl(sum1?.id, dDragon)}
-            alt={sum1}
-          />
-        )}
-        {!sum2 ? (
-          <img
-            className={cx("no-spell", {
-              "team-spell": isTeamDetail,
-              "sum-spell": !isTeamDetail,
-            })}
-            src={noSpell}
-            alt={"No Spell"}
-          />
-        ) : (
-          <img
-            className={isTeamDetail ? "team-spell" : "sum-spell"}
-            src={getSummonerSpellUrl(sum2?.id, dDragon)}
-            alt={sum2}
-          />
-        )}
+        <SummonerSpell spellInfo={sum1} isTeamDetail={isTeamDetail} />
+        <SummonerSpell spellInfo={sum2} isTeamDetail={isTeamDetail} />
       </div>
       <div className="runes-column">
-        <img
-          className={isTeamDetail ? "team-rune" : "sum-spell"}
-          src={getRuneIcon(rune1?.icon)}
-          alt={rune1?.key}
-        />
-        <img
-          className={isTeamDetail ? "team-rune" : "sum-spell"}
-          src={getRuneIcon(rune2?.icon)}
-          alt={rune2?.key}
-        />
+        <SummonerRune runeInfo={rune1} isTeamDetail={isTeamDetail} />
+        <SummonerRune runeInfo={rune2} isTeamDetail={isTeamDetail} />
       </div>
     </div>
   );

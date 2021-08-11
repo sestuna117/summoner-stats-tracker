@@ -1,0 +1,14 @@
+.spell-tooltip p {
+    margin: 5px 0;
+}
+
+.spell-tooltip-desc {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.spell-tooltip-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: gold;
+}

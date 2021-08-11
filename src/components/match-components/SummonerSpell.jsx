@@ -1,31 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import { DDragonVersionContext, ItemDataContext } from "../../hook";
-import getItemIcon from "../../util/getItemIcon";
-import "./Item.css";
-import noItem from "../../icons/emptyslot.png";
+import React, { useContext, useState } from "react";
+import cx from "classnames";
+import noSpell from "../../icons/emptyslot.png";
+import getSummonerSpellUrl from "../../util/getSummonerSpellUrl";
+import { DDragonVersionContext } from "../../hook";
 import { usePopper } from "react-popper";
-import "../PopperTooltip.css";
-import ItemTooltip from "./ItemTooltip";
+import SummonerSpellTooltip from "./SummonerSpellTooltip";
 
-export default function Item(props) {
-  const { itemId } = props;
-  const isNoItem = itemId === 0;
+export default function SummonerSpell(props) {
+  const { spellInfo, isTeamDetail } = props;
   const dDragon = useContext(DDragonVersionContext);
-  const itemData = useContext(ItemDataContext);
-  const [itemInfo, setItemInfo] = useState();
-
-  async function findItemInfo() {
-    setItemInfo(
-      Object.entries(itemData.data).find((item) => parseInt(item[0]) === itemId)
-    );
-  }
-
-  useEffect(() => {
-    if (!itemId) {
-      return;
-    }
-    findItemInfo();
-  }, [itemId]);
 
   const [isVisible, setIsVisible] = useState(false);
   const [referenceElement, setReferenceElement] = useState(null);
@@ -40,16 +23,21 @@ export default function Item(props) {
     ],
   });
 
-  return isNoItem ? (
-    <div className="item">
-      <img className="item-sprite" src={noItem} alt={"No Item"} />
-    </div>
-  ) : !itemInfo ? null : (
-    <div className="item">
+  return !spellInfo ? (
+    <img
+      className={cx("no-spell", {
+        "team-spell": isTeamDetail,
+        "sum-spell": !isTeamDetail,
+      })}
+      src={noSpell}
+      alt={"No Spell"}
+    />
+  ) : (
+    <div>
       <img
-        className="item-sprite"
-        src={getItemIcon(itemId, dDragon)}
-        alt={`${itemInfo[1]?.name}`}
+        className={isTeamDetail ? "team-spell" : "sum-spell"}
+        src={getSummonerSpellUrl(spellInfo?.id, dDragon)}
+        alt={spellInfo}
         ref={setReferenceElement}
         onMouseOver={() => {
           setIsVisible(true);
@@ -58,7 +46,6 @@ export default function Item(props) {
           setIsVisible(false);
         }}
       />
-
       {isVisible ? (
         <div
           className="popper-tooltip"
@@ -66,7 +53,7 @@ export default function Item(props) {
           style={styles.popper}
           {...attributes.popper}
         >
-          <ItemTooltip itemInfo={itemInfo[1]} />
+          <SummonerSpellTooltip spellInfo={spellInfo} />
           <div
             className="popper-arrow"
             ref={setArrowElement}
