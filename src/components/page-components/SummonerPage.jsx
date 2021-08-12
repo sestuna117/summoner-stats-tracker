@@ -140,7 +140,7 @@ export function SummonerPage() {
     let matchIds;
     try {
       const matches = await getMatches(name, region, startMatchIndex);
-      console.log(matches);
+      // console.log(matches);
       matchIds = matches;
       setNumMatchesToLoad(matchIds.length);
     } catch (e) {
@@ -151,7 +151,7 @@ export function SummonerPage() {
     const promises = matchIds.map(async (id) => {
       try {
         const match = await getMatchInfo(id, region);
-        console.log(match);
+        // console.log(match);
         setMatches((prev) => [...prev, match]);
       } catch (e) {
         console.error(e);

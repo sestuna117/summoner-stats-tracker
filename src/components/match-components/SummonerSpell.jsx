@@ -39,7 +39,7 @@ export default function SummonerSpell(props) {
       <img
         className={isTeamDetail ? "team-spell" : "sum-spell"}
         src={getSummonerSpellUrl(spellInfo?.id, dDragon)}
-        alt={spellInfo}
+        alt={spellInfo?.id}
         ref={setReferenceElement}
         onMouseOver={() => {
           setIsVisible(true);

@@ -26,13 +26,19 @@ export default function NavBar(props) {
           }}
         >
           <input
+            id="search"
             className="navbar-search-bar"
             value={searchName}
             type={"text"}
             placeholder={"Input Summoner Name..."}
             onChange={(e) => setSearchName(e.target.value)}
           />
-          <button className="navbar-search-bar-button" type={"submit"}>
+          <label form="search" />
+          <button
+            className="navbar-search-bar-button"
+            type={"submit"}
+            aria-label="Left Align"
+          >
             <FaSearch />
           </button>
           <select
