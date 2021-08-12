@@ -40,10 +40,8 @@ export default function FullMatchDetail(props) {
     loadTimeline();
   }, []);
 
-  return (
-    <div
-      className={cx("full-match-detail", { "match-detail-opened": display })}
-    >
+  return display ? (
+    <div className={"full-match-detail"}>
       <form className="tabs">
         <button
           className={cx("tab", {
@@ -117,5 +115,5 @@ export default function FullMatchDetail(props) {
         />
       </div>
     </div>
-  );
+  ) : null;
 }

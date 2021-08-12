@@ -49,7 +49,9 @@ export default function KillMapScatterChart(props) {
           return (
             <Cell
               key={`cell-${index}`}
-              fill={entry.team === "blue" ? "#4782b3" : "#b65c6f"}
+              fill={
+                entry ? (entry.team === "blue" ? "#4782b3" : "#b65c6f") : "none"
+              }
             />
           );
         })}

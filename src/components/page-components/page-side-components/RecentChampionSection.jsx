@@ -5,7 +5,7 @@ import cx from "classnames";
 import RecentChampionTable from "./RecentChampionTable";
 
 export default function RecentChampionSection(props) {
-  const { matches, player, numOfMatches } = props;
+  const { matches, player, numOfMatches, hasError } = props;
   const [usedChamps, setUsedChamps] = useState(new Map());
   const [maxPlayed, setMaxPlayed] = useState(0);
   const [toggleDisplay, setToggleDisplay] = useState(true);
@@ -133,7 +133,7 @@ export default function RecentChampionSection(props) {
     setMaxPlayed(max);
   }, [usedChamps, activeTab]);
 
-  return (
+  return !hasError ? (
     <div className="side-section side-section-dropdown">
       <div
         className="side-section-title"
@@ -204,6 +204,10 @@ export default function RecentChampionSection(props) {
           maxPlayed={maxPlayed}
         />
       </div>
+    </div>
+  ) : (
+    <div className="side-section">
+      <p>Error Occurred</p>
     </div>
   );
 }

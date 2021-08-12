@@ -36,12 +36,15 @@ export default function KillMap(props) {
           let inRedTeam = teamSides[1].find(
             (player) => player.participantId === victimId
           );
-
-          team = "blue";
-          killer = inBlueTeam.summonerName;
-          killChamp = inBlueTeam.championId;
-          victim = inRedTeam.summonerName;
-          victChamp = inRedTeam.championId;
+          if (!inRedTeam) {
+            return;
+          } else {
+            team = "blue";
+            killer = inBlueTeam.summonerName;
+            killChamp = inBlueTeam.championId;
+            victim = inRedTeam.summonerName;
+            victChamp = inRedTeam.championId;
+          }
         } else {
           let inRedTeam = teamSides[1].find(
             (player) => player.participantId === killerId
@@ -50,12 +53,15 @@ export default function KillMap(props) {
             inBlueTeam = teamSides[0].find(
               (player) => player.participantId === victimId
             );
-
-            team = "red";
-            killer = inRedTeam.summonerName;
-            killChamp = inRedTeam.championId;
-            victim = inBlueTeam.summonerName;
-            victChamp = inBlueTeam.championId;
+            if (!inBlueTeam) {
+              return;
+            } else {
+              team = "red";
+              killer = inRedTeam.summonerName;
+              killChamp = inRedTeam.championId;
+              victim = inBlueTeam.summonerName;
+              victChamp = inBlueTeam.championId;
+            }
           }
         }
 

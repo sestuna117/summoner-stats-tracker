@@ -46,9 +46,5 @@
 
 .full-match-detail {
     background-color: var(--background);
-    display: none;
-}
-
-.match-detail-opened {
     display: block;
 }

@@ -12,7 +12,7 @@ export default function ChampSprite(props) {
     (champ) => parseInt(champ.key) === participant?.championId
   );
 
-  return (
+  return champId ? (
     <img
       className={`${
         isPlayer
@@ -24,5 +24,5 @@ export default function ChampSprite(props) {
       src={getChampionIcon(champId.id, dDragon)}
       alt={`${champId.id}`}
     />
-  );
+  ) : null;
 }

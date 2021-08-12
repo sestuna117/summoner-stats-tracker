@@ -15,7 +15,7 @@ export default function ChampionStatBar(props) {
     (champ) => parseInt(champ.key) === id
   );
 
-  return played !== 0 ? (
+  return played !== 0 && champion ? (
     <tr className="used-champion-bar">
       <td className="used-champ">
         <img

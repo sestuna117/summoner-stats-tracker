@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   getMatchInfo,
   getMatches,
@@ -21,6 +21,7 @@ import cx from "classnames";
 import DefaultHomePage from "./DefaultHomePage";
 import ErrorPage from "./ErrorPage";
 import { IoAlertCircleOutline } from "react-icons/all";
+import ErrorBoundary from "../ErrorBoundary";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -59,9 +60,6 @@ export function SummonerPage() {
 
   const [data, setData] = useState();
   const [matches, setMatches] = useState([]);
-  const [matchViews, setMatchViews] = useState([]);
-  const [startMatchIndex, setStartMatchIndex] = useState(0);
-
   // On page load, if name specified in query parameters, start loading profile
   useEffect(() => {
     if (!name || !region) {
@@ -79,7 +77,6 @@ export function SummonerPage() {
 
   const onSearch = (name, region) => {
     if (name.length > 0) {
-      setStartMatchIndex(0);
       setQueryParams(name, region); // Updates page URL
     }
   };
@@ -88,7 +85,6 @@ export function SummonerPage() {
     setIsLoading(true);
 
     setMatches([]);
-    await setMatchViews([]);
 
     try {
       const result = await getSumByName(name, region);
@@ -106,35 +102,10 @@ export function SummonerPage() {
     setIsLoading(false);
   };
 
-  async function loadMatchViews() {
-    matches
-      .sort((a, b) => b.info.gameCreation - a.info.gameCreation)
-      .forEach((match) => {
-        setMatchViews((prev) => [
-          ...prev,
-          <MatchView
-            key={match.metadata.matchId}
-            match={match}
-            puuid={data.puuid}
-            dDragon={dDragon}
-            region={region}
-          />,
-        ]);
-      });
-  }
+  const startMatchIndexRef = useRef(0);
 
-  useEffect(() => {
-    if (
-      numMatchesToLoad === 0 ||
-      !data ||
-      !(matches.length === numMatchesToLoad)
-    ) {
-      return;
-    }
-    loadMatchViews();
-  }, [data, matches, numMatchesToLoad]);
-
-  async function loadMatches() {
+  async function loadMatches(startMatchIndex = 0) {
+    startMatchIndexRef.current = startMatchIndex;
     setIsLoadingMatches(true);
 
     let matchIds;
@@ -148,11 +119,13 @@ export function SummonerPage() {
       return;
     }
 
+    let matches = [];
+
     const promises = matchIds.map(async (id) => {
       try {
         const match = await getMatchInfo(id, region);
         // console.log(match);
-        setMatches((prev) => [...prev, match]);
+        matches.push(match);
       } catch (e) {
         console.error(e);
       }
@@ -160,15 +133,9 @@ export function SummonerPage() {
 
     await Promise.all(promises);
 
+    setMatches((prev) => [...prev, ...matches]);
     setIsLoadingMatches(false);
   }
-
-  useEffect(() => {
-    if (!startMatchIndex || !(matches.length === 0)) {
-      return;
-    }
-    loadMatches();
-  }, [startMatchIndex, matches]);
 
   return (
     <div id={"page-theme"} className={`page ${theme}`}>
@@ -190,7 +157,7 @@ export function SummonerPage() {
                 <SummonerInfo
                   data={data}
                   matches={matches}
-                  startMatchIndex={startMatchIndex}
+                  startMatchIndex={startMatchIndexRef.current}
                   numMatchesToLoad={numMatchesToLoad}
                 />
                 <div className="content-menu">
@@ -218,18 +185,29 @@ export function SummonerPage() {
                 <div className="content">
                   <div className="side-content">
                     <RanksSection data={data} region={region} />
-                    <RecentChampionSection
-                      matches={matches}
-                      player={data}
-                      numOfMatches={numMatchesToLoad}
-                    />
+                    <ErrorBoundary
+                      onError={() => (
+                        <RecentChampionSection
+                          matches={matches}
+                          player={data}
+                          numOfMatches={numMatchesToLoad}
+                          hasError
+                        />
+                      )}
+                    >
+                      <RecentChampionSection
+                        matches={matches}
+                        player={data}
+                        numOfMatches={numMatchesToLoad}
+                      />
+                    </ErrorBoundary>
                     <RecentlyPlayedWithSection
                       matches={matches}
                       player={data.puuid}
                       numOfMatches={numMatchesToLoad}
                     />
                   </div>
-                  {startMatchIndex === 0 && matches.length === 0 ? (
+                  {startMatchIndexRef.current === 0 && matches.length === 0 ? (
                     <div className="no-matches-msg">
                       <IoAlertCircleOutline className="alert-icon" />
                       <p>Could not retrieve recorded data on Summoner.</p>
@@ -237,10 +215,28 @@ export function SummonerPage() {
                     </div>
                   ) : (
                     <div className="match-section">
-                      <ul className="match-list">{matchViews}</ul>
+                      <ul className="match-list">
+                        {(!isLoadingMatches || matches.length > 0) &&
+                          matches
+                            .sort(
+                              (a, b) =>
+                                b.info.gameCreation - a.info.gameCreation
+                            )
+                            .map((match) => (
+                              <ErrorBoundary key={match.metadata.matchId}>
+                                <MatchView
+                                  match={match}
+                                  puuid={data.puuid}
+                                  dDragon={dDragon}
+                                  region={region}
+                                />
+                              </ErrorBoundary>
+                            ))}
+                      </ul>
                       {isLoadingMatches ? (
                         <LoadingSpinner isMatch={true} />
-                      ) : startMatchIndex > 0 && matches.length === 0 ? (
+                      ) : startMatchIndexRef.current > 0 &&
+                        matches.length === 0 ? (
                         <div className="no-matches-msg">
                           <IoAlertCircleOutline className="alert-icon" />
                           <p>No more recorded matches</p>
@@ -249,8 +245,7 @@ export function SummonerPage() {
                         <button
                           className="show-more-button"
                           onClick={() => {
-                            setStartMatchIndex((prev) => prev + 10);
-                            setMatches([]);
+                            loadMatches(startMatchIndexRef.current + 10);
                           }}
                         >
                           Show More
