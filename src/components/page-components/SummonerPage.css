@@ -38,6 +38,7 @@
 .body-error {
     justify-content: center;
     align-content: center;
+    text-align: center;
 }
 
 .site-logo {
@@ -95,7 +96,7 @@
     align-items: center;
     flex-direction: column;
     border: #adadad 1px solid;
-    width: 800px;
+    width: 790px;
     font-size: 14px;
 }
 
@@ -110,9 +111,9 @@
 }
 
 .match-list {
-    width: 800px;
+    width: 790px;
     padding: 0;
-    margin: 0;
+    margin: 0 10px 0 0;
 }
 
 button:hover {
@@ -131,3 +132,30 @@ button:hover {
     color: #f2f2f2;
 }
 
+.side-content {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 1129px) {
+    .side-content {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .content {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .side-content {
+        flex-direction: column;
+    }
+
+    .content {
+        width: 100%;
+    }
+}

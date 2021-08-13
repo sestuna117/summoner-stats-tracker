@@ -23,3 +23,10 @@
 .summoner-text p {
     margin: 0;
 }
+
+@media screen and (max-width: 800px){
+    .summoner-info {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getRankedInfo } from "../../../api/services/request.services";
 import RankedInfo from "./RankedInfo";
-import "./SideContent.css";
+import "./SideSections.css";
 
 const RANKED_TYPES = [
   { name: "Ranked Solo", id: "RANKED_SOLO_5x5" },
@@ -11,6 +11,7 @@ const RANKED_TYPES = [
 export default function RanksSection(props) {
   const { data, region } = props;
   const [rankData, setRankData] = useState();
+
   // console.log(data, region);
 
   async function loadRankedInfo() {

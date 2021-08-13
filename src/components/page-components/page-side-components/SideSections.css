@@ -1,0 +1,19 @@
+.rank-section {
+    width: 300px;
+}
+
+.recent-stats-section {
+    width: 300px;
+}
+
+@media screen and (max-width: 1129px) {
+    .recent-stats-section {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .recent-stats-section, .rank-section {
+        width: 100%;
+    }
+}

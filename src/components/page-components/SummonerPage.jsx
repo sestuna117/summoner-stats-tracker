@@ -22,6 +22,7 @@ import DefaultHomePage from "./DefaultHomePage";
 import ErrorPage from "./ErrorPage";
 import { IoAlertCircleOutline } from "react-icons/all";
 import ErrorBoundary from "../ErrorBoundary";
+import RecentStatsSection from "./page-side-components/RecentStatsSection";
 
 export function SummonerPage() {
   const dDragon = useContext(DDragonVersionContext);
@@ -185,26 +186,10 @@ export function SummonerPage() {
                 <div className="content">
                   <div className="side-content">
                     <RanksSection data={data} region={region} />
-                    <ErrorBoundary
-                      onError={() => (
-                        <RecentChampionSection
-                          matches={matches}
-                          player={data}
-                          numOfMatches={numMatchesToLoad}
-                          hasError
-                        />
-                      )}
-                    >
-                      <RecentChampionSection
-                        matches={matches}
-                        player={data}
-                        numOfMatches={numMatchesToLoad}
-                      />
-                    </ErrorBoundary>
-                    <RecentlyPlayedWithSection
+                    <RecentStatsSection
+                      data={data}
                       matches={matches}
-                      player={data.puuid}
-                      numOfMatches={numMatchesToLoad}
+                      numMatchesToLoad={numMatchesToLoad}
                     />
                   </div>
                   {startMatchIndexRef.current === 0 && matches.length === 0 ? (

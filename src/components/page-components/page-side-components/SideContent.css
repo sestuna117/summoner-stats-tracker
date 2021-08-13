@@ -2,7 +2,6 @@
 
 .side-section {
     display: flex;
-    width: 300px;
     background-color: var(--tab-background);
     border: 1px solid var(--border);
     font-size: 12px;
@@ -42,3 +41,9 @@
 .side-section-tab-closed {
     display: none;
 }
+
+/*@media screen and (max-width: 1129px) {*/
+/*    .side-section {*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/

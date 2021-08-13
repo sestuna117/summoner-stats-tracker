@@ -1,4 +1,4 @@
-.navbar {
+.navbar, .navbar-mobile {
     display: flex;
     margin: 0 auto;
     height: 100%;
@@ -23,8 +23,21 @@
     margin-right: 20px;
 }
 
-.navbar-search {
+.navbar .navbar-search, .navbar-mobile .navbar-search {
+    display: flex;
     font-size: 16px;
+}
+
+.navbar-dropdown {
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    display: none;
+}
+
+.navbar-dropdown:hover, .navbar-dropdown-active {
+    cursor: pointer;
+    background-color: #8731ad;
 }
 
 .navbar-search-bar {
@@ -65,4 +78,56 @@
 
 .navbar-search-bar-region {
     font-weight: bold;
+}
+
+@media screen and (max-width: 800px) {
+    .navbar-mobile .navbar-search {
+        display: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        height: calc(100vh - 50px);
+        left: 0;
+        right: 0;
+        margin: 50px auto auto;
+        background-color: #8731ad;
+    }
+
+    .navbar-mobile .navbar-search-open {
+        display: block;
+    }
+
+    .navbar-search-bar {
+        position: absolute;
+        width: 60%;
+        top: calc(50% - 150px);
+        right: 0;
+        left: 0;
+        margin: 50px auto auto;
+    }
+
+    .navbar-search-bar-button {
+        margin: 50px auto auto;
+        position: absolute;
+        left: 63%;
+        right: 0;
+        top: calc(50% - 150px);
+    }
+
+    .navbar-search-bar-region-selected {
+        width: 20%;
+        position: absolute;
+        top: calc(50% - 100px);
+        right: 0;
+        left: 0;
+        margin: 50px auto auto;
+    }
+
+    .navbar-dropdown {
+        position: absolute;
+        right: 0;
+        display: block;
+    }
 }

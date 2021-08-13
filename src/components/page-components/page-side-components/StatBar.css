@@ -7,6 +7,10 @@
     background-color: var(--tab-background);
 }
 
+.progress-played, .progress-winrate {
+    text-align: center;
+}
+
 .progress-played .progress-bar-fill {
     background-color: #4782b3;
     border: #245884 1px solid;
