@@ -27,7 +27,7 @@ export default function ContextLoader({ children }) {
   const loadDragonData = async () => {
     try {
       const result = await getDDragonVersion();
-      console.log(result);
+      // console.log(result);
       setDDragon(result);
       return result;
     } catch (e) {
@@ -38,7 +38,7 @@ export default function ContextLoader({ children }) {
   const loadChampData = async (dDragon) => {
     try {
       const result = await getAllChampData(dDragon);
-      console.log(result);
+      // console.log(result);
       setChampData(result);
     } catch (e) {
       console.error(e);
@@ -48,7 +48,7 @@ export default function ContextLoader({ children }) {
   const loadRuneData = async (dDragon) => {
     try {
       const result = await getRuneData(dDragon);
-      console.log(result);
+      // console.log(result);
       setRuneData(result);
     } catch (e) {
       console.error(e);
@@ -58,7 +58,7 @@ export default function ContextLoader({ children }) {
   const loadSpellData = async (dDragon) => {
     try {
       const result = await getSpellData(dDragon);
-      console.log(result);
+      // console.log(result);
       setSpellData(result);
     } catch (e) {
       console.error(e);
@@ -68,7 +68,7 @@ export default function ContextLoader({ children }) {
   const loadItemData = async (dDragon) => {
     try {
       const result = await getItemData(dDragon);
-      console.log(result);
+      // console.log(result);
       setItemData(result);
     } catch (e) {
       console.error(e);
@@ -78,7 +78,7 @@ export default function ContextLoader({ children }) {
   const loadShardData = async () => {
     try {
       const result = await getRuneShards();
-      console.log(result);
+      // console.log(result);
       setShardData(result);
     } catch (e) {
       console.error(e);

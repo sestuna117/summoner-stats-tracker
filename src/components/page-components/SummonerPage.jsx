@@ -223,7 +223,18 @@ export function SummonerPage() {
                                 b.info.gameCreation - a.info.gameCreation
                             )
                             .map((match) => (
-                              <ErrorBoundary key={match.metadata.matchId}>
+                              <ErrorBoundary
+                                key={match.metadata.matchId}
+                                onError={() => (
+                                  <MatchView
+                                    match={match}
+                                    puuid={data.puuid}
+                                    dDragon={dDragon}
+                                    region={region}
+                                    hasError
+                                  />
+                                )}
+                              >
                                 <MatchView
                                   match={match}
                                   puuid={data.puuid}

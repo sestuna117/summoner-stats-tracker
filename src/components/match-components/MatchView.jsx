@@ -7,6 +7,7 @@ import ItemsBlock from "./overview/ItemsBlock";
 import FullMatchDetail from "./FullMatchDetail";
 import Team from "./Team";
 import cx from "classnames";
+import ErrorElement from "../ErrorElement";
 
 const TEAM = {
   blue: 100,
@@ -14,7 +15,7 @@ const TEAM = {
 };
 
 function MatchView(props) {
-  const { match, puuid, region } = props;
+  const { match, puuid, region, hasError } = props;
   const participants = new Map();
   const champData = useContext(ChampionDataContext);
   const [showFull, setShowFull] = useState(false);
@@ -137,7 +138,7 @@ function MatchView(props) {
     setShowFull((prev) => !prev);
   }
 
-  return (
+  return !hasError ? (
     <li className={cx("match", { "match-remake": isRemake })}>
       <div className="main-match-data">
         <div className="match-details">
@@ -225,6 +226,10 @@ function MatchView(props) {
         maxDamage={maxDamage}
         isRemake={isRemake}
       />
+    </li>
+  ) : (
+    <li className="match">
+      <ErrorElement />
     </li>
   );
 }

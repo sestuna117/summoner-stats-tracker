@@ -3,6 +3,7 @@ import "./RecentChampionSection.css";
 import "./SideContent.css";
 import cx from "classnames";
 import RecentChampionTable from "./RecentChampionTable";
+import ErrorElement from "../../ErrorElement";
 
 export default function RecentChampionSection(props) {
   const { matches, player, numOfMatches, hasError } = props;
@@ -207,7 +208,7 @@ export default function RecentChampionSection(props) {
     </div>
   ) : (
     <div className="side-section">
-      <p>Error Occurred</p>
+      <ErrorElement />
     </div>
   );
 }
