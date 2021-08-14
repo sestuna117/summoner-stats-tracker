@@ -14,7 +14,7 @@ export default function DefaultHomePage(props) {
       className="body body-home"
       style={{
         backgroundImage: `url(${thinkingCapLogo})`,
-        backgroundSize: "1000px 771px",
+        backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "50% 50%",
       }}
@@ -36,7 +36,7 @@ export default function DefaultHomePage(props) {
           onChange={(e) => setSearchName(e.target.value)}
         />
         <button className="main-search-bar-button" type={"submit"}>
-          <FaSearch />
+          <FaSearch className="main-search-bar-button-icon" />
         </button>
         <select
           className="main-search-bar-region-selected"
