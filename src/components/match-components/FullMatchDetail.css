@@ -48,3 +48,22 @@
     background-color: var(--background);
     display: block;
 }
+
+@media screen and (max-width: 800px) {
+    .tabs {
+        display: block;
+    }
+
+    .full-match-detail .tabs .tab {
+        margin-top: -2px;
+        padding-top: 0;
+        width: 33.33%;
+        border-top: var(--border) 1px solid;
+        border-left: none;
+        min-width: unset;
+    }
+
+    .full-match-detail .tabs .tab:last-child {
+        border-right: none;
+    }
+}

@@ -6,12 +6,14 @@
 
 .runes-body {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     margin-top: 10px;
 }
 
 .primary-runes, .secondary-runes, .rune-shards-container {
     height: 100%;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
