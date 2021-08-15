@@ -6,10 +6,11 @@
     align-items: flex-end;
 }
 
-.sub-tabs button {
+.sub-tabs .sub-tab {
     color: var(--subtext);
     font-size: 14px;
     height: 25px;
+    min-height: 25px;
     background-color: var(--inner-tab-background);
     min-width: 150px;
     padding-top: 2px;
@@ -36,6 +37,14 @@
 
 @media screen and (max-width: 800px) {
     .sub-tabs {
+        width: 100%;
         height: auto;
+    }
+
+    .sub-tabs .sub-tab {
+        height: unset;
+        width: 25%;
+        font-size: 12px;
+        min-width: unset;
     }
 }

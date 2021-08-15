@@ -91,8 +91,8 @@ export default function KillMap(props) {
             <ChampSprite key={index} participant={participant} />
           ))}
         </div>
-        <div className="kill-map-container">
-          <div className="kill-map" style={backgroundMap} />
+        <div className="kill-map-container kill-map" style={backgroundMap}>
+          {/*<div className="kill-map-dummy" />*/}
           <KillMapScatterChart killData={killMap} mapId={map} />
         </div>
         <div className="icon-row">

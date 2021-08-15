@@ -57,7 +57,7 @@ export default function TeamObjectiveInfo(props) {
         {isRemake ? "" : team.win ? "Victory" : "Defeat"}
       </span>
       <span className="match-team">{isBlue ? "Blue" : "Red"} Team</span>
-      <div>
+      <div className="objective-details">
         {OBJECTIVE_DATA.map((objective) => (
           <div
             key={objective.name}

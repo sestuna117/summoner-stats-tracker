@@ -44,7 +44,7 @@ export default function GoldGraph(props) {
   }, [timeline, teamSides]);
 
   return (
-    <div>
+    <div className="advantage-graph">
       <p className="data-header">Gold Advantage</p>
       <AdvantageAreaChart timelineData={goldData} />
     </div>

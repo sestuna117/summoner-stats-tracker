@@ -141,3 +141,13 @@
         height: 30px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .main-match-data, .macro-info p {
+        font-size: 12px;
+    }
+
+    .kda-subtext, .macro-info .kp-text {
+        font-size: 11px;
+    }
+}

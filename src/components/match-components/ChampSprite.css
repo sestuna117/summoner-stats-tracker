@@ -20,3 +20,10 @@
     margin-left: 8px;
     border-radius: 50%;
 }
+
+@media screen and (max-width: 500px){
+    .player-sprite {
+        width: 14vw;
+        height: 14vw;
+    }
+}

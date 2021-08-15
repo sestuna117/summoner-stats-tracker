@@ -115,10 +115,10 @@ export default function MatchAnalytics(props) {
   }, []);
 
   return (
-    <div>
+    <div className="match-analytics-headers">
       <form className="tabs sub-tabs data-header">
         <button
-          className={cx({
+          className={cx("sub-tab", {
             "sub-tab-open": activeTab === "team-analytics",
           })}
           type="button"
@@ -128,7 +128,7 @@ export default function MatchAnalytics(props) {
         </button>
 
         <button
-          className={cx({
+          className={cx("sub-tab", {
             "sub-tab-open": activeTab === "gold-kill",
           })}
           type="button"
@@ -138,7 +138,7 @@ export default function MatchAnalytics(props) {
         </button>
 
         <button
-          className={cx({
+          className={cx("sub-tab", {
             "sub-tab-open": activeTab === "kill-map",
           })}
           type="button"
@@ -148,7 +148,7 @@ export default function MatchAnalytics(props) {
         </button>
 
         <button
-          className={cx({
+          className={cx("sub-tab", {
             "sub-tab-open": activeTab === "stats-table",
           })}
           type="button"

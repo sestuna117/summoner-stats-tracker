@@ -16,3 +16,10 @@
 .no-spell {
     opacity: 0;
 }
+
+@media screen and (max-width: 500px) {
+    .sum-spell {
+        width: 7vw;
+        height: 7vw;
+    }
+}

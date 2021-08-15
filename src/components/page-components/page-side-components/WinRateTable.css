@@ -13,3 +13,26 @@
     margin: 10px auto auto;
     border-collapse: collapse;
 }
+
+@media screen and (max-width: 800px) {
+    .winrate-table-container::-webkit-scrollbar {
+        height: 7px;
+        width: 7px;
+    }
+
+    /* Track */
+    .winrate-table-container::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+    }
+
+    /* Handle */
+    .winrate-table-container::-webkit-scrollbar-thumb {
+        background: #6f6f6f;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    .winrate-table-container::-webkit-scrollbar-thumb:hover {
+        background: #5e5e5e;
+    }
+}

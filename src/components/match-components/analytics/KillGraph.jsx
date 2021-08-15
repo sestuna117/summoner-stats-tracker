@@ -35,7 +35,7 @@ export default function KillGraph(props) {
   }, [killData, teamSides]);
 
   return (
-    <div>
+    <div className="advantage-graph">
       <p className="data-header">Kill Advantage</p>
       <AdvantageLineChart timelineData={killTimeline} />
     </div>

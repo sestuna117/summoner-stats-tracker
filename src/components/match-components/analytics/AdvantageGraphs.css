@@ -1,0 +1,7 @@
+.advantage-graphs {
+    overflow-x: auto;
+}
+
+.advantage-graphs .advantage-graph {
+    width: 100%;
+}

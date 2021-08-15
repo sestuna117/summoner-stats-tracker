@@ -67,3 +67,9 @@
         border-right: none;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .full-match-detail .tabs .tab {
+        font-size: 11px;
+    }
+}

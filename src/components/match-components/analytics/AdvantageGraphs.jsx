@@ -1,6 +1,7 @@
 import React from "react";
 import GoldGraph from "./GoldGraph";
 import KillGraph from "./KillGraph";
+import "./AdvantageGraphs.css";
 
 export default function AdvantageGraphs(props) {
   const { timeline, teamSides, killData } = props;
