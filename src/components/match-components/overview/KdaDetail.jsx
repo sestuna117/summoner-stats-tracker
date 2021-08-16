@@ -4,7 +4,7 @@ import "./TableDetailSection.css";
 export default function KdaDetail(props) {
   const { kills, deaths, assists } = props;
   return (
-    <div className="table-detail">
+    <div className="table-detail table-detail-kda">
       <span>{`${kills} / ${deaths} / ${assists}`}</span>
       <span>
         {kills + assists === 0

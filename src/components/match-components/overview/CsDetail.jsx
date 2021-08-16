@@ -6,7 +6,7 @@ export default function CsDetail(props) {
   const durationInMin = duration / (1000 * 60);
 
   return (
-    <div className="table-detail">
+    <div className="table-detail table-detail-cs">
       <span>{cs}</span>
       <span>{(cs / durationInMin).toFixed(1) + "/m"}</span>
     </div>

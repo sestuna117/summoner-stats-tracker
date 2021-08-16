@@ -1,9 +1,12 @@
 .team-objectives {
-    justify-content: space-evenly;
     margin-top: 2px;
     margin-bottom: 2px;
     margin-left: 0;
     text-align: left;
+}
+
+.objective-details {
+    max-width: 250px;
 }
 
 .team-objectives .match-result, .team-objectives .match-team {

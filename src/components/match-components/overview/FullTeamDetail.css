@@ -14,6 +14,13 @@
     background-color: var(--team-red);
 }
 
+.data-row {
+    padding: 2px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .data-row, .data-header {
     text-align: center;
     margin: 0;
@@ -23,8 +30,8 @@
     width: 120px;
 }
 
-thead .data-header {
-    border-top: none;
+.data-row .data-row-section {
+    display: inline-block;
 }
 
 .data-header {
@@ -34,11 +41,36 @@ thead .data-header {
 }
 
 .header-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-top: var(--border) solid 1px;
     border-bottom: var(--border) solid 1px;
     font-weight: normal;
+    text-align: center;
     padding: 0;
 }
+
+.full-data-table .header-cell {
+    border: none;
+}
+
+.full-data-table-header {
+    border-top: var(--border) solid 1px;
+    border-bottom: var(--border) solid 1px;
+}
+
+.full-data-table .data-header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0;
+    border: none;
+}
+
+.full-data-table .data-header .data-header {
+    display: inline-block;
+}
+
 
 .full-data-table .data-header .header-cell:first-child {
     width: 250px;
@@ -50,4 +82,28 @@ thead .data-header {
 
 .chosen-sum-options {
     display: flex;
+}
+
+.table-detail-name {
+    width: 250px;
+}
+
+.table-detail-kda {
+    width: 80px;
+}
+
+.table-detail-vision {
+    width: 80px;
+}
+
+.table-detail-cs {
+    width: 80px;
+}
+
+.table-detail-dmg {
+    width: 80px;
+}
+
+.table-detail-item {
+    width: 180px;
 }

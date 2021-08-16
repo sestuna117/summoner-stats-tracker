@@ -16,7 +16,7 @@ export default function ItemsBlock(props) {
     <div
       className={cx({
         "player-item-block": isPlayer,
-        "team-item-block": !isPlayer,
+        "team-item-block table-detail-item": !isPlayer,
       })}
     >
       {Object.entries(items).map((item) => (

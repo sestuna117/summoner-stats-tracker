@@ -74,7 +74,7 @@
 
 .data-header {
     background-color: var(--inner-tab-background);
-    height: 30px;
+    min-height: 30px;
     border-top: var(--border) solid 1px;
     border-bottom: var(--border) solid 1px;
 }

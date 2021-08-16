@@ -21,7 +21,7 @@ export default function WardDetails(props) {
   return (
     <div>
       <div
-        className="table-detail"
+        className="table-detail table-detail-vision"
         ref={setReferenceElement}
         onMouseOver={() => {
           setIsVisible(true);

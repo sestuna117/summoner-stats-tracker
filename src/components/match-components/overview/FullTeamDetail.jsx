@@ -18,15 +18,15 @@ export default function FullTeamDetail(props) {
 
   return (
     <div className="team-detail">
-      <table
+      <div
         className={cx("full-data-table", {
           "table-blue": isBlue,
           "table-red": !isBlue,
         })}
       >
-        <thead>
-          <tr className="data-header">
-            <th className="header-cell">
+        <div className="full-data-table-header">
+          <div className="data-header">
+            <div className="header-cell table-detail-name">
               <TeamObjectiveInfo
                 id={id}
                 participants={participants}
@@ -34,16 +34,16 @@ export default function FullTeamDetail(props) {
                 isBlue={isBlue}
                 isRemake={isRemake}
               />
-            </th>
-            {/*<th className="header-cell">Tier</th>*/}
-            <th className="header-cell">KDA</th>
-            <th className="header-cell">Vision</th>
-            <th className="header-cell">CS</th>
-            <th className="header-cell">Damage</th>
-            <th className="header-cell">Item</th>
-          </tr>
-        </thead>
-        <tbody>
+            </div>
+            {/*<div className="header-cell">Tier</div>*/}
+            <div className="header-cell table-detail-kda">KDA</div>
+            <div className="header-cell table-detail-vision">Vision</div>
+            <div className="header-cell table-detail-cs">CS</div>
+            <div className="header-cell table-detail-dmg">Damage</div>
+            <div className="header-cell table-detail-item">Item</div>
+          </div>
+        </div>
+        <div>
           {participants.map((participant) => {
             let id = participant.puuid;
             if (id === "BOT") {
@@ -52,9 +52,9 @@ export default function FullTeamDetail(props) {
             }
 
             return (
-              <tr className="data-row" key={id}>
-                <td>
-                  <div className="chosen-options-name">
+              <div className="data-row" key={id}>
+                <div className="data-row-section">
+                  <div className="chosen-options-name table-detail-name">
                     <div className="chosen-sum-options">
                       <ChampSprite
                         participant={participant}
@@ -70,26 +70,26 @@ export default function FullTeamDetail(props) {
                       <p className="sum-name">{participant.summonerName}</p>
                     </div>
                   </div>
-                </td>
+                </div>
                 {/*<td>*/}
                 {/*  <TierDetail name={participant.summonerName} />*/}
                 {/*</td>*/}
-                <td>
+                <div className="data-row-section">
                   <KdaDetail
                     kills={participant.kills}
                     deaths={participant.deaths}
                     assists={participant.assists}
                   />
-                </td>
-                <td>
+                </div>
+                <div className="data-row-section">
                   <WardDetails
                     visionScore={participant.visionScore}
                     wardsPlaced={participant.wardsPlaced}
                     wardsKilled={participant.wardsKilled}
                     redsPlaced={participant.detectorWardsPlaced}
                   />
-                </td>
-                <td>
+                </div>
+                <div className="data-row-section">
                   <CsDetail
                     duration={duration}
                     cs={
@@ -97,21 +97,21 @@ export default function FullTeamDetail(props) {
                       participant.neutralMinionsKilled
                     }
                   />
-                </td>
-                <td>
+                </div>
+                <div className="data-row-section">
                   <DamageDetail
                     damage={participant.totalDamageDealtToChampions}
                     maxDamage={maxDamage}
                   />
-                </td>
-                <td>
+                </div>
+                <div className="data-row-section">
                   <ItemsBlock participant={participant} isPlayer={false} />
-                </td>
-              </tr>
+                </div>
+              </div>
             );
           })}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 }
