@@ -73,47 +73,53 @@ export default function FullMatchDetail(props) {
           Builds
         </button>
       </form>
-      <div
-        className={cx("tab-content", {
-          "active-tab": activeTab === "overview",
-        })}
-      >
-        {Array.from(participants.entries()).map(([id, participants]) => (
-          <FullTeamDetail
-            key={id}
+      {activeTab === "overview" ? (
+        <div
+          className={cx("tab-content", {
+            "active-tab": activeTab === "overview",
+          })}
+        >
+          {Array.from(participants.entries()).map(([id, participants]) => (
+            <FullTeamDetail
+              key={id}
+              participants={participants}
+              team={match.info.teams.find((team) => team.teamId === id)}
+              id={id}
+              duration={match.info.gameDuration}
+              TEAM={TEAM}
+              maxDamage={maxDamage}
+              isRemake={isRemake}
+            />
+          ))}
+        </div>
+      ) : null}
+      {activeTab === "analytics" ? (
+        <div
+          className={cx("tab-content", {
+            "active-tab": activeTab === "analytics",
+          })}
+        >
+          <MatchAnalytics
             participants={participants}
-            team={match.info.teams.find((team) => team.teamId === id)}
-            id={id}
-            duration={match.info.gameDuration}
-            TEAM={TEAM}
-            maxDamage={maxDamage}
-            isRemake={isRemake}
+            match={match.info}
+            timeline={timeline}
           />
-        ))}
-      </div>
-      <div
-        className={cx("tab-content", {
-          "active-tab": activeTab === "analytics",
-        })}
-      >
-        <MatchAnalytics
-          participants={participants}
-          match={match.info}
-          timeline={timeline}
-        />
-      </div>
-      <div
-        className={cx("tab-content", {
-          "active-tab": activeTab === "builds",
-        })}
-      >
-        <PlayerBuild
-          match={match}
-          player={player}
-          playersId={playersId}
-          timeline={timeline}
-        />
-      </div>
+        </div>
+      ) : null}
+      {activeTab === "builds" ? (
+        <div
+          className={cx("tab-content", {
+            "active-tab": activeTab === "builds",
+          })}
+        >
+          <PlayerBuild
+            match={match}
+            player={player}
+            playersId={playersId}
+            timeline={timeline}
+          />
+        </div>
+      ) : null}
     </div>
   ) : null;
 }

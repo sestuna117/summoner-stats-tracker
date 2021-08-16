@@ -81,3 +81,10 @@
         height: 80vw;
     }
 }
+
+@media screen and (max-width: 300px) {
+    .kill-map-info .champ-sprite {
+        width: 15vw;
+        height: 15vw;
+    }
+}

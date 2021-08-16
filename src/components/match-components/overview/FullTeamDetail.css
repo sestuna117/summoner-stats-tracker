@@ -17,7 +17,7 @@
 .data-row {
     padding: 2px 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .table-detail-cs {
-    width: 80px;
+    width: 60px;
 }
 
 .table-detail-dmg {
@@ -106,4 +106,106 @@
 
 .table-detail-item {
     width: 180px;
+}
+
+@media screen and (max-width: 800px) {
+    .full-data-table .data-row-section {
+        font-size: 12px;
+    }
+
+    .full-data-table .data-row {
+        flex-wrap: wrap;
+        border-bottom: var(--border) 2px solid;
+    }
+
+    .table-detail-item {
+        width: auto;
+    }
+
+    .full-data-table .data-header .header-cell:first-child {
+        display: block;
+        width: 100%;
+    }
+
+    .full-data-table .data-row-section:last-child {
+        margin-right: 10px;
+    }
+
+    .table-detail-name {
+        width: auto;
+    }
+
+    .table-detail-dmg, .table-detail-vision, .table-detail-cs {
+        width: 80px;
+    }
+
+    .full-data-table .data-header .header-cell {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .data-row .sum-name {
+        width: 70px;
+    }
+
+    .table-detail-name {
+        width: auto;
+    }
+
+    .table-detail-dmg, .table-detail-vision, .table-detail-cs {
+        width: 55px;
+    }
+
+    .data-row-section:first-child {
+        order: 1;
+    }
+
+    .data-row-section:nth-child(2) {
+        order: 3;
+    }
+
+    .data-row-section:nth-child(3) {
+        order: 4;
+    }
+
+    .data-row-section:nth-child(4) {
+        order: 5;
+    }
+
+    .data-row-section:nth-child(5) {
+        order: 2;
+    }
+
+    .data-row-section:last-child {
+        order: 6;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .data-row .sum-name {
+        width: 25vw;
+    }
+
+    .data-row-section:first-child {
+        width: 75%;
+    }
+
+    .data-row-section:nth-child(5) {
+        width: 25%;
+    }
+
+    .table-detail-dmg {
+        width: 90%;
+    }
+
+    .data-row-section:nth-child(2), .data-row-section:nth-child(3), .data-row-section:nth-child(4) {
+        width: 33.33%;
+        display: flex;
+        justify-content: center;
+    }
 }

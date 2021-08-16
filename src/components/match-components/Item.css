@@ -6,6 +6,8 @@
     width: 23px;
     height: 23px;
     border: var(--border) 1px solid;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 .item-sprite, .no-item {
@@ -13,10 +15,15 @@
     height: 100%;
 }
 
+/*@media screen and (max-width: 800px) {*/
+/*    .item {*/
+/*        width: 2vw;*/
+/*        height: 2vw;*/
+/*    }*/
+/*}*/
+
 @media screen and (max-width: 500px) {
     .item {
-        min-width: 20px;
-        min-height: 20px;
         width: 5vw;
         height: 5vw;
     }

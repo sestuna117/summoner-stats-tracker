@@ -67,14 +67,24 @@ export default function DuoVerticalBarCharts(props) {
             width={0}
           />
           <Tooltip content={<CustomBarTooltip />} />
-          <Bar dataKey="Blue" fill={isDark ? "#336d9e" : "#7db2ff"} stackId="a">
+          <Bar
+            dataKey="Blue"
+            fill={isDark ? "#336d9e" : "#7db2ff"}
+            stackId="a"
+            isAnimationActive={false}
+          >
             <LabelList
               dataKey="Blue"
               position="center"
               content={renderCustomizedLabel}
             />
           </Bar>
-          <Bar dataKey="Red" fill={isDark ? "#9e4155" : "#ff938b"} stackId="a">
+          <Bar
+            dataKey="Red"
+            fill={isDark ? "#9e4155" : "#ff938b"}
+            stackId="a"
+            isAnimationActive={false}
+          >
             <LabelList
               dataKey="Red"
               position="center"

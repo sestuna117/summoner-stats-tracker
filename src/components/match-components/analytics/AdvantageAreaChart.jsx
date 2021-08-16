@@ -73,6 +73,7 @@ export default function AdvantageAreaChart(props) {
           dataKey="data"
           stroke="#5c5c5c"
           fill="url(#splitColor)"
+          isAnimationActive={false}
         />
       </AreaChart>
     </ResponsiveContainer>

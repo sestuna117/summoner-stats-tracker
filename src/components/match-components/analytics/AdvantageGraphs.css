@@ -1,5 +1,5 @@
 .advantage-graphs {
-    overflow-x: auto;
+    overflow: hidden;
 }
 
 .advantage-graphs .advantage-graph {

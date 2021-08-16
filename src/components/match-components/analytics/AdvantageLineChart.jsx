@@ -42,6 +42,7 @@ export default function AdvantageLineChart(props) {
           strokeWidth={2}
           fill="url(#splitColor)"
           dot={false}
+          isAnimationActive={false}
         />
         <Line
           type="monotone"
@@ -50,6 +51,7 @@ export default function AdvantageLineChart(props) {
           strokeWidth={2}
           fill="url(#splitColor)"
           dot={false}
+          isAnimationActive={false}
         />
       </LineChart>
     </ResponsiveContainer>

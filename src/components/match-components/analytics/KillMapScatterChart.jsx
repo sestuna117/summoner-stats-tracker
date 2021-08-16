@@ -58,6 +58,7 @@ export default function KillMapScatterChart(props) {
           fill="#7db2ff"
           stroke="#adadad"
           strokeWidth={2}
+          isAnimationActive={false}
         >
           {chartData?.map((entry, index) => {
             return (

@@ -45,5 +45,30 @@
 }
 
 @media screen and (max-width: 800px) {
+    .team-objectives .match-result , .team-objectives .match-team {
+        width: 50%;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
 
+    .team-objectives {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .objective-details {
+        display: flex;
+        justify-content: space-evenly;
+        max-width: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .objective-container:nth-child(2) {
+        display: none;
+    }
 }
