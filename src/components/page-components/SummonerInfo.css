@@ -7,13 +7,18 @@
 }
 
 .profile-icon {
+    border-radius: 10px 0 0 10px;
     margin-left: 10%;
     width: 100px;
     height: 100px;
 }
 
 .summoner-text {
+    border-radius: 0 10px 10px 0;
+    background-color: rgba(111, 111, 111, 0.5);
     padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
 }
 
 .summoner-text h2 {
