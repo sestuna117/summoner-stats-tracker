@@ -81,26 +81,11 @@ export default function RecentChampionSection(props) {
       }
       newChamps.set(championId, champData);
     });
-    Array.from(newChamps.entries()).forEach(([id, champData]) => {
-      if (!usedChamps.has(id)) {
-        setUsedChamps(new Map(usedChamps.set(id, champData)));
-      } else {
-        const updatedData = usedChamps.get(id);
-        updatedData.forEach((type, index) => {
-          Object.keys(type).forEach((stat) => {
-            if (stat === "id" || stat === "name") {
-              return;
-            }
-            type[stat] += champData[index][stat];
-          });
-        });
-        setUsedChamps(new Map(usedChamps.set(id, updatedData)));
-      }
-    });
+    setUsedChamps(newChamps);
   }
 
   useEffect(() => {
-    if (numOfMatches === 0 || !player || !(matches.length === numOfMatches)) {
+    if (numOfMatches === 0 || !player || matches.length === 0) {
       return;
     }
     loadChampions();
