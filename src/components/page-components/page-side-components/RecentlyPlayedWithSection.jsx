@@ -10,9 +10,11 @@ export default function RecentlyPlayedWithSection(props) {
   const [toggleDisplay, setToggleDisplay] = useState(true);
 
   useEffect(() => {
-    if (numOfMatches === 0 || !player || !(matches.length === numOfMatches)) {
+    if (numOfMatches === 0 || !player || matches.length === 0) {
       return;
     }
+    const amountPlayed = new Map();
+    console.log(amountPlayed);
     matches.forEach((match) => {
       const { participants } = match.info;
       const playersTeam = participants.find(
@@ -23,7 +25,6 @@ export default function RecentlyPlayedWithSection(props) {
       );
 
       let playerData;
-      const amountPlayed = new Map();
       teammates.forEach((member) => {
         const { puuid, summonerName, win } = member;
         if (!amountPlayed.has(puuid)) {
@@ -41,20 +42,8 @@ export default function RecentlyPlayedWithSection(props) {
         amountPlayed.set(puuid, playerData);
       });
 
-      Array.from(amountPlayed.entries()).forEach(([id, player]) => {
-        if (!playedWith.has(id)) {
-          setPlayedWith(new Map(playedWith.set(id, player)));
-        } else {
-          const updatedData = playedWith.get(id);
-          Object.keys(updatedData).forEach((stat) => {
-            if (stat === "name") {
-              return;
-            }
-            updatedData[stat] += player[stat];
-          });
-          setPlayedWith(new Map(playedWith.set(id, updatedData)));
-        }
-      });
+      console.log(amountPlayed);
+      setPlayedWith(amountPlayed);
     });
   }, [matches, player]);
 

@@ -37,8 +37,11 @@ export default function FullMatchDetail(props) {
   }
 
   useEffect(() => {
+    if (!match) {
+      return;
+    }
     loadTimeline();
-  }, []);
+  }, [match]);
 
   return display ? (
     <div className={"full-match-detail"}>
