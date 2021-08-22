@@ -14,7 +14,7 @@ export default function RecentlyPlayedWithSection(props) {
       return;
     }
     const amountPlayed = new Map();
-    console.log(amountPlayed);
+
     matches.forEach((match) => {
       const { participants } = match.info;
       const playersTeam = participants.find(
@@ -42,7 +42,6 @@ export default function RecentlyPlayedWithSection(props) {
         amountPlayed.set(puuid, playerData);
       });
 
-      console.log(amountPlayed);
       setPlayedWith(amountPlayed);
     });
   }, [matches, player]);
