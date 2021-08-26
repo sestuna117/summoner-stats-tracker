@@ -111,7 +111,7 @@ export default function ContextLoader({ children }) {
           <SumsDataContext.Provider value={spellData}>
             <ItemDataContext.Provider value={itemData}>
               <RuneShardsDataContext.Provider value={shardData}>
-                {isLoaded ? children : "Loading..."}
+                {isLoaded ? children : null}
               </RuneShardsDataContext.Provider>
             </ItemDataContext.Provider>
           </SumsDataContext.Provider>
