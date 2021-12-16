@@ -1,8 +1,9 @@
 .perks-spells {
-    display: flex;
+  display: flex;
 }
 
-.spells-column, .runes-column {
-    display: flex;
-    flex-direction: column;
+.spells-column,
+.runes-column {
+  display: flex;
+  flex-direction: column;
 }

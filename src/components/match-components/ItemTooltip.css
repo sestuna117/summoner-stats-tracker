@@ -1,29 +1,30 @@
 .item-tooltip {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .item-tooltip div:last-child {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .item-tooltip-desc {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .item-tooltip-desc p:last-child {
-    margin: 0;
+  margin: 0;
 }
 
-.item-tooltip p, .item-tooltip-desc p {
-    margin: 5px 0;
+.item-tooltip p,
+.item-tooltip-desc p {
+  margin: 5px 0;
 }
 
 .item-tooltip-name {
-    margin-top: 0;
-    color: #a258c4;
-    font-size: 13px;
+  margin-top: 0;
+  color: #a258c4;
+  font-size: 13px;
 }
 
 .item-tooltip-gold {
-    color: gold;
+  color: gold;
 }

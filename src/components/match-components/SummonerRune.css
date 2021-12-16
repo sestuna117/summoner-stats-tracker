@@ -1,32 +1,32 @@
 .summoner-rune {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .rune {
-    filter: grayscale(50%) opacity(30%);
-    transition: filter 0.2s ease-in-out;
-    width: 40px;
-    height: 40px;
+  filter: grayscale(50%) opacity(30%);
+  transition: filter 0.2s ease-in-out;
+  width: 40px;
+  height: 40px;
 }
 
 .rune-active {
-    filter: grayscale(0%) opacity(100%);
+  filter: grayscale(0%) opacity(100%);
 }
 
 .team-rune {
-    width: 17px;
-    height: 17px;
+  width: 17px;
+  height: 17px;
 }
 
 .sum-rune {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 
 @media screen and (max-width: 500px) {
-    .sum-rune {
-        width: 7vw;
-        height: 7vw;
-    }
+  .sum-rune {
+    width: 7vw;
+    height: 7vw;
+  }
 }

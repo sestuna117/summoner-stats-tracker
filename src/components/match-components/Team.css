@@ -1,20 +1,20 @@
 @import "../Themes.css";
 
 .team {
-    font-size: 12px;
-    list-style: none;
-    padding: 3px;
-    margin: auto;
+  font-size: 12px;
+  list-style: none;
+  padding: 3px;
+  margin: auto;
 }
 
 .team-member {
-    margin: 2px;
+  margin: 2px;
 }
 
 .team-blue {
-    background-color: var(--match-blue);
+  background-color: var(--match-blue);
 }
 
 .team-red {
-    background-color: var(--match-red);
+  background-color: var(--match-red);
 }

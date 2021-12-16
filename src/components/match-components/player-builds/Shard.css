@@ -1,7 +1,7 @@
 .shard {
-    width: 35px;
+  width: 35px;
 }
 
 .shard-inactive {
-    filter: grayscale(50%) opacity(30%);
+  filter: grayscale(50%) opacity(30%);
 }

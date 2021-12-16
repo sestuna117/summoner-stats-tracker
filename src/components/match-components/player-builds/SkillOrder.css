@@ -1,14 +1,14 @@
 .skill-order-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .skill-order {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 10px auto 20px;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 10px auto 20px;
+  flex-direction: column;
 }

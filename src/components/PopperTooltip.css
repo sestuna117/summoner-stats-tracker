@@ -1,53 +1,54 @@
 @import "Themes.css";
 
 .popper-tooltip {
-    max-width: 280px;
-    text-align: left;
-    display: block;
-    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
-    border: var(--tooltip-border);
-    background: #333;
-    color: white;
-    font-weight: bold;
-    padding: 4px 8px;
-    font-size: 13px;
-    border-radius: 4px;
-    z-index: 6;
+  max-width: 280px;
+  text-align: left;
+  display: block;
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+  border: var(--tooltip-border);
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  z-index: 6;
 }
 
-.popper-tooltip[data-popper-placement^='top'] > .popper-arrow {
-    bottom: -4px;
+.popper-tooltip[data-popper-placement^="top"] > .popper-arrow {
+  bottom: -4px;
 }
 
-.popper-tooltip[data-popper-placement^='bottom'] > .popper-arrow {
-    top: -4px;
+.popper-tooltip[data-popper-placement^="bottom"] > .popper-arrow {
+  top: -4px;
 }
 
-.popper-tooltip[data-popper-placement^='left'] > .popper-arrow {
-    right: -4px;
+.popper-tooltip[data-popper-placement^="left"] > .popper-arrow {
+  right: -4px;
 }
 
-.popper-tooltip[data-popper-placement^='right'] > .popper-arrow {
-    left: -4px;
+.popper-tooltip[data-popper-placement^="right"] > .popper-arrow {
+  left: -4px;
 }
 
-.popper-arrow, .popper-arrow::before {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: inherit;
+.popper-arrow,
+.popper-arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
 }
 
 .popper-arrow {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .popper-arrow::before {
-    visibility: visible;
-    content: '';
-    transform: rotate(45deg);
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
 }
 
 .popper-tooltip p {
-    margin: 5px 0;
+  margin: 5px 0;
 }

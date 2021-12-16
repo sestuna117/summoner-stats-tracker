@@ -1,153 +1,156 @@
 @import "../Themes.css";
 
 .bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .players-items {
-    width: 90px;
+  width: 90px;
 }
 
 .match {
-    list-style: none;
-    background-color: var(--background);
-    border: 1px solid var(--border);
-    margin: 0 10px 4px 0;
-    /*box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);*/
+  list-style: none;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  margin: 0 10px 4px 0;
+  /*box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);*/
 }
 
 .main-match-data {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    border-bottom: 1px solid var(--border);;
-    font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
 }
 
 .main-match-data p {
-    margin: 5px;
+  margin: 5px;
 }
 
 .match-duration {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .main-match-teams {
-    display: flex;
+  display: flex;
 }
 
 .main-match-right {
-    display: flex;
+  display: flex;
 }
 
 .match-details {
-    text-align: center;
-    padding-left: 10px;
-    min-width: 125px;
+  text-align: center;
+  padding-left: 10px;
+  min-width: 125px;
 }
 
 .match-result {
-    padding-left: 5px;
-    font-weight: bold;
+  padding-left: 5px;
+  font-weight: bold;
 }
 
 .match-win {
-    color: #3cbc8d;
+  color: #3cbc8d;
 }
 
 .match-lost {
-    color: #e05d4d;
+  color: #e05d4d;
 }
 
 .macro-info {
-    text-align: center;
+  text-align: center;
 }
 
 .macro-info .kp-text {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .macro-info p {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .data-header {
-    background-color: var(--inner-tab-background);
-    min-height: 30px;
-    border-top: var(--border) solid 1px;
-    border-bottom: var(--border) solid 1px;
+  background-color: var(--inner-tab-background);
+  min-height: 30px;
+  border-top: var(--border) solid 1px;
+  border-bottom: var(--border) solid 1px;
 }
 
 .dropdown-match-button {
-    color: var(--text);
-    display: block;
-    height: 118px;
-    width: 30px;
-    border-width: 0;
-    background-color: var(--tab-background);
+  color: var(--text);
+  display: block;
+  height: 118px;
+  width: 30px;
+  border-width: 0;
+  background-color: var(--tab-background);
 }
 
 .kda-info {
-    text-align: center;
+  text-align: center;
 }
 
 .kda-info > p {
-    margin: 5px;
+  margin: 5px;
 }
 
 .kda-subtext {
-    color: var(--subsubtext);
-    font-weight: bold;
-    font-size: 12px;
+  color: var(--subsubtext);
+  font-weight: bold;
+  font-size: 12px;
 }
 
-.match-remake, .match-remake .team {
-    background-color: var(--border);
+.match-remake,
+.match-remake .team {
+  background-color: var(--border);
 }
 
 .match-remake .match-result {
-    color: dimgrey;
+  color: dimgrey;
 }
 
 @media screen and (max-width: 800px) {
-    .main-match-data {
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-evenly;
-        align-content: center;
-    }
+  .main-match-data {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: center;
+  }
 
-    .match-details {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        border-bottom: var(--border) 1px solid;
-    }
+  .match-details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: var(--border) 1px solid;
+  }
 
-    .main-match-teams {
-        display: none;
-    }
+  .main-match-teams {
+    display: none;
+  }
 
-    .main-match-right {
-        width: 100%;
-        flex-direction: column;
-    }
+  .main-match-right {
+    width: 100%;
+    flex-direction: column;
+  }
 
-    .dropdown-match-button {
-        border-top: var(--border) 1px solid;
-        width: 100%;
-        height: 30px;
-    }
+  .dropdown-match-button {
+    border-top: var(--border) 1px solid;
+    width: 100%;
+    height: 30px;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .main-match-data, .macro-info p {
-        font-size: 12px;
-    }
+  .main-match-data,
+  .macro-info p {
+    font-size: 12px;
+  }
 
-    .kda-subtext, .macro-info .kp-text {
-        font-size: 11px;
-    }
+  .kda-subtext,
+  .macro-info .kp-text {
+    font-size: 11px;
+  }
 }

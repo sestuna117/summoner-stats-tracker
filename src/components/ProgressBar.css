@@ -1,16 +1,16 @@
 @import "Themes.css";
 
 .progress-bar {
-    height: 7px;
-    width: 80%;
-    margin: 0 auto;
-    background-color: var(--background);
-    border: var(--border) 1px solid;
+  height: 7px;
+  width: 80%;
+  margin: 0 auto;
+  background-color: var(--background);
+  border: var(--border) 1px solid;
 }
 
 .progress-bar-fill {
-    height: 100%;
-    margin: -1px;
-    background-color: #a258c4;
-    border: #8731ad 1px solid;
+  height: 100%;
+  margin: -1px;
+  background-color: #a258c4;
+  border: #8731ad 1px solid;
 }

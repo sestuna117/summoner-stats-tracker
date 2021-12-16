@@ -1,27 +1,29 @@
 @import "../../Themes.css";
 
-.used-champion-bar .progress-bar, .played-with-bar .progress-bar {
-    width: 50px;
-    height: 12px;
-    border: none;
-    background-color: var(--tab-background);
+.used-champion-bar .progress-bar,
+.played-with-bar .progress-bar {
+  width: 50px;
+  height: 12px;
+  border: none;
+  background-color: var(--tab-background);
 }
 
-.progress-played, .progress-winrate {
-    text-align: center;
+.progress-played,
+.progress-winrate {
+  text-align: center;
 }
 
 .progress-played .progress-bar-fill {
-    background-color: #4782b3;
-    border: #245884 1px solid;
+  background-color: #4782b3;
+  border: #245884 1px solid;
 }
 
 .progress-winrate .progress-bar-fill {
-    background-color: #3cbc8d;
-    border: #1f9268 1px solid;
+  background-color: #3cbc8d;
+  border: #1f9268 1px solid;
 }
 
 .bar-text {
-    font-size: 11px;
-    margin-left: 8px;
+  font-size: 11px;
+  margin-left: 8px;
 }

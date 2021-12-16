@@ -1,45 +1,45 @@
 @import "../../Themes.css";
 
 .side-section {
-    display: flex;
-    background-color: var(--tab-background);
-    border: 1px solid var(--border);
-    font-size: 12px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    /*box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);*/
+  display: flex;
+  background-color: var(--tab-background);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  /*box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.2);*/
 }
 
 .side-section-title {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 10px;
-    color: var(--subtext);
-    background-color: var(--tab-background);
-    border-bottom: var(--border) 1px solid;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px;
+  color: var(--subtext);
+  background-color: var(--tab-background);
+  border-bottom: var(--border) 1px solid;
 }
 
 .side-section-dropdown {
-    flex-direction: column;
-    justify-content: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .side-section-title:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .side-section-title-text {
-    margin: 0;
+  margin: 0;
 }
 
 .side-section-container {
-    display: block;
+  display: block;
 }
 
 .side-section-tab-closed {
-    display: none;
+  display: none;
 }
 
 /*@media screen and (max-width: 1129px) {*/

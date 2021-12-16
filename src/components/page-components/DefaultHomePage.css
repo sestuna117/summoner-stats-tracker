@@ -1,114 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
 
 .site-name {
-    font-family: 'Gloria Hallelujah', cursive;
-    color: #eaeaea;
-    font-size: 65px;
-    text-decoration: underline;
-    padding: 0 40px 10px;
-    background-color: rgba(162, 88, 196, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.19);
-    margin: 0 0 50px;
+  font-family: "Gloria Hallelujah", cursive;
+  color: #eaeaea;
+  font-size: 65px;
+  text-decoration: underline;
+  padding: 0 40px 10px;
+  background-color: rgba(162, 88, 196, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  margin: 0 0 50px;
 }
 
 .main-search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    padding: 10px;
-    background-color: #a258c4;
-    border-radius: 10px;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #a258c4;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 .main-search-bar {
-    font-size: 14px;
-    width: 500px;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    padding: 15px 40px 15px 15px;
+  font-size: 14px;
+  width: 500px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 15px 40px 15px 15px;
 }
 
 .main-search-bar-button {
-    height: 46px;
-    width: 46px;
-    border: none;
-    background: none;
-    position: relative;
-    right: 45px;
-    top: 0;
+  height: 46px;
+  width: 46px;
+  border: none;
+  background: none;
+  position: relative;
+  right: 45px;
+  top: 0;
 }
 
 .main-search-bar-button-icon {
-    height: 70%;
-    width: 70%;
+  height: 70%;
+  width: 70%;
 }
 
 .main-search-bar-region-selected {
-    border-radius: 10px;
-    font-size: 16px;
-    position: relative;
-    right: 20px;
-    text-align: center;
-    font-weight: bold;
-    padding: 0 10px;
-    color: #eaeaea;
-    height: 46px;
-    border: none;
-    outline: none;
-    background-color: #a258c4;
+  border-radius: 10px;
+  font-size: 16px;
+  position: relative;
+  right: 20px;
+  text-align: center;
+  font-weight: bold;
+  padding: 0 10px;
+  color: #eaeaea;
+  height: 46px;
+  border: none;
+  outline: none;
+  background-color: #a258c4;
 }
 
 .main-search-bar-region-selected:hover {
-    background-color: #7f38a0;
-    cursor: pointer;
+  background-color: #7f38a0;
+  cursor: pointer;
 }
 
 .main-search-bar-region {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 800px) {
-    .main-search {
-        flex-wrap: wrap;
-        width: 80%;
-        height: 50px;
-    }
+  .main-search {
+    flex-wrap: wrap;
+    width: 80%;
+    height: 50px;
+  }
 
-    .main-search-bar {
-        position: absolute;
-        width: 70%;
-        padding-right: 0;
-    }
+  .main-search-bar {
+    position: absolute;
+    width: 70%;
+    padding-right: 0;
+  }
 
-    .main-search-bar-button {
-        position: absolute;
-        top: auto;
-        right: 14%;
-    }
+  .main-search-bar-button {
+    position: absolute;
+    top: auto;
+    right: 14%;
+  }
 
-    .main-search-bar-region-selected {
-        position: absolute;
-        top: 60vh;
-        right: 45%;
-        margin: 0 auto;
-        text-align: center;
-    }
+  .main-search-bar-region-selected {
+    position: absolute;
+    top: 60vh;
+    right: 45%;
+    margin: 0 auto;
+    text-align: center;
+  }
 }
 
-@media screen and (max-width: 600px){
-    .site-name {
-        width: 100%;
-        padding: 0;
-        text-align: center;
-        font-size: 10vw;
-    }
+@media screen and (max-width: 600px) {
+  .site-name {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    font-size: 10vw;
+  }
 
-    .main-search-bar-region-selected {
-        top: 70vh;
-        right: 40%;
-    }
+  .main-search-bar-region-selected {
+    top: 70vh;
+    right: 40%;
+  }
 }

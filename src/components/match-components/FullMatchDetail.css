@@ -1,75 +1,75 @@
 @import "../Themes.css";
 
 .tabs {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  position: relative;
 }
 
 .tabs .tab {
-    color: var(--text);
-    font-size: 14px;
-    text-align: center;
-    position: relative;
-    height: 30px;
-    bottom: -1px;
-    background-color: var(--tab-background);
-    min-width: 220px;
-    padding-top: 5px;
-    margin-top: 8px;
-    border: var(--border) solid 1px;
-    z-index: 2;
+  color: var(--text);
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  height: 30px;
+  bottom: -1px;
+  background-color: var(--tab-background);
+  min-width: 220px;
+  padding-top: 5px;
+  margin-top: 8px;
+  border: var(--border) solid 1px;
+  z-index: 2;
 }
 
 .tab-content {
-    width: 100%;
-    order: 1;
-    display: none;
+  width: 100%;
+  order: 1;
+  display: none;
 }
 
 .active-tab {
-    display: block;
+  display: block;
 }
 
 .tabs .tab:hover {
-    background-color: var(--inner-tab-background);
-    cursor: pointer;
+  background-color: var(--inner-tab-background);
+  cursor: pointer;
 }
 
 .tabs .tab-open {
-    font-size: 15px;
-    font-weight: bold;
-    background-color: var(--inner-tab-background);
-    border-bottom: var(--inner-tab-background) solid 1px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: var(--inner-tab-background);
+  border-bottom: var(--inner-tab-background) solid 1px;
 }
 
 .full-match-detail {
-    background-color: var(--background);
-    display: block;
+  background-color: var(--background);
+  display: block;
 }
 
 @media screen and (max-width: 800px) {
-    .tabs {
-        display: block;
-    }
+  .tabs {
+    display: block;
+  }
 
-    .full-match-detail .tabs .tab {
-        margin-top: -2px;
-        padding-top: 0;
-        width: 33.33%;
-        border-top: var(--border) 1px solid;
-        border-left: none;
-        min-width: unset;
-    }
+  .full-match-detail .tabs .tab {
+    margin-top: -2px;
+    padding-top: 0;
+    width: 33.33%;
+    border-top: var(--border) 1px solid;
+    border-left: none;
+    min-width: unset;
+  }
 
-    .full-match-detail .tabs .tab:last-child {
-        border-right: none;
-    }
+  .full-match-detail .tabs .tab:last-child {
+    border-right: none;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .full-match-detail .tabs .tab {
-        font-size: 11px;
-    }
+  .full-match-detail .tabs .tab {
+    font-size: 11px;
+  }
 }

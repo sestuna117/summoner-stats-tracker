@@ -1,51 +1,52 @@
 .used-champ {
-    display: flex;
-    width: 135px;
+  display: flex;
+  width: 135px;
 }
 
 .used-champ-name-text {
-    margin: auto 5px;
+  margin: auto 5px;
 }
 
 .used-champ-name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-.used-champ-k\/d\/a, .used-champ-kda {
-    font-size: 10px;
+.used-champ-k\/d\/a,
+.used-champ-kda {
+  font-size: 10px;
 }
 
 .used-champ-k {
-    color: #3cbc8d;
+  color: #3cbc8d;
 }
 
 .used-champ-d {
-    color: #d54141;
+  color: #d54141;
 }
 
 .used-champ-a {
-    color: #d9a330;
+  color: #d9a330;
 }
 
 .used-champion-bar td {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
 .used-champ-icon {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin: 5px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
 }
 
 .used-champ-text {
-    display: flex;
-    justify-content: space-between;
-    width: 230px;
+  display: flex;
+  justify-content: space-between;
+  width: 230px;
 }
 
-@media screen and (max-width: 1129px){
-    .used-champ {
-        width: auto;
-    }
+@media screen and (max-width: 1129px) {
+  .used-champ {
+    width: auto;
+  }
 }

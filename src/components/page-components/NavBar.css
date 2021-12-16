@@ -1,133 +1,136 @@
-.navbar, .navbar-mobile {
-    display: flex;
-    margin: 0 auto;
-    height: 100%;
-    justify-content: space-between;
-    align-items: center;
+.navbar,
+.navbar-mobile {
+  display: flex;
+  margin: 0 auto;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-logo {
-    margin-left: 10px;
-    font-weight: bold;
-    text-decoration: underline;
-    color: #eaeaea;
-    font-size: 20px;
+  margin-left: 10px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #eaeaea;
+  font-size: 20px;
 }
 
 .navbar-right {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .navbar .switch {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
-.navbar .navbar-search, .navbar-mobile .navbar-search {
-    display: flex;
-    font-size: 16px;
+.navbar .navbar-search,
+.navbar-mobile .navbar-search {
+  display: flex;
+  font-size: 16px;
 }
 
 .navbar-dropdown {
-    width: 30px;
-    height: 30px;
-    padding: 10px;
-    display: none;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  display: none;
 }
 
-.navbar-dropdown:hover, .navbar-dropdown-active {
-    cursor: pointer;
-    background-color: #8731ad;
+.navbar-dropdown:hover,
+.navbar-dropdown-active {
+  cursor: pointer;
+  background-color: #8731ad;
 }
 
 .navbar-search-bar {
-    border: none;
-    outline: none;
-    border-radius: 8px;
-    padding: 8px 40px 8px 15px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px 40px 8px 15px;
 }
 
 .navbar-search-bar-button {
-    height: 32px;
-    width: 40px;
-    border: none;
-    background: none;
-    position: absolute;
-    right: 83px;
-    top: 9px;
+  height: 32px;
+  width: 40px;
+  border: none;
+  background: none;
+  position: absolute;
+  right: 83px;
+  top: 9px;
 }
 
 .navbar-search-bar-region-selected {
-    border-radius: 10px;
-    font-weight: bold;
-    padding-left: 5px;
-    margin-right: 10px;
-    margin-left: 10px;
-    color: #eaeaea;
-    text-align: center;
-    height: 32px;
-    border: none;
-    outline: none;
-    background-color: #a258c4;
+  border-radius: 10px;
+  font-weight: bold;
+  padding-left: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: #eaeaea;
+  text-align: center;
+  height: 32px;
+  border: none;
+  outline: none;
+  background-color: #a258c4;
 }
 
 .navbar-search-bar-region-selected:hover {
-    background-color: #7f38a0;
-    cursor: pointer;
+  background-color: #7f38a0;
+  cursor: pointer;
 }
 
 .navbar-search-bar-region {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 800px) {
-    .navbar-mobile .navbar-search {
-        display: none;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        height: calc(100vh - 50px);
-        left: 0;
-        right: 0;
-        margin: 50px auto auto;
-        background-color: #8731ad;
-    }
+  .navbar-mobile .navbar-search {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    height: calc(100vh - 50px);
+    left: 0;
+    right: 0;
+    margin: 50px auto auto;
+    background-color: #8731ad;
+  }
 
-    .navbar-mobile .navbar-search-open {
-        display: block;
-    }
+  .navbar-mobile .navbar-search-open {
+    display: block;
+  }
 
-    .navbar-search-bar {
-        position: absolute;
-        width: 60%;
-        top: calc(50% - 150px);
-        right: 0;
-        left: 0;
-        margin: 50px auto auto;
-    }
+  .navbar-search-bar {
+    position: absolute;
+    width: 60%;
+    top: calc(50% - 150px);
+    right: 0;
+    left: 0;
+    margin: 50px auto auto;
+  }
 
-    .navbar-search-bar-button {
-        margin: 50px auto auto;
-        position: absolute;
-        left: 63%;
-        right: 0;
-        top: calc(50% - 150px);
-    }
+  .navbar-search-bar-button {
+    margin: 50px auto auto;
+    position: absolute;
+    left: 63%;
+    right: 0;
+    top: calc(50% - 150px);
+  }
 
-    .navbar-search-bar-region-selected {
-        width: 20%;
-        position: absolute;
-        top: calc(50% - 100px);
-        right: 0;
-        left: 0;
-        margin: 50px auto auto;
-    }
+  .navbar-search-bar-region-selected {
+    width: 20%;
+    position: absolute;
+    top: calc(50% - 100px);
+    right: 0;
+    left: 0;
+    margin: 50px auto auto;
+  }
 
-    .navbar-dropdown {
-        position: absolute;
-        right: 0;
-        display: block;
-    }
+  .navbar-dropdown {
+    position: absolute;
+    right: 0;
+    display: block;
+  }
 }
