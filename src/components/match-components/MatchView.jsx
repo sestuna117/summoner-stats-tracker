@@ -21,7 +21,8 @@ function MatchView(props) {
   const [showFull, setShowFull] = useState(false);
   const [time, setTime] = useState();
 
-  const isRemake = match.info.gameDuration < 5 * 60 * 1000;
+  const isRemake =
+    match.info.gameEndTimestamp - match.info.gameStartTimestamp < 5 * 60 * 1000;
 
   let maxDamage = 0;
   let player;
@@ -153,7 +154,9 @@ function MatchView(props) {
             {isRemake ? "Remake" : player.win ? "Victory" : "Defeat"}
           </p>
           <p className="match-duration">
-            {calcDuration(match.info.gameDuration)}
+            {calcDuration(
+              match.info.gameEndTimestamp - match.info.gameStartTimestamp
+            )}
           </p>
         </div>
         <div className="chosen-sum-options">

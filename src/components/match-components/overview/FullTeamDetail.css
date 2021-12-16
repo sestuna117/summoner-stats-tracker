@@ -1,211 +1,216 @@
 @import "../../Themes.css";
 
 .full-data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
 }
 
 .table-blue {
-    background-color: var(--team-blue);
+  background-color: var(--team-blue);
 }
 
 .table-red {
-    background-color: var(--team-red);
+  background-color: var(--team-red);
 }
 
 .data-row {
-    padding: 2px 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  padding: 2px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.data-row, .data-header {
-    text-align: center;
-    margin: 0;
+.data-row,
+.data-header {
+  text-align: center;
+  margin: 0;
 }
 
 .data-row .sum-name {
-    width: 120px;
+  width: 120px;
 }
 
 .data-row .data-row-section {
-    display: inline-block;
+  display: inline-block;
 }
 
 .data-header {
-    width: 100%;
-    padding-top: 5px;
-    padding-bottom: 0;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 0;
 }
 
 .header-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: var(--border) solid 1px;
-    border-bottom: var(--border) solid 1px;
-    font-weight: normal;
-    text-align: center;
-    padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: var(--border) solid 1px;
+  border-bottom: var(--border) solid 1px;
+  font-weight: normal;
+  text-align: center;
+  padding: 0;
 }
 
 .full-data-table .header-cell {
-    border: none;
+  border: none;
 }
 
 .full-data-table-header {
-    border-top: var(--border) solid 1px;
-    border-bottom: var(--border) solid 1px;
+  border-top: var(--border) solid 1px;
+  border-bottom: var(--border) solid 1px;
 }
 
 .full-data-table .data-header {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0;
-    border: none;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0;
+  border: none;
 }
 
 .full-data-table .data-header .data-header {
-    display: inline-block;
+  display: inline-block;
 }
 
-
 .full-data-table .data-header .header-cell:first-child {
-    width: 250px;
+  width: 250px;
 }
 
 .chosen-options-name {
-    display: flex;
+  display: flex;
 }
 
 .chosen-sum-options {
-    display: flex;
+  display: flex;
 }
 
 .table-detail-name {
-    width: 250px;
+  width: 250px;
 }
 
 .table-detail-kda {
-    width: 80px;
+  width: 80px;
 }
 
 .table-detail-vision {
-    width: 80px;
+  width: 80px;
 }
 
 .table-detail-cs {
-    width: 60px;
+  width: 60px;
 }
 
 .table-detail-dmg {
-    width: 80px;
+  width: 80px;
 }
 
 .table-detail-item {
-    width: 180px;
+  width: 180px;
 }
 
 @media screen and (max-width: 800px) {
-    .full-data-table .data-row-section {
-        font-size: 12px;
-    }
+  .full-data-table .data-row-section {
+    font-size: 12px;
+  }
 
-    .full-data-table .data-row {
-        flex-wrap: wrap;
-        border-bottom: var(--border) 2px solid;
-    }
+  .full-data-table .data-row {
+    flex-wrap: wrap;
+    border-bottom: var(--border) 2px solid;
+  }
 
-    .table-detail-item {
-        width: auto;
-    }
+  .table-detail-item {
+    width: auto;
+  }
 
-    .full-data-table .data-header .header-cell:first-child {
-        display: block;
-        width: 100%;
-    }
+  .full-data-table .data-header .header-cell:first-child {
+    display: block;
+    width: 100%;
+  }
 
-    .full-data-table .data-row-section:last-child {
-        margin-right: 10px;
-    }
+  .full-data-table .data-row-section:last-child {
+    margin-right: 10px;
+  }
 
-    .table-detail-name {
-        width: auto;
-    }
+  .table-detail-name {
+    width: auto;
+  }
 
-    .table-detail-dmg, .table-detail-vision, .table-detail-cs {
-        width: 80px;
-    }
+  .table-detail-dmg,
+  .table-detail-vision,
+  .table-detail-cs {
+    width: 80px;
+  }
 
-    .full-data-table .data-header .header-cell {
-        display: none;
-    }
+  .full-data-table .data-header .header-cell {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 500px) {
+  .data-row .sum-name {
+    width: 70px;
+  }
 
-    .data-row .sum-name {
-        width: 70px;
-    }
+  .table-detail-name {
+    width: auto;
+  }
 
-    .table-detail-name {
-        width: auto;
-    }
+  .table-detail-dmg,
+  .table-detail-vision,
+  .table-detail-cs {
+    width: 55px;
+  }
 
-    .table-detail-dmg, .table-detail-vision, .table-detail-cs {
-        width: 55px;
-    }
+  .data-row-section:first-child {
+    order: 1;
+  }
 
-    .data-row-section:first-child {
-        order: 1;
-    }
+  .data-row-section:nth-child(2) {
+    order: 3;
+  }
 
-    .data-row-section:nth-child(2) {
-        order: 3;
-    }
+  .data-row-section:nth-child(3) {
+    order: 4;
+  }
 
-    .data-row-section:nth-child(3) {
-        order: 4;
-    }
+  .data-row-section:nth-child(4) {
+    order: 5;
+  }
 
-    .data-row-section:nth-child(4) {
-        order: 5;
-    }
+  .data-row-section:nth-child(5) {
+    order: 2;
+  }
 
-    .data-row-section:nth-child(5) {
-        order: 2;
-    }
-
-    .data-row-section:last-child {
-        order: 6;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
+  .data-row-section:last-child {
+    order: 6;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .data-row .sum-name {
-        width: 25vw;
-    }
+  .data-row .sum-name {
+    width: 25vw;
+  }
 
-    .data-row-section:first-child {
-        width: 75%;
-    }
+  .data-row-section:first-child {
+    width: 75%;
+  }
 
-    .data-row-section:nth-child(5) {
-        width: 25%;
-    }
+  .data-row-section:nth-child(5) {
+    width: 25%;
+  }
 
-    .table-detail-dmg {
-        width: 90%;
-    }
+  .table-detail-dmg {
+    width: 90%;
+  }
 
-    .data-row-section:nth-child(2), .data-row-section:nth-child(3), .data-row-section:nth-child(4) {
-        width: 33.33%;
-        display: flex;
-        justify-content: center;
-    }
+  .data-row-section:nth-child(2),
+  .data-row-section:nth-child(3),
+  .data-row-section:nth-child(4) {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+  }
 }

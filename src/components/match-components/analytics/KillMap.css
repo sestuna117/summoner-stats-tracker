@@ -1,90 +1,92 @@
 @import "../../Themes.css";
 
 .kill-map-container {
-    width: 95%;
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    border-top: var(--border) 3px solid;
-    border-bottom: var(--border) 3px solid;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  border-top: var(--border) 3px solid;
+  border-bottom: var(--border) 3px solid;
 }
 
 .kill-map {
-    width: 350px;
-    height: 350px;
+  width: 350px;
+  height: 350px;
 }
 
 .kill-map-box {
-    width: 50%;
-    margin: auto;
-    border-radius: 5%;
-    border: var(--border) 2px solid;
-    background-color: var(--tab-background);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 50%;
+  margin: auto;
+  border-radius: 5%;
+  border: var(--border) 2px solid;
+  background-color: var(--tab-background);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .kill-map-info {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .kill-map-info .champ-sprite {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .kill-map-info .icon-row {
-    width: 93%;
-    padding: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  width: 93%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .icon-row:first-child {
-    border-bottom: #4782b3 5px solid;
+  border-bottom: #4782b3 5px solid;
 }
 
 .icon-row:last-child {
-    border-top: #b65c6f 5px solid;
+  border-top: #b65c6f 5px solid;
 }
 
 @media screen and (max-width: 800px) {
-    .kill-map-box {
-        width: 75%;
-        border: none;
-        box-shadow: none;
-        background-color: var(--background);
-    }
+  .kill-map-box {
+    width: 75%;
+    border: none;
+    box-shadow: none;
+    background-color: var(--background);
+  }
 
-    .kill-map-info .icon-row, .kill-map-container {
-        width: 50vw;
-    }
+  .kill-map-info .icon-row,
+  .kill-map-container {
+    width: 50vw;
+  }
 
-    .kill-map-container {
-        height: 50vw;
-    }
+  .kill-map-container {
+    height: 50vw;
+  }
 }
 
 @media screen and (max-width: 450px) {
-    .kill-map-info .champ-sprite {
-        width: 40px;
-        height: 40px;
-    }
+  .kill-map-info .champ-sprite {
+    width: 40px;
+    height: 40px;
+  }
 
-    .kill-map-info .icon-row, .kill-map-container {
-        width: 80vw;
-    }
+  .kill-map-info .icon-row,
+  .kill-map-container {
+    width: 80vw;
+  }
 
-    .kill-map-container {
-        height: 80vw;
-    }
+  .kill-map-container {
+    height: 80vw;
+  }
 }
 
 @media screen and (max-width: 300px) {
-    .kill-map-info .champ-sprite {
-        width: 15vw;
-        height: 15vw;
-    }
+  .kill-map-info .champ-sprite {
+    width: 15vw;
+    height: 15vw;
+  }
 }

@@ -1,17 +1,18 @@
 @import "../../Themes.css";
 
 .winrate-table-header {
-    font-size: 14px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-bottom: var(--border) 2px solid;
-    color: var(--subtext);
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: var(--border) 2px solid;
+  color: var(--subtext);
 }
 
 .winrate-table-header:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-thead .ascending, thead .descending {
-    text-decoration: underline;
+thead .ascending,
+thead .descending {
+  text-decoration: underline;
 }

@@ -8,7 +8,6 @@ import TeamObjectiveInfo from "./TeamObjectiveInfo";
 import CsDetail from "./CsDetail";
 import WardDetails from "./WardDetails";
 import KdaDetail from "./KdaDetail";
-import TierDetail from "./TierDetail";
 import DamageDetail from "./DamageDetail";
 
 export default function FullTeamDetail(props) {

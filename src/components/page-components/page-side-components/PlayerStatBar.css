@@ -1,13 +1,13 @@
 .played-with-bar {
-    height: 35px;
+  height: 35px;
 }
 
 .played-with-player {
-    padding-left: 10px;
-    width: 135px;
+  padding-left: 10px;
+  width: 135px;
 }
 
 .played-with-name {
-    margin: auto 5px;
-    font-weight: bold;
+  margin: auto 5px;
+  font-weight: bold;
 }
